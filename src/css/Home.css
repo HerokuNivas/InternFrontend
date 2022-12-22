@@ -43,6 +43,15 @@
   border-radius: 8px;
 }
 
+.mainSendRequest {
+  height: 56px;
+  margin-left: 30px;
+  margin-right: 80%;
+  background: #f2c94c;
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+}
+
 .mainRegister {
   height: 56px;
   top: 0px;
@@ -64,7 +73,7 @@
     margin-right: 20%;
   }
 
-  .mainRegister{
+  .mainRegister, .mainSendRequest{
     margin-left: 20%;
     margin-right: 20%;
   }

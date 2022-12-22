@@ -6,8 +6,10 @@ import { useStateContext } from "../ContextProvider/ContextProvider";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import "../css/Dashboard.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard(){
+    let navigate = useNavigate();
     const {user} = useStateContext();
     const [game, setGames] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -38,7 +40,7 @@ export default function Dashboard(){
             <MoveToInboxIcon style={{position: "absolute", right: "15px", top: "15px"}}/>
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
-                <p className="mainLogin" style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
+                <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
                 </div>}
         </div>}</div>
     )
