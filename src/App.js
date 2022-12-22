@@ -6,6 +6,7 @@ import Register from "./Components/Register";
 import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import NewGame from "./Components/NewGame";
+import Requests from "./Components/Requests";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/dashboard" element={<Dashboard/>}></Route>
         <Route path="/newgame" element={<NewGame/>}></Route>
+        <Route path="/requests" element={<Requests/>}></Route>
       </Routes>
     </BrowserRouter>
   );
