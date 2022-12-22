@@ -1,0 +1,80 @@
+.mainHeading {
+  position: absolute;
+  width: 53px;
+  height: 45px;
+  left: 48%;
+  top: 25px;
+
+  font-family: "Bilbo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 45px;
+
+  color: #000000;
+}
+
+.mainName {
+  width: 156px;
+  height: 240px;
+  top: 25px;
+  margin: auto;
+  margin-top: 100px;
+
+  font-family: "Bilbo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 96px;
+  line-height: 120px;
+  text-align: center;
+
+  color: #000000;
+}
+
+.mainLogin {
+  height: 56px;
+  top: 0px;
+  margin: auto;
+  margin-left: 40%;
+  margin-right: 40%;
+  background: #f2c94c;
+
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+}
+
+.mainRegister {
+  height: 56px;
+  top: 0px;
+  margin: auto;
+  margin-left: 40%;
+  margin-right: 40%;
+  margin-top: 10px;
+
+  background: #2f80ed;
+  /* Drop Shadow 1 */
+
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+  .mainLogin {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .mainRegister{
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+.mainLoginText, .mainRegisterText {
+  color: white;
+  position: relative;
+  font-size: 20px;
+  left: 35%;
+  top: 10px;
+  cursor: pointer;
+}

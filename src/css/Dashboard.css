@@ -1,0 +1,16 @@
+.dashBoardNogames {
+    width: 250px;
+    height: 240px;
+    top: 25px;
+    margin: auto;
+    margin-top: 150px;
+
+  font-family: "Bilbo";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 80px;
+  text-align: center;
+
+  color: black;
+}

@@ -1,0 +1,16 @@
+.errorPara1 {
+    width: 250px;
+    height: 50px;
+    top: 560px;
+    background: #EB5757;
+    border-radius: 8px;
+  }
+  
+  .errorText1{
+      color: white;
+    position: relative;
+    font-size: 15px;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+  }
