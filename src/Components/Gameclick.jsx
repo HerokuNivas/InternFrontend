@@ -36,6 +36,7 @@ export default function Gameclick(){
                     method: "get",
                     url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
                 }).then((data)=>{setData(data.data.games)})
+                console.log(current);
                 if(data.current === opponent){
                     setCurrent(data.current);
                     setBoardIs(data.board);
