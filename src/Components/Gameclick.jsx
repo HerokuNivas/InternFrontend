@@ -41,7 +41,7 @@ export default function Gameclick(){
             setOpponent(user1Is);
         }
         setBoardIs(boardIsIs);
-    });
+    }, []);
 
     useEffect(()=>{
         const timeInvterval = setInterval(async () => {      
@@ -52,9 +52,8 @@ export default function Gameclick(){
 
                 const data = await dataIs.data;
                 const games = await data.games;
-                
-                await delay(5000);
-                if(current === opponent) setBoardIs(games.board);
+
+                setBoardIs(games.board);
                 setCurrent(games.current);
                 setWinBy(games.winby);
                 
@@ -212,7 +211,6 @@ export default function Gameclick(){
     async function Submit(){
         if(!came) return;
         setLoading(true);
-        await delay(10000);
         setPlaced(false);
         setCame(false);
         var draw = "";
