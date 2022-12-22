@@ -36,18 +36,19 @@ export default function Gameclick(){
                     url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
                 })
 
-                const data = await dataIs.data.games;
+                const data = await dataIs.data;
+                const games = await data.games;
 
-                if(data.current === opponent){
-                    setCurrent(data.current);
-                    setBoardIs(data.board);
-                    console.log(data.board);
-                    setWinBy(data.winby);
+                if(games.current === opponent){
+                    setCurrent(games.current);
+                    setBoardIs(games.board);
+                    console.log(games.board);
+                    setWinBy(games.winby);
                 }
-                
+
                 if(data.current === user){
-                    setCurrent(data.current);
-                    setWinBy(data.winby);
+                    setCurrent(games.current);
+                    setWinBy(games.winby);
                 }
         }, 5000);
         return ()=> clearInterval(timeInvterval);
