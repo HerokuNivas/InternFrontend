@@ -39,20 +39,11 @@ export default function Gameclick(){
 
                 const data = await dataIs.data;
                 const games = await data.games;
+                if(current !== user){
+                    setBoardIs(games.board);
+                }
                     setCurrent(games.current);
                     setWinBy(games.winby);
-                    setCurrent(games.current);
-                    setWinBy(games.winby);
-                    if(games.current !== user){
-                        console.log("In here");
-                        setBoardIs(games.board);
-                    }
-                    if(games.current === user){
-                        if(games.last !== piece){
-                            console.log("In here 2");
-                            setBoardIs(games.board);
-                        }
-                    }
                     
         }, 1000);
         return ()=> clearInterval(timeInvterval);
@@ -234,7 +225,7 @@ export default function Gameclick(){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString(), last: piece})
+            body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString()})
           };
           await fetch("https://intern-backend-ten.vercel.app/update", requestOptions).then((response) => response.json()).then((responseData) => {setLoading(false)});
           await axios({
