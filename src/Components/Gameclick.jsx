@@ -206,9 +206,15 @@ export default function Gameclick(){
         setBoardIs(boardCheck);
         setCame(true);
     }
+
+    function submitParent(){
+        setLoading(true);
+        setStartRender(true);
+        Submit();
+        setLoading(false);
+    }
      
     async function Submit(){
-        console.log("In");
         setLoading(true);
         var draw = "";
         draw = checkWinning();
@@ -286,7 +292,7 @@ export default function Gameclick(){
                 {error && <p style={{color: "red", marginTop: "430px", marginLeft: "20px"}}>Opps! It's not your turn</p>}
                 {current===user && (placed && !came) && <p style={{color: "red", marginTop: "430px", marginLeft: "20px"}}>Already placed a bead at that location</p>}
                 {came && <p style={{color: "green",marginTop: "430px", marginLeft: "20px"}}>You placed a bead you can submit!</p>}
-                {winby==="" && current===user && <div><Button onClick={Submit} variant="contained" style={{background: "#F2C94C", marginLeft: "20px", marginTop: (placed || came || error)?"10px":"320px", marginBottom: "20px", paddingLeft: "60px", paddingRight: "60px"}}>Submit!</Button></div>}
+                {winby==="" && current===user && <div><Button onClick={submitParent} variant="contained" style={{background: "#F2C94C", marginLeft: "20px", marginTop: (placed || came || error)?"10px":"320px", marginBottom: "20px", paddingLeft: "60px", paddingRight: "60px"}}>Submit!</Button></div>}
                 {winby==="" && current===opponent && <div><Button variant="contained" style={{background: "#E0E0E0", marginLeft: "20px", marginTop: error?"10px":"320px", marginBottom: "20px", color: "black"}}>Waiting for {opponent}</Button></div>}</div>}
                 {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
             </div>    
