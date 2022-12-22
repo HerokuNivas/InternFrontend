@@ -53,18 +53,14 @@ export default function Gameclick(){
                 const data = await dataIs.data;
                 const games = await data.games;
                 
-                await functionHigh(games.current, games.board);
 
                 setCurrent(games.current);
                 setWinBy(games.winby);
+                setBoardIs(games.board);
                 
         }, 5000);
         return ()=> clearInterval(timeInvterval);
     })
-
-    async function functionHigh(value, board){
-        if(value !== user) setBoardIs(board);
-    }
     
 
     function function1(){
