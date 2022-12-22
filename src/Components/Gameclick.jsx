@@ -26,6 +26,7 @@ export default function Gameclick(){
     const [came, setCame] = useState(false);
     const [boardIs, setBoardIs] = useState(boardIsIs);
     const [loading, setLoading] = useState(false);
+    const [render, setStartRender] = useState(false);
 
     const [error, setError] = useState(false);
 
@@ -47,6 +48,7 @@ export default function Gameclick(){
 
                 if(games.current === user){
                     setCurrent(games.current);
+                    console.log(render);
                     setWinBy(games.winby);
                 }
         }, 5000);
@@ -210,7 +212,6 @@ export default function Gameclick(){
         setLoading(true);
         var draw = "";
         draw = checkWinning();
-        setLoading(false);
         var count = 0;
         for(var i=0; i < 3; i++){
             for(var j=0; j < 3; j++){
@@ -224,7 +225,7 @@ export default function Gameclick(){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString()})
           };
-          await fetch("https://intern-backend-ten.vercel.app/update", requestOptions).then((response) => response.json()).then((responseData) => {console.log(responseData)});
+          await fetch("https://intern-backend-ten.vercel.app/update", requestOptions).then((response) => response.json()).then((responseData) => {setStartRender(true)});
           await axios({
             method: "get",
             url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
