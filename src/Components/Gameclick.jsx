@@ -26,6 +26,7 @@ export default function Gameclick(){
     const [came, setCame] = useState(false);
     const [boardIs, setBoardIs] = useState(boardIsIs);
     const [loading, setLoading] = useState(false);
+    const [inAlready, setInAlready] = useState(false); 
 
     const [error, setError] = useState(false);
 
@@ -48,11 +49,16 @@ export default function Gameclick(){
                 const dataIs = await axios({
                     method: "get",
                     url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
-                }).then((data)=>{if(data.data.games.current === opponent) setBoardIs(data.data.games.board)})
+                })
 
                 const data = await dataIs.data;
                 const games = await data.games;
                 
+                if(inAlready===false && games.last!=="" && games.last!==piece){
+                    setBoardIs(games.board);
+                    setInAlready(true);
+                }
+
                 setCurrent(games.current);
                 setWinBy(games.winby);
                 
@@ -201,8 +207,10 @@ export default function Gameclick(){
         setCame(true);
     }
 
-    function submitParent(){
+    async function submitParent(){
         setLoading(true);
+        setInAlready(true);
+        await delay(5000);
         Submit();
         setLoading(false);
     }
@@ -225,7 +233,7 @@ export default function Gameclick(){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString()})
+            body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString(), last: piece})
           };
           await fetch("https://intern-backend-ten.vercel.app/update", requestOptions).then((response) => response.json()).then((responseData) => {setLoading(false)});
           await axios({
