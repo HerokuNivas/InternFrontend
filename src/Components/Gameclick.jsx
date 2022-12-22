@@ -41,22 +41,17 @@ export default function Gameclick(){
                 const games = await data.games;
                     setCurrent(games.current);
                     setWinBy(games.winby);
-              
                     setCurrent(games.current);
                     setWinBy(games.winby);
-                    var count1 = 0;
-                    var count2 = 0;
-                    for(var i=0; i < 3; i++){
-                        for(var j=0; j<3; j++){
-                            if(games.board[i][j] !== "")
-                                count1=count1+1;
-                            if(boardIs[i][j]!=="")
-                                count2=count2+1;
+                    if(games.current !== user){
+                        setBoardIs(games.board);
+                    }
+                    if(games.current === user){
+                        if(games.last !== piece){
+                            setBoardIs(games.board);
                         }
                     }
-                    console.log(count1, count2);
-                    console.log(boardIs, games.board);
-                    if(count1 === count2+1) setBoardIs(games.board);
+                    
         }, 1000);
         return ()=> clearInterval(timeInvterval);
     }, [])
@@ -237,14 +232,13 @@ export default function Gameclick(){
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString()})
+            body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString(), last: piece})
           };
-          await fetch("https://intern-backend-ten.vercel.app/update", requestOptions).then((response) => response.json()).then((responseData) => {setStartRender(true)});
+          await fetch("https://intern-backend-ten.vercel.app/update", requestOptions).then((response) => response.json()).then((responseData) => {setLoading(false)});
           await axios({
             method: "get",
             url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
         }).then((data)=>(setCurrent(data.data.games.current), setWinBy(data.data.games.winby), setBoardIs(data.data.games.board)))
-          setLoading(false);
     }
 
     function checkWinning(){
