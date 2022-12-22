@@ -48,6 +48,7 @@ export default function Gameclick(){
                 }
 
                 if(games.current === user){
+                    console.log("In");
                     setCurrent(games.current);
                     if(startRender){
                         console.log(games.board, "Kell");
