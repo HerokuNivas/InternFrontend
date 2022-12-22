@@ -55,7 +55,7 @@ export default function Gameclick(){
                         }
                     }
                     if(count1 === count2+1) setBoardIs(games.board);
-        }, 5000);
+        }, 10000);
         return ()=> clearInterval(timeInvterval);
     }, [])
 
@@ -220,6 +220,8 @@ export default function Gameclick(){
      
     async function Submit(){
         setLoading(true);
+        setPlaced(false);
+        setCame(false);
         var draw = "";
         draw = checkWinning();
         var count = 0;
@@ -240,8 +242,6 @@ export default function Gameclick(){
             method: "get",
             url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
         }).then((data)=>(setCurrent(data.data.games.current), setWinBy(data.data.games.winby), setBoardIs(data.data.games.board)))
-        setPlaced(false);
-        setCame(false);
           setLoading(false);
     }
 
