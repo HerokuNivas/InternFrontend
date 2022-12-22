@@ -54,6 +54,8 @@ export default function Gameclick(){
                                 count2=count2+1;
                         }
                     }
+                    console.log(count1, count2);
+                    console.log(boardIs, games.board);
                     if(count1 === count2+1) setBoardIs(games.board);
         }, 10000);
         return ()=> clearInterval(timeInvterval);
