@@ -26,6 +26,7 @@ export default function Gameclick(){
     const [came, setCame] = useState(false);
     const [boardIs, setBoardIs] = useState(boardIsIs);
     const [loading, setLoading] = useState(false);
+    const [startRender, setstartRender] = useState(false);
 
     const [error, setError] = useState(false);
 
@@ -48,8 +49,9 @@ export default function Gameclick(){
 
                 if(games.current === user){
                     setCurrent(games.current);
-                    if(boardIs !== games.board){
+                    if(startRender){
                         setBoardIs(games.board);
+                        setstartRender(false);
                     }
                     setWinBy(games.winby);
                 }
@@ -234,6 +236,7 @@ export default function Gameclick(){
         }).then((data)=>(setCurrent(data.data.games.current), setWinBy(data.data.games.winby), setBoardIs(data.data.games.board)))
         setPlaced(false);
         setCame(false);
+        setstartRender(true);
           setLoading(false);
     }
 
