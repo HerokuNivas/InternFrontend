@@ -16,7 +16,7 @@ export default function Gameclick(){
     const location = useLocation();
     const {user1Is, user2Is, boardIsIs, currentIs, winbyIs} = location.state
     
-    
+    const delay = ms => new Promise(res => setTimeout(res, ms));
     const {user} = useStateContext();
     const [current, setCurrent] = useState(currentIs);
     const [winby, setWinBy] = useState(winbyIs);
@@ -53,10 +53,10 @@ export default function Gameclick(){
                 const data = await dataIs.data;
                 const games = await data.games;
                 
-
+                await delay(5000);
+                if(current === opponent) setBoardIs(games.board);
                 setCurrent(games.current);
                 setWinBy(games.winby);
-                setBoardIs(games.board);
                 
         }, 5000);
         return ()=> clearInterval(timeInvterval);
@@ -212,6 +212,7 @@ export default function Gameclick(){
     async function Submit(){
         if(!came) return;
         setLoading(true);
+        await delay(10000);
         setPlaced(false);
         setCame(false);
         var draw = "";
