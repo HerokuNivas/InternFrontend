@@ -48,12 +48,11 @@ export default function Gameclick(){
                 const dataIs = await axios({
                     method: "get",
                     url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
-                })
+                }).then((data)=>{if(data.data.games.current === opponent) setBoardIs(data.data.games.board)})
 
                 const data = await dataIs.data;
                 const games = await data.games;
-
-                setBoardIs(games.board);
+                
                 setCurrent(games.current);
                 setWinBy(games.winby);
                 
