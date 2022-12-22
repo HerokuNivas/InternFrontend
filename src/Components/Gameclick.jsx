@@ -39,18 +39,22 @@ export default function Gameclick(){
 
                 const data = await dataIs.data;
                 const games = await data.games;
-                
-                if(games.current !== user){
                     setCurrent(games.current);
-                    setBoardIs(games.board);
                     setWinBy(games.winby);
-                }
-
-                if(games.current === user){
+              
                     setCurrent(games.current);
-                    console.log(render);
                     setWinBy(games.winby);
-                }
+                    var count1 = 0;
+                    var count2 = 0;
+                    for(var i=0; i < 3; i++){
+                        for(var j=0; j<3; j++){
+                            if(games.board[i][j] !== "")
+                                count1=count1+1;
+                            if(boardIs[i][j]!=="")
+                                count2=count2+1;
+                        }
+                    }
+                    console.log(count1, count2);
         }, 5000);
         return ()=> clearInterval(timeInvterval);
     }, [])
