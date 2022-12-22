@@ -1,0 +1,91 @@
+
+.box1, .box2, .box3, .box4, .box5, .box6, .box7, .box8, .box9{
+    position: absolute;
+  width: 105.09px;
+  height: 105.09px;
+}
+
+.box1 {
+  
+  left: 16px;
+  top: 264px;
+
+  background: white;
+  border-right: 10px solid #ffe79e;
+  border-bottom: 10px solid #ffe79e;
+}
+
+.box2 {
+
+  left: 129px;
+  top: 264px;
+
+  background: white;
+  border-right: 10px solid #ffe79e;
+  border-bottom: 10px solid #ffe79e;
+}
+
+.box3 {
+
+  left: 242px;
+  top: 264px;
+
+  background: white;
+  
+  border-bottom: 10px solid #ffe79e;
+}
+
+.box4 {
+
+  left: 16px;
+  top: 377px;
+
+  background: white;
+  border-right: 10px solid #ffe79e;
+  border-bottom: 10px solid #ffe79e;
+}
+
+.box5 {
+
+  left: 129px;
+  top: 377px;
+
+  background: white;
+  border-right: 10px solid #ffe79e;
+  border-bottom: 10px solid #ffe79e;
+}
+
+.box6 {
+
+  left: 242px;
+  top: 377px;
+
+  background: white;
+  border-bottom: 10px solid #ffe79e;
+}
+
+.box7 {
+
+  left: 16px;
+  top: 490px;
+
+  background: white;
+  border-right: 10px solid #ffe79e;
+}
+
+.box8 {
+
+  left: 129px;
+  top: 490px;
+
+  background: white;
+  border-right: 10px solid #ffe79e;
+}
+
+.box9 {
+
+  left: 242px;
+  top: 490px;
+
+  background: white;
+}

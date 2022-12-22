@@ -27,8 +27,8 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
             {winby!=="" && winby===user && <div style={{marginTop: "-20px", fontSize: "15px"}}><p>You won!</p></div>}
             {winby==="draw" && <div style={{marginTop: "-20px", fontSize: "15px"}}><p>It's a Draw!</p></div>}
             <p style={{marginTop: "-20px"}}>{time}</p>
-            {(winby!=="" || current===opponent) && <p className="gameView"><Link to={"/games/"+id}  target="_blank" rel="noopener noreferrer" state={{user1: user1, user2: user2, current: current, winby: winby, board: board, time: time, id: id}}><span className="mainLoginText">View game</span></Link></p>}
-            {(winby==="" && current===user) && <p className="gameView"><span className="mainLoginText">Play!</span></p>}
+            {(winby!=="" || current===opponent) && <p className="gameView"><Link to={"/games/"+id} style={{textDecoration: "none"}} state={{user1Is: user1, user2Is: user2, currentIs: current, winbyIs: winby, boardIsIs: board}}><span className="mainLoginText">View game</span></Link></p>}
+            {(winby==="" && current===user) && <p className="gameView"><Link to={"/games/"+id} style={{textDecoration: "none"}} state={{user1Is: user1, user2Is: user2, currentIs: current, winbyIs: winby, boardIsIs: board}}><span className="mainLoginText">Play!</span></Link></p>}
         </div>    
     )
 }
