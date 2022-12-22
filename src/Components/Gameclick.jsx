@@ -26,7 +26,6 @@ export default function Gameclick(){
     const [came, setCame] = useState(false);
     const [boardIs, setBoardIs] = useState(boardIsIs);
     const [loading, setLoading] = useState(false);
-    const [startRender, setstartRender] = useState(false);
 
     const [error, setError] = useState(false);
 
@@ -39,8 +38,7 @@ export default function Gameclick(){
 
                 const data = await dataIs.data;
                 const games = await data.games;
-                console.log(games);
-                console.log(user);
+                
                 if(games.current !== user){
                     setCurrent(games.current);
                     setBoardIs(games.board);
@@ -48,14 +46,7 @@ export default function Gameclick(){
                 }
 
                 if(games.current === user){
-                    console.log("In");
                     setCurrent(games.current);
-                    console.log(startRender);
-                    if(startRender){
-                        console.log(games.board, "Kell");
-                        setBoardIs(games.board);
-                        setstartRender(false);
-                    }
                     setWinBy(games.winby);
                 }
         }, 5000);
@@ -215,6 +206,7 @@ export default function Gameclick(){
     }
      
     async function Submit(){
+        console.log("In");
         setLoading(true);
         var draw = "";
         draw = checkWinning();
@@ -239,7 +231,6 @@ export default function Gameclick(){
         }).then((data)=>(setCurrent(data.data.games.current), setWinBy(data.data.games.winby), setBoardIs(data.data.games.board)))
         setPlaced(false);
         setCame(false);
-        setstartRender(true);
           setLoading(false);
     }
 
@@ -294,12 +285,7 @@ export default function Gameclick(){
                 {error && <p style={{color: "red", marginTop: "430px", marginLeft: "20px"}}>Opps! It's not your turn</p>}
                 {current===user && (placed && !came) && <p style={{color: "red", marginTop: "430px", marginLeft: "20px"}}>Already placed a bead at that location</p>}
                 {came && <p style={{color: "green",marginTop: "430px", marginLeft: "20px"}}>You placed a bead you can submit!</p>}
-                {winby==="" && current===user && <div><Button onClick={()=>{
-                    setLoading(true);
-                    setTimeout(() => {
-                        setLoading(false);
-                    }, 5000);
-                    Submit()}} variant="contained" style={{background: "#F2C94C", marginLeft: "20px", marginTop: (placed || came || error)?"10px":"320px", marginBottom: "20px", paddingLeft: "60px", paddingRight: "60px"}}>Submit!</Button></div>}
+                {winby==="" && current===user && <div><Button onClick={Submit} variant="contained" style={{background: "#F2C94C", marginLeft: "20px", marginTop: (placed || came || error)?"10px":"320px", marginBottom: "20px", paddingLeft: "60px", paddingRight: "60px"}}>Submit!</Button></div>}
                 {winby==="" && current===opponent && <div><Button variant="contained" style={{background: "#E0E0E0", marginLeft: "20px", marginTop: error?"10px":"320px", marginBottom: "20px", color: "black"}}>Waiting for {opponent}</Button></div>}</div>}
                 {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
             </div>    
