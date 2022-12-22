@@ -32,11 +32,14 @@ export default function Gameclick(){
 
     useEffect(()=>{
         const timeInvterval = setInterval(async () => {            
-                await axios({
+                const dataIs = await axios({
                     method: "get",
                     url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
-                }).then((data)=>{setData(data.data.games)})
-                console.log(current);
+                })
+
+                const data = await dataIs.data.games;
+                console.log(data);
+
                 if(data.current === opponent){
                     setCurrent(data.current);
                     setBoardIs(data.board);
