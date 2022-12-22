@@ -43,12 +43,14 @@ export default function Gameclick(){
                 if(games.current !== user){
                     setCurrent(games.current);
                     setBoardIs(games.board);
-                    console.log(games.board);
                     setWinBy(games.winby);
                 }
 
                 if(games.current === user){
                     setCurrent(games.current);
+                    if(boardIs !== games.board){
+                        setBoardIs(games.board);
+                    }
                     setWinBy(games.winby);
                 }
         }, 5000);
