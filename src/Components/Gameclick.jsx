@@ -53,6 +53,7 @@ export default function Gameclick(){
                 const data = await dataIs.data;
                 const games = await data.games;
                 
+                await functionHigh(games.current, games.board);
 
                 setCurrent(games.current);
                 setWinBy(games.winby);
@@ -61,22 +62,10 @@ export default function Gameclick(){
         return ()=> clearInterval(timeInvterval);
     })
 
-    useEffect(()=>{
-        const timeInvterval = setInterval(async () => {      
-                const dataIs = await axios({
-                    method: "get",
-                    url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
-                })
-
-                const data = await dataIs.data;
-                const games = await data.games;
-                console.log(current, opponent);
-                if(current === opponent)
-                    setBoardIs(games.board);
-                
-        }, 500);
-        return ()=> clearInterval(timeInvterval);
-    })
+    async function functionHigh(value, board){
+        if(value !== user) setBoardIs(board);
+    }
+    
 
     function function1(){
         if(current === opponent || came || winby !== "") return;
