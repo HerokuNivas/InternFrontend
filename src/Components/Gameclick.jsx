@@ -26,23 +26,11 @@ export default function Gameclick(){
     const [came, setCame] = useState(false);
     const [boardIs, setBoardIs] = useState(boardIsIs);
     const [loading, setLoading] = useState(false);
-    const [render, setStartRender] = useState(false);
+    const [mePlaying, setmePlaying] = useState(true);
 
     const [error, setError] = useState(false);
 
-    useEffect(()=>{
-        const timeInvterval = setInterval(async () => {            
-                const dataIs = await axios({
-                    method: "get",
-                    url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
-                })
-
-                const data = await dataIs.data;
-                const games = await data.games;
-                console.log(render);
-        }, 1000);
-        return ()=> clearInterval(timeInvterval);
-    }, [])
+    
 
     useEffect(()=>{
         if(user1Is === user){
@@ -54,7 +42,33 @@ export default function Gameclick(){
             setOpponent(user1Is);
         }
         setBoardIs(boardIsIs);
-    },[])
+    },[]);
+
+    useEffect(()=>{
+        const timeInvterval = setInterval(async () => {      
+                if(current === user)
+                    setmePlaying(true);
+                else
+                    setmePlaying(false);
+                const dataIs = await axios({
+                    method: "get",
+                    url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
+                })
+
+                const data = await dataIs.data;
+                const games = await data.games;
+                
+
+                setCurrent(games.current);
+                setWinBy(games.winby);
+
+                if(!mePlaying){
+                    setBoardIs(games.board);
+                }
+                
+        }, 1000);
+        return ()=> clearInterval(timeInvterval);
+    }, [])
 
     function function1(){
         if(current === opponent || came || winby !== "") return;
@@ -198,7 +212,6 @@ export default function Gameclick(){
 
     function submitParent(){
         setLoading(true);
-        setStartRender(true);
         Submit();
         setLoading(false);
     }
@@ -230,7 +243,6 @@ export default function Gameclick(){
     }
 
     function checkWinning(){
-        setStartRender(true);
         const value = piece==="x"?"X":"O";
         if(boardIs[0][0] === value && boardIs[1][1] === value && boardIs[2][2] === value)
             return user;
