@@ -38,7 +38,7 @@ export default function Register(){
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({UserName : user, Email: mail, Name: name, Password: password})
               };
-              await fetch("https://intern-backend-mu.vercel.app/insertUser", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){setTimeout(() => {
+              await fetch("https://intern-backend-ten.vercel.app/insertUser", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){setTimeout(() => {
                 navigate("/login");
               }, 1000);} ;setSuccess(responseData.success); setErrorMessage(responseData.message)});
               setLoading(false);

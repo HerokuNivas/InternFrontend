@@ -14,7 +14,7 @@ export default function Singlerequest({from}){
         setLoading(true);
         await axios({
           method: "get",
-          url: "https://intern-backend-mu.vercel.app/accept/?user1="+from+"&user2="+user  
+          url: "https://intern-backend-ten.vercel.app/accept/?user1="+from+"&user2="+user  
         }).then((data)=>({}));
 
         const requestOptions = {
@@ -22,7 +22,7 @@ export default function Singlerequest({from}){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({user1: from, user2: user, current: from, time: new Date().toLocaleString()})
           };
-          await fetch("https://intern-backend-mu.vercel.app/creategame", requestOptions).then((response) => response.json()).then((responseData) => {});
+          await fetch("https://intern-backend-ten.vercel.app/creategame", requestOptions).then((response) => response.json()).then((responseData) => {});
           setLoading(false);
         setLoading(false);
     }
@@ -31,7 +31,7 @@ export default function Singlerequest({from}){
         setLoading(true);
         await axios({
           method: "get",
-          url: "https://intern-backend-mu.vercel.app/reject/?user1="+from+"&user2="+user  
+          url: "https://intern-backend-ten.vercel.app/reject/?user1="+from+"&user2="+user  
         }).then((data)=>({}));
         setLoading(false);
     }

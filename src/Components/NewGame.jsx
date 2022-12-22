@@ -21,7 +21,7 @@ export default function NewGame(){
         setSubmit(true);
         await axios({
             method: "get",
-            url: "https://intern-backend-mu.vercel.app/requests/?user="+user+"&email="+email
+            url: "https://intern-backend-ten.vercel.app/requests/?user="+user+"&email="+email
         }).then((data)=>(setSuccess(data.data.success), setMessage(data.data.message)))
         setLoading(false);
 
