@@ -39,12 +39,7 @@ export default function Gameclick(){
 
                 const data = await dataIs.data;
                 const games = await data.games;
-                if(current !== user){
-                    setBoardIs(games.board);
-                }
-                    setCurrent(games.current);
-                    setWinBy(games.winby);
-                    
+                console.log(render);
         }, 1000);
         return ()=> clearInterval(timeInvterval);
     }, [])
@@ -235,6 +230,7 @@ export default function Gameclick(){
     }
 
     function checkWinning(){
+        setStartRender(true);
         const value = piece==="x"?"X":"O";
         if(boardIs[0][0] === value && boardIs[1][1] === value && boardIs[2][2] === value)
             return user;
