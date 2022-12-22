@@ -28,13 +28,13 @@ export default function Gameclick(){
     const [loading, setLoading] = useState(false);
 
     const [error, setError] = useState(false);
-    
+
     useEffect(()=>{
         const timeInvterval = setInterval(async () => {
             if(current !== user || current === ""){            
                 await axios({
                     method: "get",
-                    url: "http://localhost:5000/pargame?user1="+user1Is+"&user2="+user2Is
+                    url: "https://intern-backend-mu.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
                 }).then((data)=>(setCurrent(data.data.games.current), setWinBy(data.data.games.winby), setBoardIs(data.data.games.board)))}
                 if(current === user){
                     setError(false);
@@ -213,10 +213,10 @@ export default function Gameclick(){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({user1: piece==="x"?user:opponent, user2: piece==="x"?opponent: user, current: draw===""?opponent:"", board: boardIs, winby: draw, time: new Date().toLocaleString()})
           };
-          await fetch("http://localhost:5000/update", requestOptions).then((response) => response.json()).then((responseData) => {console.log(responseData)});
+          await fetch("https://intern-backend-mu.vercel.app/update", requestOptions).then((response) => response.json()).then((responseData) => {console.log(responseData)});
           await axios({
             method: "get",
-            url: "http://localhost:5000/pargame?user1="+user1Is+"&user2="+user2Is
+            url: "https://intern-backend-mu.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
         }).then((data)=>(setCurrent(data.data.games.current), setWinBy(data.data.games.winby), setBoardIs(data.data.games.board)))
         setPlaced(false);
         setCame(false);

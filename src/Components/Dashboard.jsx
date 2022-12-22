@@ -26,7 +26,7 @@ export default function Dashboard(){
         const timeInvterval = setInterval(async () => {
             await axios({
                 method: "get",
-                url: "http://localhost:5000/games?user="+user
+                url: "https://intern-backend-mu.vercel.app/games?user="+user
             }).then((data)=>(setGames(data.data.games)))
      }, 1000);
      return ()=> clearInterval(timeInvterval);

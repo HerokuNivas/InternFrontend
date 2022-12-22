@@ -25,7 +25,7 @@ export default function Requests(){
         const timeInterval = setTimeout(async () => {
             await axios({
                 method: "get",
-                url: "http://localhost:5000/myrequests/?user="+user
+                url: "https://intern-backend-mu.vercel.app/myrequests/?user="+user
             }).then((data)=>(setRequests(data.data.result)))
         }, 0);
         return ()=>clearInterval(timeInterval);

@@ -34,7 +34,7 @@ export default function Login(){
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({user: user, password: password})
               };
-              await fetch("http://localhost:5000/login", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)});
+              await fetch("https://intern-backend-mu.vercel.app/login", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)});
               setLoading(false);
         }
     }
