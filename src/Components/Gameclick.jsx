@@ -28,7 +28,6 @@ export default function Gameclick(){
     const [loading, setLoading] = useState(false);
 
     const [error, setError] = useState(false);
-    const [data, setData] = useState();
 
     useEffect(()=>{
         const timeInvterval = setInterval(async () => {            
@@ -42,8 +41,10 @@ export default function Gameclick(){
                 if(data.current === opponent){
                     setCurrent(data.current);
                     setBoardIs(data.board);
+                    console.log(data.board);
                     setWinBy(data.winby);
                 }
+                
                 if(data.current === user){
                     setCurrent(data.current);
                     setWinBy(data.winby);
