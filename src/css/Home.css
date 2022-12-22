@@ -43,6 +43,38 @@
   border-radius: 8px;
 }
 
+.newGameText {
+  /* cta */
+
+  /* Auto layout */
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 12px 8px 8px;
+  gap: 4px;
+
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  right: 24px;
+  bottom: 24px;
+
+  background: #270f36;
+
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+}
+
+.gameView {
+  height: 500px;
+  width: 280px;
+  margin-top: -10px;
+  background: #f2c94c;
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
+  border-radius: 8px;
+}
+
 .mainSendRequest {
   height: 56px;
   margin-left: 30px;
@@ -73,13 +105,15 @@
     margin-right: 20%;
   }
 
-  .mainRegister, .mainSendRequest{
+  .mainRegister,
+  .mainSendRequest {
     margin-left: 20%;
     margin-right: 20%;
   }
 }
 
-.mainLoginText, .mainRegisterText {
+.mainLoginText,
+.mainRegisterText {
   color: white;
   position: relative;
   font-size: 20px;

@@ -27,7 +27,7 @@ export default function Requests(){
                 method: "get",
                 url: "http://localhost:5000/myrequests/?user="+user
             }).then((data)=>(setRequests(data.data.result)))
-        }, 1000);
+        }, 0);
         return ()=>clearInterval(timeInterval);
     })
 

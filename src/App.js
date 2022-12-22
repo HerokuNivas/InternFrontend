@@ -7,6 +7,7 @@ import Login from "./Components/Login";
 import Dashboard from "./Components/Dashboard";
 import NewGame from "./Components/NewGame";
 import Requests from "./Components/Requests";
+import Gameclick from "./Components/Gameclick";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}></Route>
         <Route path="/newgame" element={<NewGame/>}></Route>
         <Route path="/requests" element={<Requests/>}></Route>
+        <Route path="/games/:id" element={<Gameclick/>}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -7,6 +7,7 @@ import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import "../css/Dashboard.css";
 import { useNavigate } from "react-router-dom";
+import Singlegame from "./Singlegame";
 
 export default function Dashboard(){
     let navigate = useNavigate();
@@ -27,7 +28,7 @@ export default function Dashboard(){
                 method: "get",
                 url: "http://localhost:5000/games?user="+user
             }).then((data)=>(setGames(data.data.games)))
-     }, 2000);
+     }, 1000);
      return ()=> clearInterval(timeInvterval);
     }, []);
 
@@ -37,12 +38,17 @@ export default function Dashboard(){
         <div>
             {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
         {!loading && <div>
-            <p style={{fontWeight: "bold", fontSize: "larger", marginLeft: "20px", marginRight: "20px"}}>Your games</p>
+            <p style={{fontWeight: "bold", fontSize: "30px", marginLeft: "20px", marginRight: "20px"}}>Your games</p>
             <MoveToInboxIcon onClick={()=>(navigate(("/requests")))} style={{position: "absolute", right: "15px", top: "15px"}}/>
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
                 <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
                 </div>}
-        </div>}</div>
+        
+        {game.length !== 0 && <div>{game.map((key)=>(
+            <Singlegame user1 = {key.user1} user2 = {key.user2} current = {key.current}  winby = {key.winby} board = {key.board} time = {key.time} id = {key._id}/>
+        ))}<p className="newGameText" onClick={()=>(navigate("/newgame"))}><span style={{color: "white"}}>+ New Game</span></p></div>}
+        </div>}
+        </div>
     )
 }
