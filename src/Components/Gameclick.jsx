@@ -41,7 +41,7 @@ export default function Gameclick(){
             setOpponent(user1Is);
         }
         setBoardIs(boardIsIs);
-    },[]);
+    });
 
     useEffect(()=>{
         const timeInvterval = setInterval(async () => {      
@@ -56,12 +56,27 @@ export default function Gameclick(){
 
                 setCurrent(games.current);
                 setWinBy(games.winby);
+                
+        }, 5000);
+        return ()=> clearInterval(timeInvterval);
+    })
+
+    useEffect(()=>{
+        const timeInvterval = setInterval(async () => {      
+                const dataIs = await axios({
+                    method: "get",
+                    url: "https://intern-backend-ten.vercel.app/pargame?user1="+user1Is+"&user2="+user2Is
+                })
+
+                const data = await dataIs.data;
+                const games = await data.games;
+                console.log(current, opponent);
                 if(current === opponent)
                     setBoardIs(games.board);
                 
-        }, 1000);
+        }, 500);
         return ()=> clearInterval(timeInvterval);
-    }, [])
+    })
 
     function function1(){
         if(current === opponent || came || winby !== "") return;
