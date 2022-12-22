@@ -38,7 +38,8 @@ export default function Gameclick(){
 
                 const data = await dataIs.data;
                 const games = await data.games;
-
+                console.log(games);
+                
                 if(games.current === opponent){
                     setCurrent(games.current);
                     setBoardIs(games.board);
