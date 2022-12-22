@@ -44,10 +44,12 @@ export default function Gameclick(){
                     setCurrent(games.current);
                     setWinBy(games.winby);
                     if(games.current !== user){
+                        console.log("In here");
                         setBoardIs(games.board);
                     }
                     if(games.current === user){
                         if(games.last !== piece){
+                            console.log("In here 2");
                             setBoardIs(games.board);
                         }
                     }
