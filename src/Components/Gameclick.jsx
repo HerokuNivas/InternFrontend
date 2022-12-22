@@ -47,7 +47,7 @@ export default function Gameclick(){
                     setWinBy(games.winby);
                 }
 
-                if(data.current === user){
+                if(games.current === user){
                     setCurrent(games.current);
                     setWinBy(games.winby);
                 }
