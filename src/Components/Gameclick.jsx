@@ -42,15 +42,6 @@ export default function Gameclick() {
     setBoardIs(boardIsIs);
   }, []);
 
-  useEffect(()=>{
-        if(game.current !== user){
-            setBoardIs(game.board);
-            setCameIn(false);
-        }
-    }, [game, user]);
-
-  console.log(user, current);  
-
 
   useEffect(() => {
     const timeInvterval = setInterval(async () => {
@@ -67,12 +58,20 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
-      setCurrent(game.current);
-      setWinBy(game.winby);
+      setCurrent(games.current);
+      setWinBy(games.winby);
 
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
+
+  useEffect(()=>{
+    console.log(game);
+    if(game.current !== user){
+        setBoardIs(game.board);
+        setCameIn(false);
+    }
+}, [game, user]);
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
