@@ -42,34 +42,15 @@ export default function Gameclick() {
     setBoardIs(boardIsIs);
   }, []);
 
-  useEffect(() => {
-    async function fetchData() {
-      const dataIs = await axios({
-        method: "get",
-        url:
-          "https://intern-backend-ten.vercel.app/pargame?user1=" +
-          user1Is +
-          "&user2=" +
-          user2Is,
-      });
-      const data = await dataIs.data;
-      const games = await data.games;
-      setGame(games);
-      console.log(game);
-      console.log(boardIs);
-    }
-    fetchData();
-  }, []);
-
-
   useEffect(()=>{
-        if(game.current !== user){
+        if(game!=={} && game.current !== user){
             setCurrent(game.current);
             setWinBy(game.winby);
             setBoardIs(game.board);
             setCameIn(false);
+            console.log(game);
         }
-    }, [game])
+    }, [game]);
 
 
 
