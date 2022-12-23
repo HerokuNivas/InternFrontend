@@ -55,18 +55,21 @@ export default function Gameclick() {
       const data = await dataIs.data;
       const games = await data.games;
       setGame(games);
+      console.log(game);
+      console.log(boardIs);
     }
     fetchData();
   }, []);
-  console.log(game);
+
+
   useEffect(()=>{
-        if(game!=={} && game.current !== user){
+        if(game.current !== user){
             setCurrent(game.current);
             setWinBy(game.winby);
             setBoardIs(game.board);
             setCameIn(false);
         }
-    }, [game, user])
+    }, [game])
 
 
 
@@ -85,6 +88,7 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
+      console.log(game);
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
