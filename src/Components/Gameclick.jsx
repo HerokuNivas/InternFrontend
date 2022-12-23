@@ -71,7 +71,7 @@ export default function Gameclick() {
         setBoardIs(game.board);
         setCameIn(false);
     }
-}, [game, user]);
+}, [game]);
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
