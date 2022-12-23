@@ -56,13 +56,11 @@ export default function Gameclick(){
                     
                 if(current === opponent){
                     setBoardIs(games.board);
-                    await delay(1000);
                     setCameIn(true);
                 }
 
                 if(current === user){
                     setError(false);
-                    await delay(1000);
                     setCameIn(false);
                 }
 
@@ -219,7 +217,7 @@ export default function Gameclick(){
     async function submitParent(){
         setLoading(true);
         setCameIn(true);
-        await delay(20000);
+        await delay(10000);
         Submit();
         setLoading(false);
     }
