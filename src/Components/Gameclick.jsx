@@ -26,7 +26,7 @@ export default function Gameclick() {
   const [came, setCame] = useState(false);
   const [boardIs, setBoardIs] = useState(boardIsIs);
   const [loading, setLoading] = useState(false);
-  const [game, setGame] = useState({});
+  const [game, setGame] = useState({current: user});
   const [cameIn, setCameIn] = useState(false);
 
   const [error, setError] = useState(false);
@@ -43,14 +43,14 @@ export default function Gameclick() {
   }, []);
 
   useEffect(()=>{
-        if(game!=={} && game.current !== user){
+        if(game.current !== user){
             setCurrent(game.current);
             setWinBy(game.winby);
             setBoardIs(game.board);
+            console.log("came In")
             setCameIn(false);
-            console.log(game);
         }
-    }, [game]);
+    }, [game, user]);
 
 
 
