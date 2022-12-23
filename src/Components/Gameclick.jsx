@@ -26,7 +26,6 @@ export default function Gameclick(){
     const [came, setCame] = useState(false);
     const [boardIs, setBoardIs] = useState(boardIsIs);
     const [loading, setLoading] = useState(false);
-    const [cameIn, setCameIn] = useState(false);
 
     const [error, setError] = useState(false);
 
@@ -55,13 +54,12 @@ export default function Gameclick(){
                 const games = await data.games;
                     
                 if(current === opponent){
+                    setPlaced(false);
                     setBoardIs(games.board);
-                    setCameIn(true);
                 }
 
                 if(current === user){
                     setError(false);
-                    setCameIn(false);
                 }
 
                 await delay(1000);
@@ -75,7 +73,7 @@ export default function Gameclick(){
     
 
     function function1(){
-        if(current === opponent || came || winby !== "" || cameIn) return;
+        if(current === opponent || came || winby !== "") return;
         if(boardIs[0][0]!==""){
             setPlaced(true);
             return;
@@ -90,7 +88,7 @@ export default function Gameclick(){
     }
 
     function function2(){
-        if(current === opponent || came || winby !== "" || cameIn) return;
+        if(current === opponent || came || winby !== "") return;
         if(boardIs[0][1]!==""){
             setPlaced(true);
             return;
@@ -105,7 +103,7 @@ export default function Gameclick(){
     }
 
     function function3(){
-        if(current === opponent || came || winby!=="" || cameIn) return;
+        if(current === opponent || came || winby!=="" ) return;
         if(boardIs[0][2]!==""){
             setPlaced(true);
             return;
@@ -120,7 +118,7 @@ export default function Gameclick(){
     }
 
     function function4(){
-        if(current === opponent || came || winby!=="" || cameIn) return;
+        if(current === opponent || came || winby!=="") return;
         if(boardIs[1][0]!==""){
             setPlaced(true);
             return;
@@ -136,7 +134,7 @@ export default function Gameclick(){
     }
 
     function function5(){
-        if(current === opponent || came||winby!=="" || cameIn) return;
+        if(current === opponent || came||winby!=="") return;
         if(boardIs[1][1]!==""){
             setPlaced(true);
             return;
@@ -152,7 +150,7 @@ export default function Gameclick(){
     }
 
     function function6(){
-        if(current === opponent || came||winby!=="" || cameIn) return;
+        if(current === opponent || came||winby!=="") return;
         if(boardIs[1][2]!==""){
             setPlaced(true);
             return;
@@ -168,7 +166,7 @@ export default function Gameclick(){
     }
 
     function function7(){
-        if(current === opponent || came||winby!=="" || cameIn) return;
+        if(current === opponent || came||winby!=="") return;
         if(boardIs[2][0]!==""){
             setPlaced(true);
             return;
@@ -184,7 +182,7 @@ export default function Gameclick(){
     }
 
     function function8(){
-        if(current === opponent || came||winby!=="" || cameIn) return;
+        if(current === opponent || came||winby!=="") return;
         if(boardIs[2][1]!==""){
             setPlaced(true);
             return;
@@ -200,7 +198,7 @@ export default function Gameclick(){
     }
 
     function function9(){
-        if(current === opponent || came||winby!==""||cameIn) return;
+        if(current === opponent || came||winby!=="") return;
         if(boardIs[2][2]!==""){
             setPlaced(true);
             return;
@@ -216,7 +214,6 @@ export default function Gameclick(){
 
     async function submitParent(){
         setLoading(true);
-        setCameIn(true);
         await delay(10000);
         Submit();
         setLoading(false);
@@ -300,8 +297,8 @@ export default function Gameclick(){
                 {error && <p style={{color: "red", marginTop: "430px", marginLeft: "20px"}}>Opps! It's not your turn</p>}
                 {current===user && (placed && !came) && <p style={{color: "red", marginTop: "430px", marginLeft: "20px"}}>Already placed a bead at that location</p>}
                 {came && <p style={{color: "green",marginTop: "430px", marginLeft: "20px"}}>You placed a bead you can submit!</p>}
-                {winby==="" && !cameIn  && <div><Button onClick={submitParent} variant="contained" style={{background: "#F2C94C", marginLeft: "20px", marginTop: (placed || came || error)?"10px":"320px", marginBottom: "20px", paddingLeft: "60px", paddingRight: "60px"}}>Submit!</Button></div>}
-                {winby==="" && cameIn && <div><Button variant="contained" style={{background: "#E0E0E0", marginLeft: "20px", marginTop: error?"10px":"320px", marginBottom: "20px", color: "black"}}>Waiting for {opponent}</Button></div>}</div>}
+                {winby==="" && current===user  && <div><Button onClick={submitParent} variant="contained" style={{background: "#F2C94C", marginLeft: "20px", marginTop: (placed || came || error)?"10px":"320px", marginBottom: "20px", paddingLeft: "60px", paddingRight: "60px"}}>Submit!</Button></div>}
+                {winby==="" && current===opponent && <div><Button variant="contained" style={{background: "#E0E0E0", marginLeft: "20px", marginTop: error?"10px":"320px", marginBottom: "20px", color: "black"}}>Waiting for {opponent}</Button></div>}</div>}
                 {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
             </div>    
     )
