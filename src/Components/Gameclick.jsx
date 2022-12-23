@@ -66,6 +66,7 @@ export default function Gameclick() {
   });
 
   useEffect(()=>{
+    console.log(rendered, current);
     if(rendered === false && game.current === user){
         alreadyRendered(true);
         setBoardIs(game.board);
