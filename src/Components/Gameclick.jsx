@@ -56,7 +56,7 @@ export default function Gameclick(){
                 if(current === opponent){
                     setBoardIs(games.board);
                 }
-                await delay(10000);
+                await delay(1000);
 
                 setCurrent(games.current);
                 setWinBy(games.winby);
