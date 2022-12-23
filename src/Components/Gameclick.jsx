@@ -214,6 +214,7 @@ export default function Gameclick(){
 
     async function submitParent(){
         setLoading(true);
+        setCameIn(true);
         await delay(20000);
         Submit();
         setLoading(false);
