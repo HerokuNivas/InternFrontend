@@ -28,6 +28,7 @@ export default function Gameclick() {
   const [loading, setLoading] = useState(false);
   const [game, setGame] = useState({current: user});
   const [cameIn, setCameIn] = useState(false);
+  const [rendered, alreadyRendered] = useState(false);
 
   const [error, setError] = useState(false);
 
@@ -65,14 +66,15 @@ export default function Gameclick() {
   });
 
   useEffect(()=>{
-    console.log(game, user);
-    if(game.current !== user){
+    if(rendered === false && game.current === user){
+        alreadyRendered(true);
         setBoardIs(game.board);
         setCurrent(game.current);
         setWinBy(game.winby);
         setCameIn(false);
+        console.log("Came here");
     }
-}, [game, user]);
+}, [game, user, rendered]);
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
@@ -194,6 +196,7 @@ export default function Gameclick() {
   async function submitParent() {
     setLoading(true);
     setCameIn(true);
+    alreadyRendered(false);
     Submit();
     setLoading(false);
   }
