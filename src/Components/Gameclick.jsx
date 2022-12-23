@@ -44,8 +44,6 @@ export default function Gameclick() {
 
   useEffect(()=>{
         if(game.current !== user){
-            setCurrent(game.current);
-            setWinBy(game.winby);
             setBoardIs(game.board);
             setCameIn(false);
         }
@@ -69,6 +67,8 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
+      setCurrent(game.current);
+      setWinBy(game.winby);
 
     }, 5000);
     return () => clearInterval(timeInvterval);
