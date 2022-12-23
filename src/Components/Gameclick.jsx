@@ -47,11 +47,11 @@ export default function Gameclick() {
             setCurrent(game.current);
             setWinBy(game.winby);
             setBoardIs(game.board);
-            console.log("came In")
             setCameIn(false);
         }
     }, [game, user]);
 
+  console.log(user, current);  
 
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
-      console.log(game);
+
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
