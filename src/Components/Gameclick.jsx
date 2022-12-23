@@ -58,16 +58,18 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
-      setCurrent(games.current);
-      setWinBy(games.winby);
+      
 
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
 
   useEffect(()=>{
-    if(game.current === user){
+    console.log(game, user);
+    if(game.current !== user){
         setBoardIs(game.board);
+        setCurrent(game.current);
+        setWinBy(game.winby);
         setCameIn(false);
     }
 }, [game, user]);
