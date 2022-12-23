@@ -26,7 +26,6 @@ export default function Gameclick(){
     const [came, setCame] = useState(false);
     const [boardIs, setBoardIs] = useState(boardIsIs);
     const [loading, setLoading] = useState(false);
-    const [inAlready, setInAlready] = useState(false); 
 
     const [error, setError] = useState(false);
 
@@ -53,11 +52,11 @@ export default function Gameclick(){
 
                 const data = await dataIs.data;
                 const games = await data.games;
-                
-                if(inAlready===false && games.last!=="" && games.last!==piece){
+                    
+                if(current === opponent){
                     setBoardIs(games.board);
-                    setInAlready(true);
                 }
+                await delay(10000);
 
                 setCurrent(games.current);
                 setWinBy(games.winby);
@@ -209,7 +208,6 @@ export default function Gameclick(){
 
     async function submitParent(){
         setLoading(true);
-        setInAlready(true);
         await delay(5000);
         Submit();
         setLoading(false);
