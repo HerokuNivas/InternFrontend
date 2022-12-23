@@ -70,6 +70,7 @@ export default function Gameclick() {
     if(game.current !== user){
         setBoardIs(game.board);
         setCameIn(false);
+        console.log("In here");
     }
 }, [game, user]);
 
