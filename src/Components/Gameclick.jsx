@@ -56,7 +56,8 @@ export default function Gameclick(){
 
                 setCurrent(games.current);
                 setWinBy(games.winby);
-                setBoardIs(games.board);
+                if(current !== user)
+                    setBoardIs(games.board);
                 
                 
         }, 5000);
@@ -206,7 +207,6 @@ export default function Gameclick(){
 
     async function submitParent(){
         setLoading(true);
-        await delay(10000);
         Submit();
         setLoading(false);
     }
