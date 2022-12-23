@@ -73,7 +73,7 @@ export default function Gameclick(){
     
 
     function function1(){
-        if(current === opponent || came || winby !== "") return;
+        if(current === opponent || came || winby !== "" || cameIn) return;
         if(boardIs[0][0]!==""){
             setPlaced(true);
             return;
@@ -88,7 +88,7 @@ export default function Gameclick(){
     }
 
     function function2(){
-        if(current === opponent || came || winby !== "") return;
+        if(current === opponent || came || winby !== "" || cameIn) return;
         if(boardIs[0][1]!==""){
             setPlaced(true);
             return;
@@ -103,7 +103,7 @@ export default function Gameclick(){
     }
 
     function function3(){
-        if(current === opponent || came || winby!=="") return;
+        if(current === opponent || came || winby!=="" || cameIn) return;
         if(boardIs[0][2]!==""){
             setPlaced(true);
             return;
@@ -118,7 +118,7 @@ export default function Gameclick(){
     }
 
     function function4(){
-        if(current === opponent || came || winby!=="") return;
+        if(current === opponent || came || winby!=="" || cameIn) return;
         if(boardIs[1][0]!==""){
             setPlaced(true);
             return;
@@ -134,7 +134,7 @@ export default function Gameclick(){
     }
 
     function function5(){
-        if(current === opponent || came||winby!=="") return;
+        if(current === opponent || came||winby!=="" || cameIn) return;
         if(boardIs[1][1]!==""){
             setPlaced(true);
             return;
@@ -150,7 +150,7 @@ export default function Gameclick(){
     }
 
     function function6(){
-        if(current === opponent || came||winby!=="") return;
+        if(current === opponent || came||winby!=="" || cameIn) return;
         if(boardIs[1][2]!==""){
             setPlaced(true);
             return;
@@ -166,7 +166,7 @@ export default function Gameclick(){
     }
 
     function function7(){
-        if(current === opponent || came||winby!=="") return;
+        if(current === opponent || came||winby!=="" || cameIn) return;
         if(boardIs[2][0]!==""){
             setPlaced(true);
             return;
@@ -182,7 +182,7 @@ export default function Gameclick(){
     }
 
     function function8(){
-        if(current === opponent || came||winby!=="") return;
+        if(current === opponent || came||winby!=="" || cameIn) return;
         if(boardIs[2][1]!==""){
             setPlaced(true);
             return;
@@ -198,7 +198,7 @@ export default function Gameclick(){
     }
 
     function function9(){
-        if(current === opponent || came||winby!=="") return;
+        if(current === opponent || came||winby!==""||cameIn) return;
         if(boardIs[2][2]!==""){
             setPlaced(true);
             return;
