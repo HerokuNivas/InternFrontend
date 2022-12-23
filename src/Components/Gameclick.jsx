@@ -56,12 +56,16 @@ export default function Gameclick(){
                     
                 if(current === opponent){
                     setBoardIs(games.board);
+                    await delay(1000);
                     setCameIn(true);
                 }
+
                 if(current === user){
                     setError(false);
+                    await delay(1000);
                     setCameIn(false);
                 }
+
                 await delay(1000);
 
                 setCurrent(games.current);
