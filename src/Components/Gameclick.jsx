@@ -66,11 +66,9 @@ export default function Gameclick() {
   });
 
   useEffect(()=>{
-    console.log(game, game.current, user);
-    if(game.current !== user){
+    if(game.current === user){
         setBoardIs(game.board);
         setCameIn(false);
-        console.log("In here");
     }
 }, [game, user]);
 
