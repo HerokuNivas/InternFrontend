@@ -66,7 +66,9 @@ export default function Gameclick() {
   });
 
     useEffect(()=>{
-        console.log(current, game);
+        console.log(current);
+        console.log("In");
+        console.log(game);
     }, [current])
 
 
