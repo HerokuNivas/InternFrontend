@@ -44,8 +44,7 @@ export default function Dashboard(){
                 <p className="dashBoardNogames">No Games Found</p>
                 <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
                 </div>}
-        {console.log(game)}
-        {game.length !== 0 && <div style={{marginTop: "75px"}}>{game.map((key)=>(
+        {game.length !== 0 && <div style={{marginTop: "20px"}}>{game.map((key)=>(
             <Singlegame user1 = {key.user1} user2 = {key.user2} current = {key.current}  winby = {key.winby} board = {key.board} time = {key.time} id = {key._id}/>
         ))}<p className="newGameText" onClick={()=>(navigate("/newgame"))}><span style={{color: "white"}}>+ New Game</span></p></div>}
         </div>}
