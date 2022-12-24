@@ -28,7 +28,7 @@ export default function Gameclick() {
 
   useEffect(()=>{
         if(winpo !== ""){
-            document.getElementById("Win"+winpo).classList.add("win2"+winpo);
+            document.getElementById("Win"+winpo).classList.add("win"+winpo);
         }
     })
 
