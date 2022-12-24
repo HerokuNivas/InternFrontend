@@ -63,7 +63,6 @@ export default function Gameclick() {
         setCurrent(games.current);
         setBoardIs(games.board);
     }
-      
 
     }, 5000);
     return () => clearInterval(timeInvterval);
