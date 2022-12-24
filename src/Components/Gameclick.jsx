@@ -59,6 +59,7 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
+      console.log(games);
       
 
     }, 5000);
