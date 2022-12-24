@@ -66,8 +66,6 @@ export default function Gameclick() {
   });
 
     useEffect(()=>{
-        console.log(game, game.board, boardIs);
-        console.log(game.board === boardIs);
         var count1 = 0;
         var count2 = 0;
         if(game.board !== undefined){
@@ -77,7 +75,6 @@ export default function Gameclick() {
                 if(boardIs[i][j] !== "") count2 = count2+1;
             }
         }}
-        console.log(count1, count2);
         if(count1 === count2+1){
             setBoardIs(game.board);
             setCurrent(game.current);
