@@ -80,6 +80,7 @@ export default function Gameclick() {
             setCurrent(game.current);
             setWinBy(game.winby);
             setCameIn(false);
+            setError(false);
         }
     }, [game, boardIs])
 
@@ -221,6 +222,7 @@ export default function Gameclick() {
         if (boardIs[i][j] !== "") count = count + 1;
       }
     }
+    console.log(count, draw);
     if (draw !== "" && count === 9) draw = "draw";
     const requestOptions = {
       method: "POST",
@@ -253,6 +255,7 @@ export default function Gameclick() {
       )
     );
     setLoading(false);
+    setError(false);
   }
 
   function checkWinning() {
