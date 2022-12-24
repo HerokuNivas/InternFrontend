@@ -48,11 +48,7 @@ export default function Gameclick() {
       const dataIs = await axios({
         method: "get",
         url:
-          "https://intern-backend-ten.vercel.app/pargame?user1=" +
-          user1Is +
-          "&user2=" +
-          user2Is +
-          "&id="+id 
+          "https://intern-backend-ten.vercel.app/pargame?id="+id 
       });
 
       const data = await dataIs.data;
@@ -230,6 +226,7 @@ export default function Gameclick() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
+        id : id,
         user1: piece === "x" ? user : opponent,
         user2: piece === "x" ? opponent : user,
         current: draw === "" ? opponent : "",
@@ -245,11 +242,7 @@ export default function Gameclick() {
     await axios({
       method: "get",
       url:
-        "https://intern-backend-ten.vercel.app/pargame?user1=" +
-        user1Is +
-        "&user2=" +
-        user2Is+
-        "&id="+id
+        "https://intern-backend-ten.vercel.app/pargame?id="+id
     }).then(
       (data) => (
         console.log(id),
