@@ -13,7 +13,7 @@ import axios from "axios";
 export default function Gameclick() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs } = location.state;
+  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id } = location.state;
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -51,7 +51,8 @@ export default function Gameclick() {
           "https://intern-backend-ten.vercel.app/pargame?user1=" +
           user1Is +
           "&user2=" +
-          user2Is,
+          user2Is +
+          "&id="+id 
       });
 
       const data = await dataIs.data;
@@ -247,7 +248,8 @@ export default function Gameclick() {
         "https://intern-backend-ten.vercel.app/pargame?user1=" +
         user1Is +
         "&user2=" +
-        user2Is,
+        user2Is+
+        "&id="+id
     }).then(
       (data) => (
         setGame(data.data.games),
