@@ -58,7 +58,6 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
-      console.log(games);
       if(games.winby !== ""){
         setWinBy(games.winby);
         setCurrent(games.current);
