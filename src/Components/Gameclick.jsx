@@ -68,10 +68,12 @@ export default function Gameclick() {
 
     useEffect(()=>{
         console.log(game, user, rendered);
-        if(rendered === false){
+        if(rendered === false && game.current === user){
             alreadyRendered(true);
+            setBoardIs(boardIs);
+            console.log("in here");
         }
-    }, [game, user, rendered])
+    }, [game, user, rendered, boardIs])
 
 
   function function1() {
