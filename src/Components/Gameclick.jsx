@@ -28,7 +28,7 @@ export default function Gameclick() {
   const [loading, setLoading] = useState(false);
   const [game, setGame] = useState({current: user});
   const [cameIn, setCameIn] = useState(false);
-  const [rendered, alreadyRendered] = useState(true);
+  const [rendered, alreadyRendered] = useState(false);
 
   const [error, setError] = useState(false);
 
@@ -59,19 +59,23 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
-      setCurrent(games.current);
-      setWinBy(games.winby);
+      
 
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
 
     useEffect(()=>{
-        if(rendered === false && game.current === user){
-            alreadyRendered(true);
-            setBoardIs(boardIs);
-            console.log("in here");
+        console.log(game.board, boardIs);
+        var count1 = 0;
+        var count2 = 0;
+        for(var i=0; i < 3; i++){
+            for(var j=0; j < 3; j++){
+                if(game.board[i][j] !== "") count1 = count1+1;
+                if(boardIs[i][j] !== "") count2 = count2+1;
+            }
         }
+        console.log(count1, count2);
     }, [game, user, rendered, boardIs])
 
 
