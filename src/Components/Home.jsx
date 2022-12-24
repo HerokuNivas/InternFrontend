@@ -9,7 +9,7 @@ export default function Home(){
     const {cookies, setUser} = useStateContext();
     useEffect(()=>{
         console.log(cookies.get('TicTacToe'));
-        if(cookies.get('TicTacToe') !== ""){
+        if(cookies.get('TicTacToe') !== undefined){
             setUser(cookies.get('TicTacToe'));
             navigate("/dashboard");
         }
