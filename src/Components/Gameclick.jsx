@@ -60,14 +60,13 @@ export default function Gameclick() {
 
       setGame(games);
       console.log(games);
-      
 
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
 
     useEffect(()=>{
-        console.log(current);
+        console.log(current, game);
     }, [current])
 
 
