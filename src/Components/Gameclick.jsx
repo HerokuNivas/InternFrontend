@@ -67,8 +67,8 @@ export default function Gameclick() {
   });
 
     useEffect(()=>{
-        console.log(game);
-    }, [game])
+        console.log(current);
+    }, [current])
 
 
   function function1() {
@@ -234,7 +234,8 @@ export default function Gameclick() {
         user2Is,
     }).then(
       (data) => (
-        setGame(data.data.games)
+        setGame(data.data.games),
+        setCurrent(data.data.games.current)
       )
     );
     setLoading(false);
