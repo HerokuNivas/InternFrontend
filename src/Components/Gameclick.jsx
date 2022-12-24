@@ -66,6 +66,10 @@ export default function Gameclick() {
     return () => clearInterval(timeInvterval);
   });
 
+    useEffect(()=>{
+        console.log(game);
+    }, [game])
+
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
