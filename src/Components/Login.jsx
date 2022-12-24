@@ -37,7 +37,6 @@ export default function Login(){
               };
               await fetch("https://intern-backend-ten.vercel.app/login", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)});
               cookies.set('TicTacToe', user);
-              console.log(cookies.get('TicTacToe'));
               setLoading(false);
         }
     }

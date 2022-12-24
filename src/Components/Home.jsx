@@ -8,7 +8,6 @@ export default function Home(){
     let navigate = useNavigate();
     const {cookies, setUser} = useStateContext();
     useEffect(()=>{
-        console.log(cookies.get('TicTacToe'));
         if(cookies.get('TicTacToe') !== undefined){
             setUser(cookies.get('TicTacToe'));
             navigate("/dashboard");

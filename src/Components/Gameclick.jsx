@@ -13,17 +13,18 @@ import axios from "axios";
 export default function Gameclick() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id } = location.state;
+  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id } =
+    location.state;
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const { user } = useStateContext();
 
-  useEffect(()=>{
-    if(user === ""){
-        navigate("/login");
+  useEffect(() => {
+    if (user === "") {
+      navigate("/login");
     }
-    }, [])
+  }, []);
 
   const [current, setCurrent] = useState(currentIs);
   const [winby, setWinBy] = useState(winbyIs);
@@ -33,7 +34,7 @@ export default function Gameclick() {
   const [came, setCame] = useState(false);
   const [boardIs, setBoardIs] = useState(boardIsIs);
   const [loading, setLoading] = useState(false);
-  const [game, setGame] = useState({current: user, board: boardIsIs});
+  const [game, setGame] = useState({ current: user, board: boardIsIs });
   const [cameIn, setCameIn] = useState(false);
 
   const [error, setError] = useState(false);
@@ -49,48 +50,45 @@ export default function Gameclick() {
     setBoardIs(boardIsIs);
   }, []);
 
-
   useEffect(() => {
     const timeInvterval = setInterval(async () => {
       const dataIs = await axios({
         method: "get",
-        url:
-          "https://intern-backend-ten.vercel.app/pargame?id="+id 
+        url: "https://intern-backend-ten.vercel.app/pargame?id=" + id,
       });
 
       const data = await dataIs.data;
       const games = await data.games;
 
       setGame(games);
-      if(games.winby !== ""){
+      if (games.winby !== "") {
         setWinBy(games.winby);
         setCurrent(games.current);
         setBoardIs(games.board);
-    }
-
+      }
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
 
-    useEffect(()=>{
-        var count1 = 0;
-        var count2 = 0;
-        if(game.board !== undefined){
-        for(var i=0; i < 3; i++){
-            for(var j=0; j < 3; j++){
-                if(game.board[i][j] !== "") count1 = count1+1;
-                if(boardIs[i][j] !== "") count2 = count2+1;
-            }
-        }}
-        if(count1 === count2+1){
-            setBoardIs(game.board);
-            setCurrent(game.current);
-            setWinBy(game.winby);
-            setCameIn(false);
-            setError(false);
+  useEffect(() => {
+    var count1 = 0;
+    var count2 = 0;
+    if (game.board !== undefined) {
+      for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+          if (game.board[i][j] !== "") count1 = count1 + 1;
+          if (boardIs[i][j] !== "") count2 = count2 + 1;
         }
-    }, [game, boardIs])
-
+      }
+    }
+    if (count1 === count2 + 1) {
+      setBoardIs(game.board);
+      setCurrent(game.current);
+      setWinBy(game.winby);
+      setCameIn(false);
+      setError(false);
+    }
+  }, [game, boardIs]);
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
@@ -233,7 +231,7 @@ export default function Gameclick() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id : id,
+        id: id,
         user1: piece === "x" ? user : opponent,
         user2: piece === "x" ? opponent : user,
         current: draw === "" ? opponent : "",
@@ -244,12 +242,10 @@ export default function Gameclick() {
     };
     await fetch("https://intern-backend-ten.vercel.app/update", requestOptions)
       .then((response) => response.json())
-      .then((responseData) => {
-      });
+      .then((responseData) => {});
     await axios({
       method: "get",
-      url:
-        "https://intern-backend-ten.vercel.app/pargame?id="+id
+      url: "https://intern-backend-ten.vercel.app/pargame?id=" + id,
     }).then(
       (data) => (
         setGame(data.data.games),
@@ -267,50 +263,66 @@ export default function Gameclick() {
       boardIs[0][0] === value &&
       boardIs[1][1] === value &&
       boardIs[2][2] === value
-    )
+    ){
+        document.getElementById("Win7").classList.add("win7");
       return user;
+    }
     if (
       boardIs[0][2] === value &&
       boardIs[1][1] === value &&
       boardIs[2][0] === value
-    )
+    ){
+        document.getElementById("Win8").classList.add("win8");
       return user;
+    }
     if (
       boardIs[0][0] === value &&
       boardIs[1][0] === value &&
       boardIs[2][0] === value
-    )
+    ){
+        document.getElementById("Win1").classList.add("win1");
       return user;
+    }
     if (
       boardIs[0][1] === value &&
       boardIs[1][1] === value &&
       boardIs[2][1] === value
-    )
+    ){
+        document.getElementById("Win2").classList.add("win2");
       return user;
+    }
     if (
       boardIs[0][2] === value &&
       boardIs[1][2] === value &&
       boardIs[2][2] === value
-    )
+    ){
+        document.getElementById("Win3").classList.add("win3");
       return user;
+    }
     if (
       boardIs[0][0] === value &&
       boardIs[0][1] === value &&
       boardIs[0][2] === value
-    )
+    ){
+        document.getElementById("Win4").classList.add("win4");
       return user;
+    }
     if (
       boardIs[1][0] === value &&
       boardIs[1][1] === value &&
       boardIs[1][2] === value
-    )
+    ){
+        document.getElementById("Win5").classList.add("win5");
       return user;
+    }
     if (
       boardIs[2][0] === value &&
       boardIs[2][1] === value &&
       boardIs[2][2] === value
-    )
+    ){
+        document.getElementById("Win6").classList.add("win6");
       return user;
+    }
     return "";
   }
 
@@ -422,23 +434,29 @@ export default function Gameclick() {
                 }
               }}
             >
-              <p
-                className="box1 win1"
-                onClick={() => {
-                  function1();
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "80px",
-                    marginLeft: "20px",
-                    color: boardIs[0][0] === "X" ? "#2C8DFF" : "#FF4F4F",
-                    fontWeight: "bolder",
+              <div>
+                <p
+                  className="box1"
+                  onClick={() => {
+                    function1();
                   }}
                 >
-                  {boardIs[0][0]}
-                </span>
-              </p>
+                  <span
+                    style={{
+                      fontSize: "80px",
+                      marginLeft: "20px",
+                      color: boardIs[0][0] === "X" ? "#2C8DFF" : "#FF4F4F",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    {boardIs[0][0]}
+                  </span>
+                </p>
+                <div id="Win1"></div>
+                <div id="Win4"></div>
+                <div id="Win7"></div>
+              </div>
+              <div>
               <p
                 className="box2"
                 onClick={() => {
@@ -456,6 +474,9 @@ export default function Gameclick() {
                   {boardIs[0][1]}
                 </span>
               </p>
+                  <div id="Win2"></div>
+              </div>
+              <div>
               <p
                 className="box3"
                 onClick={() => {
@@ -472,7 +493,10 @@ export default function Gameclick() {
                 >
                   {boardIs[0][2]}
                 </span>
-              </p>
+              </p><div id="Win3"></div>
+              
+              </div>
+              <div>
               <p
                 className="box4"
                 onClick={() => {
@@ -490,6 +514,8 @@ export default function Gameclick() {
                   {boardIs[1][0]}
                 </span>
               </p>
+              <div id="Win5"></div>
+              </div>
               <p
                 className="box5"
                 onClick={() => {
@@ -524,6 +550,8 @@ export default function Gameclick() {
                   {boardIs[1][2]}
                 </span>
               </p>
+
+              <div>
               <p
                 className="box7"
                 onClick={() => {
@@ -540,7 +568,9 @@ export default function Gameclick() {
                 >
                   {boardIs[2][0]}
                 </span>
-              </p>
+              </p><div id="Win6"></div>
+              <div id="Win8"></div>
+              </div>
               <p
                 className="box8"
                 onClick={() => {
