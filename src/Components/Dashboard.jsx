@@ -51,7 +51,7 @@ export default function Dashboard(){
                 cookies.remove('TicTacToe');
                 setUser("");
                 navigate("/")
-            }} style={{position: "absolute", right: "25px", top: "15px", color: "red"}}/>
+            }} style={{position: "absolute", right: "40px", top: "15px", color: "red"}}/>
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
                 <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
