@@ -252,6 +252,8 @@ export default function Gameclick() {
         "&id="+id
     }).then(
       (data) => (
+        console.log(id),
+        console.log(data.data.games),
         setGame(data.data.games),
         setCurrent(data.data.games.current),
         setWinBy(data.data.games.winby)
