@@ -28,6 +28,7 @@ export default function Dashboard(){
                 method: "get",
                 url: "https://intern-backend-ten.vercel.app/games?user="+user
             }).then((data)=>(setGames(data.data.games)))
+            console.log(game);
      }, 1000);
      return ()=> clearInterval(timeInvterval);
     }, []);
