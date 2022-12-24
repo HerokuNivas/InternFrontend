@@ -28,7 +28,6 @@ export default function Gameclick() {
   const [loading, setLoading] = useState(false);
   const [game, setGame] = useState({current: user, board: boardIsIs});
   const [cameIn, setCameIn] = useState(false);
-  const [rendered, alreadyRendered] = useState(false);
 
   const [error, setError] = useState(false);
 
@@ -210,7 +209,6 @@ export default function Gameclick() {
   async function submitParent() {
     setLoading(true);
     setCameIn(true);
-    alreadyRendered(false);
     Submit();
     setLoading(false);
   }
@@ -227,7 +225,6 @@ export default function Gameclick() {
         if (boardIs[i][j] !== "") count = count + 1;
       }
     }
-    console.log(count, draw);
     if (draw !== "" && count === 9) draw = "draw";
     const requestOptions = {
       method: "POST",
