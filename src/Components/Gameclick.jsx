@@ -228,7 +228,6 @@ export default function Gameclick() {
     setPlaced(false);
     setCame(false);
     var draw = checkWinning();
-    console.log(draw);
     var count = 0;
     for (var i = 0; i < 3; i++) {
       for (var j = 0; j < 3; j++) {
@@ -243,7 +242,7 @@ export default function Gameclick() {
         id: id,
         user1: piece === "x" ? user : opponent,
         user2: piece === "x" ? opponent : user,
-        current: draw === "" ? opponent : "",
+        current: draw.user === "" ? opponent : "",
         board: boardIs,
         winby: draw.user,
         winpo: draw.winpo,
