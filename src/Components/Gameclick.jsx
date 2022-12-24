@@ -59,6 +59,11 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
+      if(games.winby !== ""){
+        setWinBy(games.winby);
+        setCurrent(games.current);
+        setBoardIs(games.board);
+    }
       
 
     }, 5000);
