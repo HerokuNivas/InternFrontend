@@ -13,7 +13,7 @@ import axios from "axios";
 export default function Gameclick() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id } =
+  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id, winpo } =
     location.state;
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -25,6 +25,12 @@ export default function Gameclick() {
       navigate("/login");
     }
   }, []);
+
+  useEffect(()=>{
+        if(winpo !== ""){
+            document.getElementById("Win"+winpo).classList.add("win2"+winpo);
+        }
+    })
 
   const [current, setCurrent] = useState(currentIs);
   const [winby, setWinBy] = useState(winbyIs);
@@ -61,12 +67,15 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
+      if(games.winpo !== ""){
+        document.getElementById("Win"+games.winpo).classList.add("win2"+games.winpo);
+        }
       if (games.winby !== "") {
         setWinBy(games.winby);
         setCurrent(games.current);
         setBoardIs(games.board);
       }
-    }, 100);
+    }, 1000);
     return () => clearInterval(timeInvterval);
   });
 
@@ -218,15 +227,14 @@ export default function Gameclick() {
     if (!came) return;
     setPlaced(false);
     setCame(false);
-    var draw = "";
-    draw = checkWinning();
+    var draw = checkWinning();
     var count = 0;
     for (var i = 0; i < 3; i++) {
       for (var j = 0; j < 3; j++) {
         if (boardIs[i][j] !== "") count = count + 1;
       }
     }
-    if (draw === "" && count === 9) draw = "draw";
+    if (draw.user === "" && count === 9) draw.user = "draw";
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -236,7 +244,8 @@ export default function Gameclick() {
         user2: piece === "x" ? opponent : user,
         current: draw === "" ? opponent : "",
         board: boardIs,
-        winby: draw,
+        winby: draw.user,
+        winpo: draw.winpo,
         time: new Date().toLocaleString(),
       }),
     };
@@ -265,7 +274,7 @@ export default function Gameclick() {
       boardIs[2][2] === value
     ){
         document.getElementById("Win7").classList.add("win7");
-      return user;
+      return {user: user, winpo: "7"};
     }
     if (
       boardIs[0][2] === value &&
@@ -273,7 +282,7 @@ export default function Gameclick() {
       boardIs[2][0] === value
     ){
         document.getElementById("Win8").classList.add("win8");
-      return user;
+      return {user: user, winpo: "8"};
     }
     if (
       boardIs[0][0] === value &&
@@ -281,7 +290,7 @@ export default function Gameclick() {
       boardIs[2][0] === value
     ){
         document.getElementById("Win1").classList.add("win1");
-      return user;
+      return {user: user, winpo: "1"};
     }
     if (
       boardIs[0][1] === value &&
@@ -289,7 +298,7 @@ export default function Gameclick() {
       boardIs[2][1] === value
     ){
         document.getElementById("Win2").classList.add("win2");
-      return user;
+      return {user: user, winpo: "2"};
     }
     if (
       boardIs[0][2] === value &&
@@ -297,7 +306,7 @@ export default function Gameclick() {
       boardIs[2][2] === value
     ){
         document.getElementById("Win3").classList.add("win3");
-      return user;
+      return {user: user, winpo: "3"};
     }
     if (
       boardIs[0][0] === value &&
@@ -305,7 +314,7 @@ export default function Gameclick() {
       boardIs[0][2] === value
     ){
         document.getElementById("Win4").classList.add("win4");
-      return user;
+      return {user: user, winpo: "4"};
     }
     if (
       boardIs[1][0] === value &&
@@ -313,7 +322,7 @@ export default function Gameclick() {
       boardIs[1][2] === value
     ){
         document.getElementById("Win5").classList.add("win5");
-      return user;
+      return {user: user, winpo: "5"};
     }
     if (
       boardIs[2][0] === value &&
@@ -321,9 +330,9 @@ export default function Gameclick() {
       boardIs[2][2] === value
     ){
         document.getElementById("Win6").classList.add("win6");
-      return user;
+      return {user: user, winpo: "6"};
     }
-    return "";
+    return {user: "", winpo: ""};
   }
 
   return (

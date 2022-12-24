@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export default function Singlegame({user1, user2, current, winby, board, time, id}){
+export default function Singlegame({user1, user2, current, winby, board, time, id, winpo}){
 
     let navigate = useNavigate();
 
@@ -36,8 +36,8 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
             {winby!=="" && winby===user && <div style={{marginTop: "-20px", fontSize: "15px"}}><p>You won!</p></div>}
             {winby==="draw" && <div style={{marginTop: "-20px", fontSize: "15px"}}><p>It's a Draw!</p></div>}
             <p style={{marginTop: "-20px"}}>{time}</p>
-            {(winby!=="" || current===opponent) && <p className="gameView"><Link to={"/games/"+id} style={{textDecoration: "none"}} state={{user1Is: user1, user2Is: user2, currentIs: current, winbyIs: winby, boardIsIs: board, id: id}}><span className="mainLoginText">View game</span></Link></p>}
-            {(winby==="" && current===user) && <p className="gameView"><Link to={"/games/"+id} style={{textDecoration: "none"}} state={{user1Is: user1, user2Is: user2, currentIs: current, winbyIs: winby, boardIsIs: board, id: id}}><span className="mainLoginText">Play!</span></Link></p>}
+            {(winby!=="" || current===opponent) && <p className="gameView"><Link to={"/games/"+id} style={{textDecoration: "none"}} state={{user1Is: user1, user2Is: user2, currentIs: current, winbyIs: winby, boardIsIs: board, id: id, winpo: winpo}}><span className="mainLoginText">View game</span></Link></p>}
+            {(winby==="" && current===user) && <p className="gameView"><Link to={"/games/"+id} style={{textDecoration: "none"}} state={{user1Is: user1, user2Is: user2, currentIs: current, winbyIs: winby, boardIsIs: board, id: id, winpo: winpo}}><span className="mainLoginText">Play!</span></Link></p>}
         </div>    
     )
 }
