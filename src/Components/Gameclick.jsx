@@ -79,7 +79,7 @@ export default function Gameclick() {
         }}
         console.log(count1, count2);
         if(count1 === count2+1){
-            setBoardIs(boardIs);
+            setBoardIs(game.board);
         }
     }, [game, boardIs])
 
