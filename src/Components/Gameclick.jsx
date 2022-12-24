@@ -66,11 +66,11 @@ export default function Gameclick() {
   });
 
     useEffect(()=>{
-        console.log(game.board, boardIs);
+        console.log(game, game.board, boardIs);
         console.log(game.board === boardIs);
         var count1 = 0;
         var count2 = 0;
-        if(game !== {}){
+        if(game.board !== undefined){
         for(var i=0; i < 3; i++){
             for(var j=0; j < 3; j++){
                 if(game.board[i][j] !== "") count1 = count1+1;
