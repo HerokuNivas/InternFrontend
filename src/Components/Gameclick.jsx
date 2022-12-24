@@ -423,7 +423,7 @@ export default function Gameclick() {
               }}
             >
               <p
-                className="box1"
+                className="box1 win1"
                 onClick={() => {
                   function1();
                 }}

@@ -89,3 +89,12 @@
 
   background: white;
 }
+
+.win1{
+  position: absolute;
+  width: 10px;
+  top: 264px;
+  left: 50px;
+  height: 315.27;
+  background: black;
+}
