@@ -415,7 +415,7 @@ export default function Gameclick() {
                 </span>
               </p>
             )}
-            <div
+            <div className="win1"
               onClick={() => {
                 if (current === opponent || cameIn === true) {
                   setError(true);
@@ -423,7 +423,7 @@ export default function Gameclick() {
               }}
             >
               <p
-                className="box1 win1"
+                className="box1"
                 onClick={() => {
                   function1();
                 }}
