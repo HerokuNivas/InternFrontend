@@ -80,6 +80,8 @@ export default function Gameclick() {
         console.log(count1, count2);
         if(count1 === count2+1){
             setBoardIs(game.board);
+            setCurrent(game.current);
+            setWinBy(game.winby);
         }
     }, [game, boardIs])
 
