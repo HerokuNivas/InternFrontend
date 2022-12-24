@@ -54,7 +54,7 @@
   padding: 8px 12px 8px 8px;
   gap: 4px;
 
-  position: absolute;
+  position: fixed;
   width: 100px;
   height: 40px;
   right: 24px;
