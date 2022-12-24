@@ -193,7 +193,6 @@ export default function Gameclick() {
 
   async function Submit() {
     if (!came) return;
-    setLoading(true);
     setPlaced(false);
     setCame(false);
     var draw = "";
@@ -220,7 +219,6 @@ export default function Gameclick() {
     await fetch("https://intern-backend-ten.vercel.app/update", requestOptions)
       .then((response) => response.json())
       .then((responseData) => {
-        setLoading(false);
       });
     await axios({
       method: "get",
@@ -234,6 +232,7 @@ export default function Gameclick() {
         setGame(data.data.games)
       )
     );
+    setLoading(false);
   }
 
   function checkWinning() {
