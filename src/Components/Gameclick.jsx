@@ -245,7 +245,8 @@ export default function Gameclick() {
     }).then(
       (data) => (
         setGame(data.data.games),
-        setCurrent(data.data.games.current)
+        setCurrent(data.data.games.current),
+        setWinBy(data.data.games.winby)
       )
     );
     setLoading(false);
