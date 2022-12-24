@@ -59,21 +59,19 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
-      console.log(games);
+      setCurrent(games.current);
+      setWinBy(games.winby);
 
     }, 5000);
     return () => clearInterval(timeInvterval);
   });
 
     useEffect(()=>{
-        console.log(current);
-        console.log("In");
-        console.log(game);
-        //Game
-        if(current === user){
-            console.log(current, user);
+        console.log(game, user, rendered);
+        if(rendered === false){
+            alreadyRendered(true);
         }
-    }, [current, game, user])
+    }, [game, user, rendered])
 
 
   function function1() {
@@ -239,8 +237,7 @@ export default function Gameclick() {
         user2Is,
     }).then(
       (data) => (
-        setGame(data.data.games),
-        setCurrent(data.data.games.current)
+        setGame(data.data.games)
       )
     );
     setLoading(false);
