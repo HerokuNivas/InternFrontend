@@ -264,7 +264,7 @@ export default function Gameclick() {
       boardIs[1][1] === value &&
       boardIs[2][2] === value
     ){
-        document.getElementById("Win7").classList.add("win7");
+        // document.getElementById("Win7").classList.add("win7");
       return user;
     }
     if (
@@ -272,7 +272,7 @@ export default function Gameclick() {
       boardIs[1][1] === value &&
       boardIs[2][0] === value
     ){
-        document.getElementById("Win8").classList.add("win8");
+        // document.getElementById("Win8").classList.add("win8");
       return user;
     }
     if (
@@ -280,7 +280,7 @@ export default function Gameclick() {
       boardIs[1][0] === value &&
       boardIs[2][0] === value
     ){
-        document.getElementById("Win1").classList.add("win1");
+        // document.getElementById("Win1").classList.add("win1");
       return user;
     }
     if (
@@ -288,7 +288,7 @@ export default function Gameclick() {
       boardIs[1][1] === value &&
       boardIs[2][1] === value
     ){
-        document.getElementById("Win2").classList.add("win2");
+        // document.getElementById("Win2").classList.add("win2");
       return user;
     }
     if (
@@ -296,7 +296,7 @@ export default function Gameclick() {
       boardIs[1][2] === value &&
       boardIs[2][2] === value
     ){
-        document.getElementById("Win3").classList.add("win3");
+        // document.getElementById("Win3").classList.add("win3");
       return user;
     }
     if (
@@ -304,7 +304,7 @@ export default function Gameclick() {
       boardIs[0][1] === value &&
       boardIs[0][2] === value
     ){
-        document.getElementById("Win4").classList.add("win4");
+        // document.getElementById("Win4").classList.add("win4");
       return user;
     }
     if (
@@ -312,7 +312,7 @@ export default function Gameclick() {
       boardIs[1][1] === value &&
       boardIs[1][2] === value
     ){
-        document.getElementById("Win5").classList.add("win5");
+        // document.getElementById("Win5").classList.add("win5");
       return user;
     }
     if (
@@ -320,7 +320,7 @@ export default function Gameclick() {
       boardIs[2][1] === value &&
       boardIs[2][2] === value
     ){
-        document.getElementById("Win6").classList.add("win6");
+        // document.getElementById("Win6").classList.add("win6");
       return user;
     }
     return "";
