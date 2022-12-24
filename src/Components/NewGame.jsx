@@ -6,6 +6,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useEffect } from "react";
 
 export default function NewGame(){
 
@@ -15,6 +16,12 @@ export default function NewGame(){
     const [loading, setLoading] = useState(false);
     const {user} = useStateContext();
     const [message, setMessage] = useState("");
+
+    useEffect(()=>{
+        if(user === ""){
+            navigate("/login");
+        }
+    }, [])
 
     async function functionCall(){
         setLoading(true);

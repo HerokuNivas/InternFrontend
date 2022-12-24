@@ -16,6 +16,12 @@ export default function Dashboard(){
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
+        if(user === ""){
+            navigate("/login");
+        }
+    }, [])
+
+    useEffect(()=>{
         setLoading(true)
         setTimeout(() => {
             setLoading(false);

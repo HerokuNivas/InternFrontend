@@ -25,6 +25,7 @@ export default function Register(){
     useEffect(()=>{
         setUser("");
     }, []);
+    
 
     async function registerClicked(){
         setLoading(true);

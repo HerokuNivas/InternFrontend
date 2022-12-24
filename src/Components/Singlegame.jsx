@@ -4,8 +4,11 @@ import { useState } from "react";
 import "../css/SingleBoard.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Singlegame({user1, user2, current, winby, board, time, id}){
+
+    let navigate = useNavigate();
 
     
     const {user} = useStateContext();
@@ -15,6 +18,12 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
     useEffect(()=>{
         if(user === user1) setOpponent(user2);
         else setOpponent(user1);
+    }, [])
+
+    useEffect(()=>{
+        if(user === ""){
+            navigate("/login");
+        }
     }, [])
      
 

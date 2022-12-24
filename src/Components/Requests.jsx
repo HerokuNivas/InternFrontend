@@ -22,6 +22,12 @@ export default function Requests(){
     })
 
     useEffect(()=>{
+        if(user === ""){
+            navigate("/login");
+        }
+    }, [])
+
+    useEffect(()=>{
         const timeInterval = setTimeout(async () => {
             await axios({
                 method: "get",

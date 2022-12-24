@@ -18,6 +18,13 @@ export default function Gameclick() {
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const { user } = useStateContext();
+
+  useEffect(()=>{
+    if(user === ""){
+        navigate("/login");
+    }
+    }, [])
+
   const [current, setCurrent] = useState(currentIs);
   const [winby, setWinBy] = useState(winbyIs);
   const [opponent, setOpponent] = useState("");
