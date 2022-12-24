@@ -28,7 +28,7 @@ export default function Gameclick() {
   const [loading, setLoading] = useState(false);
   const [game, setGame] = useState({current: user});
   const [cameIn, setCameIn] = useState(false);
-  const [rendered, alreadyRendered] = useState(false);
+  const [rendered, alreadyRendered] = useState(true);
 
   const [error, setError] = useState(false);
 
@@ -67,7 +67,6 @@ export default function Gameclick() {
   });
 
     useEffect(()=>{
-        console.log(game, user, rendered);
         if(rendered === false && game.current === user){
             alreadyRendered(true);
             setBoardIs(boardIs);
