@@ -8,10 +8,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import "../css/Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import Singlegame from "./Singlegame";
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function Dashboard(){
     let navigate = useNavigate();
-    const {user} = useStateContext();
+    const {user, cookies, setUser} = useStateContext();
     const [game, setGames] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -46,6 +47,11 @@ export default function Dashboard(){
         {!loading && <div>
             <p style={{fontWeight: "bold", fontSize: "30px", marginLeft: "20px", marginRight: "20px"}}>Your games</p>
             <MoveToInboxIcon onClick={()=>(navigate(("/requests")))} style={{position: "absolute", right: "15px", top: "15px"}}/>
+            <LogoutIcon onClick={()=> {
+                cookies.remove('TicTacToe');
+                setUser("");
+                navigate("/")
+            }} style={{position: "absolute", right: "25px", top: "15px", color: "red"}}/>
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
                 <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
