@@ -82,6 +82,7 @@ export default function Gameclick() {
             setBoardIs(game.board);
             setCurrent(game.current);
             setWinBy(game.winby);
+            setCameIn(false);
         }
     }, [game, boardIs])
 
