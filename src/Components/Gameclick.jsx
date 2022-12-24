@@ -68,9 +68,6 @@ export default function Gameclick() {
 
       setGame(games);
       if(games.winpo !== ""){
-        console.log(games.winpo);
-        console.log(typeof(games.winpo));
-        console.log("Win"+games.winpo);
         document.getElementById("Win"+games.winpo).classList.add("win"+games.winpo);
         }
       if (games.winby !== "") {
