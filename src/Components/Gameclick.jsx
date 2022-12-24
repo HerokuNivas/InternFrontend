@@ -26,7 +26,7 @@ export default function Gameclick() {
   const [came, setCame] = useState(false);
   const [boardIs, setBoardIs] = useState(boardIsIs);
   const [loading, setLoading] = useState(false);
-  const [game, setGame] = useState({current: user});
+  const [game, setGame] = useState({current: user, board: boardIsIs});
   const [cameIn, setCameIn] = useState(false);
   const [rendered, alreadyRendered] = useState(false);
 
