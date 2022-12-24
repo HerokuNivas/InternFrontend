@@ -244,7 +244,8 @@ export default function Gameclick() {
         user2Is,
     }).then(
       (data) => (
-        setGame(data.data.games)
+        setGame(data.data.games),
+        setCurrent(data.data.games.current)
       )
     );
     setLoading(false);
