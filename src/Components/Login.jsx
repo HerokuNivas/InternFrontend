@@ -20,6 +20,7 @@ export default function Login(){
     const [success, setSuccess] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [loading, setLoading] = useState(false);
+    const {cookies} = useStateContext();
     
 
     async function DoLogin(){
@@ -35,6 +36,8 @@ export default function Login(){
                 body: JSON.stringify({user: user, password: password})
               };
               await fetch("https://intern-backend-ten.vercel.app/login", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)});
+              cookies.set('TicTacToe', user);
+              console.log(cookies.get('TicTacToe'));
               setLoading(false);
         }
     }
