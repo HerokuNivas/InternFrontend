@@ -69,7 +69,10 @@ export default function Gameclick() {
         console.log(current);
         console.log("In");
         console.log(game);
-    }, [current])
+        if(current === user){
+            console.log(current, user);
+        }
+    }, [current, game, user])
 
 
   function function1() {
