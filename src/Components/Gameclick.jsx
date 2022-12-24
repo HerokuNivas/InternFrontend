@@ -65,17 +65,6 @@ export default function Gameclick() {
     return () => clearInterval(timeInvterval);
   });
 
-  useEffect(()=>{
-    console.log(rendered, current);
-    if(rendered === false && game.current === user){
-        alreadyRendered(true);
-        setBoardIs(game.board);
-        setCurrent(game.current);
-        setWinBy(game.winby);
-        setCameIn(false);
-        console.log("Came here");
-    }
-}, [game, user, rendered]);
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
