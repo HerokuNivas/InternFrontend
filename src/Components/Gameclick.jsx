@@ -69,12 +69,13 @@ export default function Gameclick() {
         console.log(game.board, boardIs);
         var count1 = 0;
         var count2 = 0;
+        if(game !== {}){
         for(var i=0; i < 3; i++){
             for(var j=0; j < 3; j++){
                 if(game.board[i][j] !== "") count1 = count1+1;
                 if(boardIs[i][j] !== "") count2 = count2+1;
             }
-        }
+        }}
         console.log(count1, count2);
     }, [game, user, rendered, boardIs])
 
