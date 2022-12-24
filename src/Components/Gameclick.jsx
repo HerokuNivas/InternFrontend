@@ -228,6 +228,7 @@ export default function Gameclick() {
     setPlaced(false);
     setCame(false);
     var draw = checkWinning();
+    console.log(draw);
     var count = 0;
     for (var i = 0; i < 3; i++) {
       for (var j = 0; j < 3; j++) {
