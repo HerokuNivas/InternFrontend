@@ -226,7 +226,8 @@ export default function Gameclick() {
         if (boardIs[i][j] !== "") count = count + 1;
       }
     }
-    console.log(draw, count);
+    console.log(draw, "Draw");
+    console.log(count, "count");
     if (draw !== "" && count === 9) draw = "draw";
     const requestOptions = {
       method: "POST",
