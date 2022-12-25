@@ -49,15 +49,13 @@ export default function Gameclick() {
     async function function1(){
       setLoading(true);
       const parsed = queryString.parse(location.search);
-    const user1Is = parsed.user1;
-    const user2Is = parsed.user2;
     setId(parsed.id);
-    if (user2Is === user) {
+    if (parsed.user1 === user) {
       setPiece("x");
-      setOpponent(user2Is);
+      setOpponent(parsed.user2);
     } else {
       setPiece("o");
-      setOpponent(user1Is);
+      setOpponent(parsed.user1);
     }
       const dataIs = await axios({
         method: "get",
