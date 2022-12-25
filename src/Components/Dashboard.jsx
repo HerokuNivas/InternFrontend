@@ -35,9 +35,11 @@ export default function Dashboard(){
     }, []);
 
     useEffect(()=>{
+        console.log(user);
         if(user === ""){
             setUser(cookies.get('TicTacToe'));
         }
+        console.log(cookies.get('TicTacToe'));
         if(cookies.get('TicTacToe') === ''){
             navigate("/");
         }
