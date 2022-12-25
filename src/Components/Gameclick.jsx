@@ -14,7 +14,7 @@ import { useBeforeunload } from 'react-beforeunload';
 export default function Gameclick() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id} =
+  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id, winpo} =
     location.state;
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
@@ -60,6 +60,7 @@ export default function Gameclick() {
       setOpponent(user1Is);
     }
     setBoardIs(boardIsIs);
+    console.log(winpo);
   }, []);
 
   useEffect(() => {
