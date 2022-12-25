@@ -50,7 +50,7 @@ export default function Gameclick() {
       setLoading(true);
       const parsed = queryString.parse(location.search);
     setId(parsed.id);
-    if (parsed.user1 === user) {
+    if (parsed.user1 === parsed.user) {
       setPiece("x");
       setOpponent(parsed.user2);
     } else {
@@ -64,6 +64,7 @@ export default function Gameclick() {
 
       const data = await dataIs.data;
       const games = await data.games;
+      
       setGame(games);
       setCurrent(games.current);
       setBoardIs(games.board);
