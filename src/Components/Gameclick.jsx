@@ -261,7 +261,6 @@ export default function Gameclick() {
     if (!came) return;
     setPlaced(false);
     setCame(false);
-    setCurrent(opponent);
     var draw = checkWinning();
     var count = 0;
     for (var i = 0; i < 3; i++) {
