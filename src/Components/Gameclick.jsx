@@ -14,19 +14,13 @@ import { useBeforeunload } from 'react-beforeunload';
 export default function Gameclick() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id, winpo } =
+  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id} =
     location.state;
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const { user, setUser, cookies } = useStateContext();
-
-
-  useEffect(()=>{
-        if(winpo !== ""){
-            document.getElementById("Win"+winpo).classList.add("win"+winpo);
-        }
-    })
+  
 
     useBeforeunload((event) => {
       if ( user !== "") {

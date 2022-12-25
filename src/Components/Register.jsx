@@ -86,6 +86,7 @@ export default function Register(){
                     }
                 }}
                 />
+                <p style={{marginTop: "2px", fontSize: "15px"}}>Username can contain alpha numeric characters and underscore.</p>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Email</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
                 placeholder= "Type your email here"
