@@ -40,7 +40,6 @@ export default function Gameclick() {
   const [game, setGame] = useState({current: "", board: [["", "", ""], ["", "", ""], ["", "", ""]]});
   const [cameIn, setCameIn] = useState(false);
   const [id, setId] = useState("");
-  const [winpo, setWinPo] = useState("");
 
   const [error, setError] = useState(false);
 
@@ -50,7 +49,16 @@ export default function Gameclick() {
     async function function1(){
       setLoading(true);
       const parsed = queryString.parse(location.search);
+    const user1Is = parsed.user1;
+    const user2Is = parsed.user2;
     setId(parsed.id);
+    if (user1Is === user) {
+      setPiece("x");
+      setOpponent(user2Is);
+    } else {
+      setPiece("o");
+      setOpponent(user1Is);
+    }
       const dataIs = await axios({
         method: "get",
         url: "https://intern-backend-ten.vercel.app/pargame?id=" + parsed.id,
@@ -62,15 +70,7 @@ export default function Gameclick() {
       setCurrent(games.current);
       setBoardIs(games.board);
       setWinBy(games.winby);
-      setWinPo(games.winpo);
       setLoading(false);
-      if (games.user1 === user) {
-        setPiece("x");
-        setOpponent(games.user2);
-      } else {
-        setPiece("o");
-        setOpponent(games.user1);
-      }
     }
     function1();
   }, [])
@@ -120,12 +120,13 @@ export default function Gameclick() {
 
   useEffect(()=>{
     try{
-      if(winpo===""){
+      const parsed = queryString.parse(location.search);
+      if(parsed.winpo===""){
         setLoading(false);
       }
       else{
-      document.getElementById("Win"+winpo).classList.add("win"+winpo);
-    }
+      document.getElementById("Win"+parsed.winpo).classList.add("win"+parsed.winpo);
+      setLoading(false);}
     }
     catch(err){
     }
