@@ -18,6 +18,7 @@ export default function Dashboard(){
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
+        console.log(user);
         if(user === ""){
             setUser(cookies.get('TicTacToe'));
         }
@@ -42,7 +43,7 @@ export default function Dashboard(){
      }, 1000);
      console.log(game);
      return ()=> clearInterval(timeInvterval);
-    }, []);
+    });
 
     
 
