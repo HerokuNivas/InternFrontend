@@ -26,15 +26,7 @@ export default function Register(){
     useEffect(()=>{
         setUser("");
     }, []);
-
-    useEffect(()=>{
-        if(user === ""){
-            setUser(cookies.get('TicTacToe'));
-        }
-        if(cookies.get('TicTacToe') === ''){
-            navigate("/");
-        }
-    })
+   
     
 
     async function registerClicked(){
@@ -49,6 +41,7 @@ export default function Register(){
                     continue;
                 else{
                     setError1(true);
+                    setLoading(false);
                     return;
                 }
             }

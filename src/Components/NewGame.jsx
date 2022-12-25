@@ -18,13 +18,7 @@ export default function NewGame(){
     const {user, setUser, cookies} = useStateContext();
     const [message, setMessage] = useState("");
     
-
-    useBeforeunload((event) => {
-        if ( user !== "") {
-            setUser(user);
-            navigate("/dashboard");
-        }
-      });
+    
 
       useEffect(()=>{
         if(user === ""){
@@ -33,7 +27,7 @@ export default function NewGame(){
         if(cookies.get('TicTacToe') === ''){
             navigate("/");
         }
-    })
+    }, [])
     
 
     async function functionCall(){

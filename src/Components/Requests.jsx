@@ -29,7 +29,7 @@ export default function Requests(){
         if(cookies.get('TicTacToe') === ''){
             navigate("/");
         }
-    })
+    }, []);
     
 
     useEffect(()=>{

@@ -21,7 +21,7 @@ export default function Home(){
         if(cookies.get('TicTacToe') === ''){
             navigate("/");
         }
-    })
+    }, [])
     
     return(
         <div>

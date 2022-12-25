@@ -9,25 +9,16 @@ import "../css/Gameclick.css";
 import { Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
-import { useBeforeunload } from 'react-beforeunload';
+import queryString from 'query-string';
 
 export default function Gameclick() {
   let navigate = useNavigate();
   const location = useLocation();
-  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id, winpo} =
-    location.state;
-
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const { user, setUser, cookies } = useStateContext();
   
-
-    useBeforeunload((event) => {
-      if ( user !== "") {
-          setUser(user);
-          navigate("/dashboard");
-      }
-    });
+    
 
     useEffect(()=>{
       if(user === ""){
@@ -36,22 +27,31 @@ export default function Gameclick() {
       if(cookies.get('TicTacToe') === ''){
           navigate("/");
       }
-  })
+  }, []);
 
-  const [current, setCurrent] = useState(currentIs);
-  const [winby, setWinBy] = useState(winbyIs);
+  const [current, setCurrent] = useState();
+  const [winby, setWinBy] = useState();
   const [opponent, setOpponent] = useState("");
   const [piece, setPiece] = useState("");
   const [placed, setPlaced] = useState(false);
   const [came, setCame] = useState(false);
-  const [boardIs, setBoardIs] = useState(boardIsIs);
-  const [loading, setLoading] = useState(false);
-  const [game, setGame] = useState({ current: user, board: boardIsIs });
+  const [boardIs, setBoardIs] = useState([["","",""],["","",""],["","",""]]);
+  const [loading, setLoading] = useState(true);
+  const [game, setGame] = useState({current: "", board: [["", "", ""], ["", "", ""], ["", "", ""]]});
   const [cameIn, setCameIn] = useState(false);
+  const [id, setId] = useState("");
 
   const [error, setError] = useState(false);
 
-  useEffect(() => {
+  
+
+  useEffect(()=>{
+    async function function1(){
+      setLoading(true);
+      const parsed = queryString.parse(location.search);
+    const user1Is = parsed.user1;
+    const user2Is = parsed.user2;
+    setId(parsed.id);
     if (user1Is === user) {
       setPiece("x");
       setOpponent(user2Is);
@@ -59,10 +59,21 @@ export default function Gameclick() {
       setPiece("o");
       setOpponent(user1Is);
     }
-    setBoardIs(boardIsIs);
-    if(winpo !== "")
-      document.getElementById("Win"+winpo).classList.add("win"+winpo);
-  }, []);
+      const dataIs = await axios({
+        method: "get",
+        url: "https://intern-backend-ten.vercel.app/pargame?id=" + parsed.id,
+      });
+
+      const data = await dataIs.data;
+      const games = await data.games;
+      setGame(games);
+      setCurrent(games.current);
+      setBoardIs(games.board);
+      setWinBy(games.winby);
+      setLoading(false);
+    }
+    function1();
+  }, [])
 
   useEffect(() => {
     const timeInvterval = setInterval(async () => {
@@ -106,6 +117,16 @@ export default function Gameclick() {
       setError(false);
     }
   }, [game, boardIs]);
+
+  useEffect(()=>{
+    try{
+      const parsed = queryString.parse(location.search);
+      document.getElementById("Win"+parsed.winpo).classList.add("win"+parsed.winpo);
+      setLoading(false);
+    }
+    catch(err){
+    }
+  });
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
