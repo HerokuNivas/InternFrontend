@@ -16,6 +16,7 @@ export default function Register(){
     const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
+    const [error1, setError1] = useState(false);
     const [success, setSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const {user, setUser, cookies} = useStateContext();
@@ -43,6 +44,14 @@ export default function Register(){
             setLoading(false);
         }
         else{
+            for(var i=0; i < user.length; i++){
+                if((user[i] >= 'A' && user[i] <= 'Z') || (user[i] >= 'a' && user[i] <= 'z') || (user[i] >= '0' && user[i]<='z') || (user[i] == '_'))
+                    continue;
+                else{
+                    setError1(true);
+                    return;
+                }
+            }
             const requestOptions = {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -79,7 +88,8 @@ export default function Register(){
                 placeholder= "Type your username here"
                 value={user}
                 onChange={(e)=>(setUser(e.target.value),
-                    setError(false))}
+                    setError(false),
+                    setError1(false))}
                 inputProps={{
                     style: {
                         height: "10px"
@@ -119,6 +129,7 @@ export default function Register(){
                 }}
                 />
                 {error && <p style={{color: "red"}}>All details are required.</p>}
+                {error1 && <p style={{color: "red"}}>Make sure your username satisfy requirements.</p>}
                  {success && <p className="successPara1"><span className="successText1">Congratulations! Account Created.</span></p>}
                  {!success && <p style={{color: "red"}}>{errorMessage}</p>}
                  <p className="registerRegister" onClick={registerClicked} style={{background: !success?"#f2c94c":"#E0E0E0"}}><span className="registerRegisterText">Register</span></p>
