@@ -60,7 +60,8 @@ export default function Gameclick() {
       setOpponent(user1Is);
     }
     setBoardIs(boardIsIs);
-    console.log(winpo);
+    if(winpo !== "")
+      document.getElementById("Win"+winpo).classList.add("win"+winpo);
   }, []);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ export default function Gameclick() {
       const games = await data.games;
 
       setGame(games);
-      if(games.winpo !== ""){
+      if(games.winpo !== "" && !loading){
         document.getElementById("Win"+games.winpo).classList.add("win"+games.winpo);
         }
       if (games.winby !== "") {
