@@ -29,6 +29,7 @@ export default function Gameclick() {
       if(cookies.get('TicTacToe') === ''){
           navigate("/");
       }
+      console.log(user);
   }, []);
 
   const [current, setCurrent] = useState();
