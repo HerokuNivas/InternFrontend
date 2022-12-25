@@ -18,11 +18,20 @@ export default function Dashboard(){
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
+        }
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
+    }, []);
+
+    useEffect(()=>{
         setLoading(true)
         setTimeout(() => {
             setLoading(false);
         }, 2000);
-    }, [])
+    }, []);
 
     useEffect(()=>{
         const timeInvterval = setInterval(async () => {
@@ -31,19 +40,11 @@ export default function Dashboard(){
                 url: "https://intern-backend-ten.vercel.app/games?user="+user
             }).then((data)=>(setGames(data.data.games)))
      }, 1000);
+     console.log(game);
      return ()=> clearInterval(timeInvterval);
     }, []);
 
-    useEffect(()=>{
-        console.log(user);
-        if(user === ""){
-            setUser(cookies.get('TicTacToe'));
-        }
-        console.log(cookies.get('TicTacToe'));
-        if(cookies.get('TicTacToe') === ''){
-            navigate("/");
-        }
-    })
+    
 
     return(
         <div>
