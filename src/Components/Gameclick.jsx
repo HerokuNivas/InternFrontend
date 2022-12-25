@@ -21,6 +21,8 @@ export default function Gameclick() {
     
 
     useEffect(()=>{
+      console.log(user);
+      console.log(cookies.get('TicTacToe'));
       if(user === ""){
           setUser(cookies.get('TicTacToe'));
       }
@@ -121,11 +123,10 @@ export default function Gameclick() {
     try{
       const parsed = queryString.parse(location.search);
       if(parsed.winpo===""){
-        setLoading(false);
       }
       else{
       document.getElementById("Win"+parsed.winpo).classList.add("win"+parsed.winpo);
-      setLoading(false);}
+      }
     }
     catch(err){
     }
