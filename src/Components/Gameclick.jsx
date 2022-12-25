@@ -667,7 +667,6 @@ export default function Gameclick() {
             </p>
           )}
           {winby === "" && current === user && (
-            console.log(current, user),
             <div>
               <Button
                 onClick={submitParent}
@@ -686,7 +685,6 @@ export default function Gameclick() {
             </div>
           )}
           {winby === "" && current === opponent && (
-            console.log(current, user),
             <div>
               <Button
                 variant="contained"
