@@ -67,6 +67,7 @@ export default function Gameclick() {
       const data = await dataIs.data;
       const games = await data.games;
       setGame(games);
+      console.log(games);
       setCurrent(games.current);
       setBoardIs(games.board);
       setWinBy(games.winby);
