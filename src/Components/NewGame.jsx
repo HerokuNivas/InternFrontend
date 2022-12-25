@@ -7,6 +7,7 @@ import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
+import { useBeforeunload } from 'react-beforeunload';
 
 export default function NewGame(){
 
@@ -14,7 +15,7 @@ export default function NewGame(){
     const [success, setSuccess] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [loading, setLoading] = useState(false);
-    const {user} = useStateContext();
+    const {user, setUser} = useStateContext();
     const [message, setMessage] = useState("");
 
     useEffect(()=>{
@@ -22,6 +23,14 @@ export default function NewGame(){
             navigate("/login");
         }
     }, [])
+
+    useBeforeunload((event) => {
+        if ( user !== "") {
+            setUser(user);
+            navigate("/dashboard");
+        }
+      });
+    
 
     async function functionCall(){
         setLoading(true);

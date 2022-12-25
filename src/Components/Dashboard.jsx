@@ -9,6 +9,7 @@ import "../css/Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import Singlegame from "./Singlegame";
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useBeforeunload } from 'react-beforeunload';
 
 export default function Dashboard(){
     let navigate = useNavigate();
@@ -39,7 +40,12 @@ export default function Dashboard(){
      return ()=> clearInterval(timeInvterval);
     }, []);
 
-
+    useBeforeunload((event) => {
+        if ( user !== "") {
+            setUser(user);
+            navigate("/dashboard");
+        }
+      });
 
     return(
         <div>

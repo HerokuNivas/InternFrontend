@@ -5,13 +5,14 @@ import "../css/SingleBoard.css";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useBeforeunload } from 'react-beforeunload';
 
 export default function Singlegame({user1, user2, current, winby, board, time, id, winpo}){
 
     let navigate = useNavigate();
 
     
-    const {user} = useStateContext();
+    const {user, setUser} = useStateContext();
     const [opponent, setOpponent] = useState("");
 
     
@@ -25,6 +26,13 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
             navigate("/login");
         }
     }, [])
+    
+    useBeforeunload((event) => {
+        if ( user !== "") {
+            setUser(user);
+            navigate("/dashboard");
+        }
+      });
      
 
     return(

@@ -9,6 +9,7 @@ import "../css/Gameclick.css";
 import { Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
+import { useBeforeunload } from 'react-beforeunload';
 
 export default function Gameclick() {
   let navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function Gameclick() {
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-  const { user } = useStateContext();
+  const { user, setUser } = useStateContext();
 
   useEffect(() => {
     if (user === "") {
@@ -31,6 +32,13 @@ export default function Gameclick() {
             document.getElementById("Win"+winpo).classList.add("win"+winpo);
         }
     })
+
+    useBeforeunload((event) => {
+      if ( user !== "") {
+          setUser(user);
+          navigate("/dashboard");
+      }
+    });
 
   const [current, setCurrent] = useState(currentIs);
   const [winby, setWinBy] = useState(winbyIs);

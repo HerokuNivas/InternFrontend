@@ -7,12 +7,13 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
 import Singlerequest from "./Singlerequest";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useBeforeunload } from 'react-beforeunload';
 
 export default function Requests(){
 
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
-    const {user} = useStateContext();
+    const {user, setUser} = useStateContext();
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -36,6 +37,13 @@ export default function Requests(){
         }, 0);
         return ()=>clearInterval(timeInterval);
     })
+
+    useBeforeunload((event) => {
+        if ( user !== "") {
+            setUser(user);
+            navigate("/requests");
+        }
+      });
 
     return(
         <div>
