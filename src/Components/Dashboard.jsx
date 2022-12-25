@@ -18,7 +18,6 @@ export default function Dashboard(){
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
-        console.log(user);
         if(user === ""){
             setUser(cookies.get('TicTacToe'));
         }
@@ -41,7 +40,6 @@ export default function Dashboard(){
                 url: "https://intern-backend-ten.vercel.app/games?user="+user
             }).then((data)=>(setGames(data.data.games)))
      }, 1000);
-     console.log(game);
      return ()=> clearInterval(timeInvterval);
     });
 
