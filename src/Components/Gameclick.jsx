@@ -125,7 +125,7 @@ export default function Gameclick() {
       }
       else{
       document.getElementById("Win"+winpo).classList.add("win"+winpo);
-      setLoading(false);}
+    }
     }
     catch(err){
     }
