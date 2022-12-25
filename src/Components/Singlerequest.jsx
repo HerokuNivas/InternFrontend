@@ -4,11 +4,22 @@ import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Singlerequest({from}){
-
-    const {user} = useStateContext();
+    let navigate = useNavigate();
+    const {user, cookies, setUser} = useStateContext();
     const [loading, setLoading] = useState(false);
+
+    useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
+        }
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
+    })
 
     async function acceptFun(){
         setLoading(true);

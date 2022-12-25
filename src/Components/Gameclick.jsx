@@ -19,7 +19,7 @@ export default function Gameclick() {
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-  const { user, setUser } = useStateContext();
+  const { user, setUser, cookies } = useStateContext();
 
 
   useEffect(()=>{
@@ -34,6 +34,15 @@ export default function Gameclick() {
           navigate("/dashboard");
       }
     });
+
+    useEffect(()=>{
+      if(user === ""){
+          setUser(cookies.get('TicTacToe'));
+      }
+      if(cookies.get('TicTacToe') === ''){
+          navigate("/");
+      }
+  })
 
   const [current, setCurrent] = useState(currentIs);
   const [winby, setWinBy] = useState(winbyIs);

@@ -15,7 +15,7 @@ export default function NewGame(){
     const [success, setSuccess] = useState(false);
     const [submit, setSubmit] = useState(false);
     const [loading, setLoading] = useState(false);
-    const {user, setUser} = useStateContext();
+    const {user, setUser, cookies} = useStateContext();
     const [message, setMessage] = useState("");
     
 
@@ -25,6 +25,15 @@ export default function NewGame(){
             navigate("/dashboard");
         }
       });
+
+      useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
+        }
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
+    })
     
 
     async function functionCall(){

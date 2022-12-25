@@ -6,13 +6,22 @@ import { useEffect } from "react";
 
 export default function Home(){
     let navigate = useNavigate();
-    const {cookies, setUser} = useStateContext();
+    const {cookies, setUser, user} = useStateContext();
     useEffect(()=>{
         if(cookies.get('TicTacToe') !== undefined){
             setUser(cookies.get('TicTacToe'));
             navigate("/dashboard");
         }
     }, [])
+
+    useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
+        }
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
+    })
     
     return(
         <div>

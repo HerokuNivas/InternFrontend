@@ -13,13 +13,22 @@ export default function Requests(){
 
     const [requests, setRequests] = useState([]);
     const [loading, setLoading] = useState(true);
-    const {user, setUser} = useStateContext();
+    const {user, setUser, cookies} = useStateContext();
     const navigate = useNavigate();
 
     useEffect(()=>{
         setTimeout(() => {
             setLoading(false);
         }, 1000);
+    })
+
+    useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
+        }
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
     })
     
 

@@ -12,7 +12,7 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
     let navigate = useNavigate();
 
     
-    const {user, setUser} = useStateContext();
+    const {user, setUser, cookies} = useStateContext();
     const [opponent, setOpponent] = useState("");
 
     
@@ -20,6 +20,15 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
         if(user === user1) setOpponent(user2);
         else setOpponent(user1);
     }, [])
+
+    useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
+        }
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
+    })
     
     
     useBeforeunload((event) => {

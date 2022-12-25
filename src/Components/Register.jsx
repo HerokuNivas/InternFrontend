@@ -18,13 +18,22 @@ export default function Register(){
     const [error, setError] = useState(false);
     const [success, setSuccess] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const {user, setUser} = useStateContext();
+    const {user, setUser, cookies} = useStateContext();
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         setUser("");
     }, []);
+
+    useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
+        }
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
+    })
     
 
     async function registerClicked(){

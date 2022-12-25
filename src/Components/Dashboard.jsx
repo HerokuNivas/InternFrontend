@@ -34,12 +34,14 @@ export default function Dashboard(){
      return ()=> clearInterval(timeInvterval);
     }, []);
 
-    useBeforeunload((event) => {
-        if ( user !== "") {
-            setUser(user);
-            navigate("/dashboard");
+    useEffect(()=>{
+        if(user === ""){
+            setUser(cookies.get('TicTacToe'));
         }
-      });
+        if(cookies.get('TicTacToe') === ''){
+            navigate("/");
+        }
+    })
 
     return(
         <div>
