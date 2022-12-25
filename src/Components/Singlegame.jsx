@@ -20,12 +20,7 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
         if(user === user1) setOpponent(user2);
         else setOpponent(user1);
     }, [])
-
-    useEffect(()=>{
-        if(user === ""){
-            navigate("/login");
-        }
-    }, [])
+    
     
     useBeforeunload((event) => {
         if ( user !== "") {

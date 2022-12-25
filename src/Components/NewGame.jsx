@@ -17,12 +17,7 @@ export default function NewGame(){
     const [loading, setLoading] = useState(false);
     const {user, setUser} = useStateContext();
     const [message, setMessage] = useState("");
-
-    useEffect(()=>{
-        if(user === ""){
-            navigate("/login");
-        }
-    }, [])
+    
 
     useBeforeunload((event) => {
         if ( user !== "") {

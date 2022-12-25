@@ -21,12 +21,7 @@ export default function Requests(){
             setLoading(false);
         }, 1000);
     })
-
-    useEffect(()=>{
-        if(user === ""){
-            navigate("/login");
-        }
-    }, [])
+    
 
     useEffect(()=>{
         const timeInterval = setTimeout(async () => {

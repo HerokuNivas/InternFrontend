@@ -21,11 +21,6 @@ export default function Gameclick() {
 
   const { user, setUser } = useStateContext();
 
-  useEffect(() => {
-    if (user === "") {
-      navigate("/login");
-    }
-  }, []);
 
   useEffect(()=>{
         if(winpo !== ""){
