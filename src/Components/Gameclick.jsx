@@ -52,7 +52,7 @@ export default function Gameclick() {
     const user1Is = parsed.user1;
     const user2Is = parsed.user2;
     setId(parsed.id);
-    if (user1Is === user) {
+    if (user2Is === user) {
       setPiece("x");
       setOpponent(user2Is);
     } else {
@@ -67,7 +67,6 @@ export default function Gameclick() {
       const data = await dataIs.data;
       const games = await data.games;
       setGame(games);
-      console.log(games);
       setCurrent(games.current);
       setBoardIs(games.board);
       setWinBy(games.winby);
@@ -440,6 +439,7 @@ export default function Gameclick() {
                 </span>
               </p>
             )}
+
             {winby !== "" && winby === opponent && (
               <p
                 style={{
