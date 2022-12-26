@@ -81,7 +81,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
         />
       </>
       {sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer"}}>Resend OTP in {time}</div>}
-      {!sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer", textDecoration: "underline"}} onClick={submitClicked}>Send OTP</div>}
+      {!sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer", textDecoration: "underline", color: "blue"}} onClick={submitClicked}>Send OTP</div>}
       <div><Button variant="contained" onClick={verify}>Verify</Button></div>
       {error && <p style={{color: "red"}}>Oops! Enter a valid OTP.</p>}
       <p><span style={{fontWeight: "bold"}}>Note : </span>Please check your spam and promotion folders too.</p>
