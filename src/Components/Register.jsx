@@ -28,13 +28,30 @@ export default function Register(){
 
     useEffect(()=>{
         setUser("");
+        console.log("In");
+        // Email A41716B46FDA1AD53D57045901ACB253905E
+        // server smtp.elasticemail.com
+        // port 2525
+        // username asynctictactoe@gmail.com
+        // const config = {
+        //     SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
+        //     To: "vsnsainivasand2003@gmail.com",
+        //     From: "asynctictactoe@gmail.com",
+        //     Subject: "Testing",
+        //     Body: "This should work I guess"
+        // };
+        // window.Email.send(config).then(()=>alert("email sent successfully"));
+        
         // eslint-disable-next-line no-undef
         Email.send({
-            SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-            To: "vsnsainivasand2003@gmail.com",
+            Host : "smtp.elasticemail.com",
+            Username : "asynctictactoe@gmail.com",
+            Password : "A41716B46FDA1AD53D57045901ACB253905E",
+            // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
+            To: "asynctictactoe@gmail.com",
             From: "asynctictactoe@gmail.com",
             Subject: "Testing",
-            Body: "This should work I guess. This is perfect bro."
+            Body: "This should work I guess.Why not working even."
         }).then(
           message => alert(message)
         );
