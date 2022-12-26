@@ -28,15 +28,6 @@ export default function Register(){
 
     useEffect(()=>{
         setUser("");
-        async function sendEmail(){
-        const data = await axios({
-            method: "get",
-            url: "https://intern-backend-ten.vercel.app/email"
-        })
-        const res = await data.data;
-        console.log(res);
-        }
-        sendEmail();
     }, []);
    
     
