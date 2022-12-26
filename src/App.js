@@ -8,7 +8,6 @@ import Dashboard from "./Components/Dashboard";
 import NewGame from "./Components/NewGame";
 import Requests from "./Components/Requests";
 import Gameclick from "./Components/Gameclick";
-import EmailVerification from "./Components/EmailVerification";
 
 function App() {
   return (
@@ -21,7 +20,6 @@ function App() {
         <Route path="/newgame" element={<NewGame/>}></Route>
         <Route path="/requests" element={<Requests/>}></Route>
         <Route path="/games/:id" element={<Gameclick/>}></Route>
-        <Route path="/otp" element={<EmailVerification/>}></Route>
       </Routes>
     </BrowserRouter>
   );

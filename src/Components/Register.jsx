@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
+import EmailVerification from "./EmailVerification";
 
 export default function Register(){
     let navigate = useNavigate();
@@ -26,6 +27,8 @@ export default function Register(){
     const [loading, setLoading] = useState(false);
     const [verified, setVerified] = useState(false);
     const [validate, setValidate] = useState(false);
+    const [inside, setInside] = useState(false);
+    const [EmailError, setEmailError] = useState(false);
 
 
     useEffect(()=>{
@@ -39,9 +42,19 @@ export default function Register(){
         }
     }, [mail])
    
+    function functionEmail(){
+        if(!validate || verified) return;
+        else{
+            setInside(true);
+        }
+    }
     
 
     async function registerClicked(){
+        if(!verified){
+            setEmailError(true);
+            return;
+        }
         setLoading(true);
         if(name === "" || mail === "" || password === "" || user === ""){
             setError(true);
@@ -72,7 +85,7 @@ export default function Register(){
     return(
         <div>
             {loading && <div><CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/></div>}
-            {!loading && <div>
+            {!inside && !loading && <div>
             <div><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/"))} className="arrowBackRegister"/></div>
             <div className="register">
                 <div>Create account</div>
@@ -114,7 +127,7 @@ export default function Register(){
                     }
                 }}
                 />
-                <Button variant="contained" style={{background: (validate&&!verified)?"green":"#917567", display: "block", marginTop: "10px"}} onClick={()=>(navigate("/otp"))}>Verify Email</Button>
+                <Button variant="contained" style={{background: (validate&&!verified)?"green":"#917567", display: "block", marginTop: "10px"}} onClick={functionEmail}>Verify Email</Button>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Password</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
                 value={password}
@@ -140,6 +153,8 @@ export default function Register(){
                  {!success && <p style={{color: "red"}}>{errorMessage}</p>}
                  <p className="registerRegister" onClick={registerClicked} style={{background: !success?"#f2c94c":"#E0E0E0"}}><span className="registerRegisterText">Register</span></p>
             </div></div>}
+            {inside && !loading && <EmailVerification mail={mail} setVerified={setVerified} setInside={setInside} setEmailError={setEmailError}/>}
+            {EmailError && <p style={{color: "red"}}>Please verify your email.</p>}
         </div>    
     )
 }

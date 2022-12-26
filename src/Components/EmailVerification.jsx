@@ -1,28 +1,85 @@
 import React from "react";
 import { useEffect } from "react";
+import { useState } from "react";
+import OTPInput, { ResendOTP } from "otp-input-react";
+import Button from "@mui/material/Button";
 
-export default function EmailVerification({email}){
+export default function EmailVerification({ mail, setVerified, setInside, setEmailError }) {
+  const [OTP, setOTP] = useState("");
+  const [generateOTP, setGenerateOTP] = useState("");
+  const [time, setTime] = useState(60);
+  const [sendOTP, setSendOTP] = useState(false);
+  const [error, setError] = useState(false);
 
-    useEffect(()=>{
+  useEffect(()=>{
+    const timeInvterval = setInterval(async () => {
+        if(time < 0){
+            setTime(60);
+        }
+        if(time === 0){
+            setTime(60);
+            setSendOTP(false);
+        }
+        if(sendOTP){
+            const val = time-1;
+            setTime(val);
+        }
+    }, 1000);
+    return () => clearInterval(timeInvterval);
+    });
+
+    function verify(){
+        if(generateOTP === OTP){
+            setVerified(true);
+            setInside(false);
+            setEmailError(false);
+        }
+        else{
+            setError(true);
+        }
+    }
+
+    function submitClicked(){
+        setSendOTP(true);
+        setError(false);
+        const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
+        setGenerateOTP(Generated);
         // eslint-disable-next-line no-undef
-        Email.send({
-            Host : "smtp.elasticemail.com",
-            Username : "asynctictactoe@gmail.com",
-            Password : "A41716B46FDA1AD53D57045901ACB253905E",
-            // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-            To: email,
-            From: "asynctictactoe@gmail.com",
-            Subject: "OTP for Verification",
-            // eslint-disable-next-line no-undef
-            Body: decodeURI("Hello ,%0D%0APlease enter the following code to proceed further [OTP].%0D%0A%0D%0AThanks for using Asynchronous Tic Tac Toe,%0D%0ATeam CHINXTUS.")
-        }).then(
-          message => alert(message)
-        );
-    }, [])
+    Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "asynctictactoe@gmail.com",
+        Password: "A41716B46FDA1AD53D57045901ACB253905E",
+        // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
+        To: mail,
+        From: "asynctictactoe@gmail.com",
+        Subject: "OTP for Verification",
+        // eslint-disable-next-line no-undef
+        Body: decodeURI(
+          "Hello ,Please enter the following code OTP :"+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
+        ),
+      }).then();
+    }
+ 
 
-    return(
-        <div>
-            
-        </div>    
-    )
+  return (
+    <div>
+        <div style={{marginTop: "50px", marginLeft: "50px"}}>
+      <>
+        <OTPInput
+          value={OTP}
+          onChange={setOTP}
+          autoFocus
+          OTPLength={6}
+          otpType="char"
+          disabled={false}
+        />
+      </>
+      {sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer"}}>Resend OTP in {time}</div>}
+      {!sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer"}} onClick={submitClicked}>Send OTP</div>}
+      <div><Button variant="contained" onClick={verify}>Verify</Button></div>
+      {error && <p style={{color: "red"}}>Oops! Enter a valid OTP.</p>}
+      <p><span style={{fontWeight: "bold"}}>Note : </span>Please check your spam and promotion folders too.</p>
+      </div>
+    </div>
+  );
 }
