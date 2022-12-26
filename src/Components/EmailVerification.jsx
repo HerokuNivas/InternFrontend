@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import OTPInput, { ResendOTP } from "otp-input-react";
 import Button from "@mui/material/Button";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
 export default function EmailVerification({ mail, setVerified, setInside, setEmailError }) {
   const [OTP, setOTP] = useState("");
@@ -55,7 +56,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
         Subject: "OTP for Verification",
         // eslint-disable-next-line no-undef
         Body: decodeURI(
-          "Hello ,Please enter the following OTP :"+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
+          "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
         ),
       }).then();
     }
@@ -64,6 +65,11 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
   return (
     <div>
         <div style={{marginTop: "50px", marginLeft: "50px"}}>
+        <ArrowBackIosIcon
+              fontSize="small"
+              onClick={() => {setInside(false)}}
+              className="arrowBackRegister"
+            />
       <>
         <OTPInput
           value={OTP}
