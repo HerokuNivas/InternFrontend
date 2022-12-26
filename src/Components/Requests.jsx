@@ -26,7 +26,7 @@ export default function Requests(){
         if(user === ""){
             setUser(cookies.get('TicTacToe'));
         }
-        if(cookies.get('TicTacToe') === ''){
+        if(cookies.get('TicTacToe') === undefined){
             navigate("/");
         }
     }, []);

@@ -33,7 +33,7 @@ export default function Gameclick() {
       if(user === ""){
           setUser(cookies.get('TicTacToe'));
       }
-      if(cookies.get('TicTacToe') === ''){
+      if(cookies.get('TicTacToe') === undefined){
           navigate("/");
       }
   }, []);

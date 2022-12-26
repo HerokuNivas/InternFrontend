@@ -9,6 +9,8 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from "react";
+import axios from "axios";
+
 
 export default function Register(){
     let navigate = useNavigate();
@@ -23,8 +25,18 @@ export default function Register(){
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
 
+
     useEffect(()=>{
         setUser("");
+        async function sendEmail(){
+        const data = await axios({
+            method: "get",
+            url: "https://intern-backend-ten.vercel.app/email"
+        })
+        const res = await data.data;
+        console.log(res);
+        }
+        sendEmail();
     }, []);
    
     

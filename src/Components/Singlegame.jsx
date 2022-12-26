@@ -25,7 +25,7 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
         if(user === ""){
             setUser(cookies.get('TicTacToe'));
         }
-        if(cookies.get('TicTacToe') === ''){
+        if(cookies.get('TicTacToe') === undefined){
             navigate("/");
         }
     })

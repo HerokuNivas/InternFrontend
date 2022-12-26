@@ -16,7 +16,7 @@ export default function Singlerequest({from}){
         if(user === ""){
             setUser(cookies.get('TicTacToe'));
         }
-        if(cookies.get('TicTacToe') === ''){
+        if(cookies.get('TicTacToe') === undefined){
             navigate("/");
         }
     })
