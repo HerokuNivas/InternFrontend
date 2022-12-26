@@ -9,7 +9,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from "react";
-import axios from "axios";
+import Button from "@mui/material";
 
 
 export default function Register(){
@@ -28,30 +28,6 @@ export default function Register(){
 
     useEffect(()=>{
         setUser("");
-        console.log("In");
-        // Email A41716B46FDA1AD53D57045901ACB253905E
-        // server smtp.elasticemail.com
-        // port 2525
-        // username asynctictactoe@gmail.com
-        // const config = {
-        //     SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-        //     To: "vsnsainivasand2003@gmail.com",
-        //     From: "asynctictactoe@gmail.com",
-        //     Subject: "Testing",
-        //     Body: "This should work I guess"
-        // };
-        // window.Email.send(config).then(()=>alert("email sent successfully"));
-        
-        // eslint-disable-next-line no-undef
-        Email.send({
-            SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-            To: "vsnsainivasand2003@gmail.com",
-            From: "asynctictactoe@gmail.com",
-            Subject: "Testing",
-            Body: "This should work I guess. This is perfect bro."
-        }).then(
-          message => alert(message)
-        );
     }, []);
    
     
@@ -129,6 +105,7 @@ export default function Register(){
                     }
                 }}
                 />
+                <Button variant="contained" style={{background: "green"}} onClick={()=>(navigate("/otp"))}>Verify Email</Button>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Password</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
                 value={password}
