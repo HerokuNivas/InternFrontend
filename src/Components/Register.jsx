@@ -28,6 +28,7 @@ export default function Register(){
 
     useEffect(()=>{
         setUser("");
+        console.log("In");
         // Email A41716B46FDA1AD53D57045901ACB253905E
         // server smtp.elasticemail.com
         // port 2525
