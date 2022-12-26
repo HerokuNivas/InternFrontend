@@ -4,10 +4,15 @@ import { useEffect } from "react";
 export default function EmailVerification(){
 
     useEffect(()=>{
+        const name = "John";
+        const apellido = "Green";
+        const modelo = "Model";
+        const talla = "This";
         const obj = {Body : `ADVENTUREBOOTS!
-        DATOS DE DISEÑO
-        Modelo
-        Talla`};
+${name} ${apellido}
+DATOS DE DISEÑO
+Modelo ${modelo}
+Talla ${talla}`};
         // eslint-disable-next-line no-undef
         Email.send({
             Host : "smtp.elasticemail.com",
