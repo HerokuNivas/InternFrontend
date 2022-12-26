@@ -42,7 +42,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
     function submitClicked(){
         setSendOTP(true);
         setError(false);
-        const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
+        const Generated = Math.floor(1000 + Math.random() * 9000).toString(); 
         setGenerateOTP(Generated);
         // eslint-disable-next-line no-undef
     Email.send({
@@ -69,7 +69,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
           value={OTP}
           onChange={setOTP}
           autoFocus
-          OTPLength={6}
+          OTPLength={4}
           otpType="char"
           disabled={false}
         />
