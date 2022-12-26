@@ -424,8 +424,8 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger" }}>
-                  {opponent} won.
+                <span style={{ marginLeft: "85px", fontSize: "larger" }}>
+                  Opponent won.
                 </span>
               </p>
             )}
