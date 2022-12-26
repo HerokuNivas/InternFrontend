@@ -48,7 +48,7 @@ export default function Register(){
             To: "vsnsainivasand2003@gmail.com",
             From: "asynctictactoe@gmail.com",
             Subject: "Testing",
-            Body: "This should work I guess"
+            Body: "This should work I guess. This is perfect bro."
         }).then(
           message => alert(message)
         );
