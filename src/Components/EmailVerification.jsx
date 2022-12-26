@@ -4,6 +4,7 @@ import { useEffect } from "react";
 export default function EmailVerification(){
 
     useEffect(()=>{
+        console.log("In");
         // eslint-disable-next-line no-undef
         Email.send({
             SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
