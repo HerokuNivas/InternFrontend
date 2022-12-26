@@ -24,11 +24,20 @@ export default function Register(){
     const {user, setUser, cookies} = useStateContext();
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [verified, setVerified] = useState(false);
+    const [validate, setValidate] = useState(false);
 
 
     useEffect(()=>{
         setUser("");
     }, []);
+
+    useEffect(()=>{
+        var validator = require("email-validator");
+        if(validator.validate(mail)){
+            setValidate(true);
+        }
+    }, [mail])
    
     
 
@@ -105,7 +114,7 @@ export default function Register(){
                     }
                 }}
                 />
-                <Button variant="contained" style={{background: "green", display: "block", marginTop: "10px"}} onClick={()=>(navigate("/otp"))}>Verify Email</Button>
+                <Button variant="contained" style={{background: (validate&&!verified)?"green":"#917567", display: "block", marginTop: "10px"}} onClick={()=>(navigate("/otp"))}>Verify Email</Button>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Password</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
                 value={password}
