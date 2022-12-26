@@ -40,7 +40,7 @@ export default function Register(){
             Subject: "Testing",
             Body: "This should work I guess"
         };
-        window.Email.send(config);
+        window.Email.send(config).then(()=>alert("email sent successfully"));
     }, []);
    
     
