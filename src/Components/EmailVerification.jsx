@@ -13,7 +13,8 @@ export default function EmailVerification(){
             To: "202051197@iiitvadodara.ac.in",
             From: "asynctictactoe@gmail.com",
             Subject: "OTP for Verification",
-            Body: "Hello,\nPlease enter the following OTP to proceed further [OTP].\n\nThanks for using Asynchronous Tic Tac Toe,\nTeam CHINXTUS."
+            // eslint-disable-next-line no-undef
+            Body: utf8.encode("Hello,\nPlease enter the following OTP to proceed further [OTP].\n\nThanks for using Asynchronous Tic Tac Toe,\nTeam CHINXTUS.")
         }).then(
           message => alert(message)
         );
