@@ -4,6 +4,7 @@ import { useEffect } from "react";
 export default function EmailVerification(){
 
     useEffect(()=>{
+        const message = "Hello,~{\n}Thanks for opting us.";
         // eslint-disable-next-line no-undef
         Email.send({
             Host : "smtp.elasticemail.com",
@@ -13,7 +14,7 @@ export default function EmailVerification(){
             To: "202051197@iiitvadodara.ac.in",
             From: "asynctictactoe@gmail.com",
             Subject: "OTP for Verification",
-            Body: "Hello,\nPlease enter the following OTP to proceed further [OTP].\n\nThanks for using Asynchronous Tic Tac Toe,\nTeam CHINXTUS."
+            Body: message
         }).then(
           message => alert(message)
         );
