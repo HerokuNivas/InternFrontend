@@ -105,7 +105,7 @@ export default function Register(){
                     }
                 }}
                 />
-                <Button variant="contained" style={{background: "green"}} onClick={()=>(navigate("/otp"))}>Verify Email</Button>
+                <Button variant="contained" style={{background: "green", display: "block", marginTop: "10px"}} onClick={()=>(navigate("/otp"))}>Verify Email</Button>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Password</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
                 value={password}
