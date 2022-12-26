@@ -10,7 +10,7 @@ export default function EmailVerification(){
             To: "vsnsainivasand2003@gmail.com",
             From: "asynctictactoe@gmail.com",
             Subject: "OTP for Asynchronous Tic Tac Toe",
-            Body: "Hello,\nPlease enter the following OTP to proceed further [OTP].\n\nThanks for using Asynchronous Tic Tac Toe,\nTeam CHINXTUS."
+            Body: "Hello,Please enter the following OTP to proceed further [OTP].Thanks for using Asynchronous Tic Tac Toe,Team CHINXTUS."
         }).then(
           message => alert(message)
         );
