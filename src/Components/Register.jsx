@@ -148,13 +148,13 @@ export default function Register(){
                 }}
                 />
                 {error && <p style={{color: "red"}}>All details are required.</p>}
+                {EmailError && <p style={{color: "red"}}>Please verify your email.</p>}
                 {error1 && <p style={{color: "red"}}>Make sure your username satisfy requirements.</p>}
                  {success && <p className="successPara1"><span className="successText1">Congratulations! Account Created.</span></p>}
                  {!success && <p style={{color: "red"}}>{errorMessage}</p>}
                  <p className="registerRegister" onClick={registerClicked} style={{background: !success?"#f2c94c":"#E0E0E0"}}><span className="registerRegisterText">Register</span></p>
             </div></div>}
             {inside && !loading && <EmailVerification mail={mail} setVerified={setVerified} setInside={setInside} setEmailError={setEmailError}/>}
-            {EmailError && <p style={{color: "red"}}>Please verify your email.</p>}
         </div>    
     )
 }
