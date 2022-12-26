@@ -44,7 +44,10 @@ export default function Register(){
         
         // eslint-disable-next-line no-undef
         Email.send({
-            SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
+            Host : "smtp.elasticemail.com",
+            Username : "asynctictactoe@gmail.com",
+            Password : "A41716B46FDA1AD53D57045901ACB253905E",
+            // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
             To: "vsnsainivasand2003@gmail.com",
             From: "asynctictactoe@gmail.com",
             Subject: "Testing",
