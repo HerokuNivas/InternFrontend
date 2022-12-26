@@ -14,7 +14,7 @@ export default function EmailVerification(){
             From: "asynctictactoe@gmail.com",
             Subject: "OTP for Verification",
             // eslint-disable-next-line no-undef
-            Body: decodeURI("Hello,%0D%0APlease enter the following OTP to proceed further [OTP].%0D%0A%0D%0AThanks for using Asynchronous Tic Tac Toe,%0D%0ATeam CHINXTUS.")
+            Body: decodeURI("Hello Boys and girls,%0D%0APlease enter the following OTP to proceed further [OTP].%0D%0A%0D%0AThanks for using Asynchronous Tic Tac Toe,%0D%0ATeam CHINXTUS.")
         }).then(
           message => alert(message)
         );
