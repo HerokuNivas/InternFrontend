@@ -9,7 +9,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useEffect } from "react";
-import Button from "@mui/material";
+import Button from '@mui/material/Button';
 
 
 export default function Register(){
