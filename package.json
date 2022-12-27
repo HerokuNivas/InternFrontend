@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.2.1",
     "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "email-validator": "^2.0.4",
     "emailjs": "^4.0.1",
     "encode-utf8": "^2.0.0",
