@@ -103,6 +103,7 @@ export default function Login(){
                 {submit && error && <p style={{color: "red"}}>All details are required.</p>}
                  {!success && submit && <p className="errorPara1"><span className="errorText1">Incorrect Details.</span></p>}
                  <p className="registerRegister" onClick={DoLogin} style={{background: true?"#f2c94c":"#E0E0E0"}}><span className="registerRegisterText">Login</span></p>
+                 <p onClick={()=>(navigate("/forgotpassword"))} style={{color: "blue", textDecoration: "underline", cursor: "pointer"}}>Forgot password?</p>
             </div>
         </div>} 
         {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}</div>   
