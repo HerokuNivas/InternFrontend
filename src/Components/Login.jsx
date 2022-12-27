@@ -33,6 +33,7 @@ export default function Login(){
             const bcrypt = require ('bcryptjs');
             const saltRounds = 10;
             bcrypt.hash(password, saltRounds, async function(err, hash) {
+                console.log(hash);
                 const requestOptions = {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
