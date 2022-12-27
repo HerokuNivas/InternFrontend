@@ -30,14 +30,20 @@ export default function Login(){
         else{
             setSubmit(true);
             setLoading(true);
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({user: user, password: password})
-              };
-              await fetch("https://intern-backend-ten.vercel.app/login", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)});
-              cookies.set('TicTacToe', user);
-              setLoading(false);
+            const bcrypt = require ('bcrypt');
+            const saltRounds = 10;
+            bcrypt.hash(password, saltRounds, async function(err, hash) {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({user: user, password: hash})
+                  };
+                  console.log(hash);
+                  await fetch("https://intern-backend-ten.vercel.app/login", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)});
+                  cookies.set('TicTacToe', user);
+                    setLoading(false);
+              });
+              
         }
     }
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/Register.css";
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import {useNavigate} from "react-router-dom";
-import { TextField } from "@mui/material";
+import { TextField, unsupportedProp } from "@mui/material";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -12,6 +12,9 @@ import { useEffect } from "react";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import EmailVerification from "./EmailVerification";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 
 export default function Register(){
     let navigate = useNavigate();
@@ -29,11 +32,59 @@ export default function Register(){
     const [validate, setValidate] = useState(false);
     const [inside, setInside] = useState(false);
     const [EmailError, setEmailError] = useState(false);
+    const [lowerCase, setLowerCase] = useState(false);
+    const [upperCase, setUpperCase] = useState(false);
+    const [minimumLength, setMinimumLenght] = useState(false);
+    const [number, setNumber] = useState(false);
+    const [generateOTP, setGenerateOTP] = useState("");
+    const [fieldsError, setFieldsError] = useState(false);
 
 
     useEffect(()=>{
         setUser("");
     }, []);
+
+    useEffect(()=>{
+        var count1 = 0;
+        var count2 = 0;
+        var count3 = 0;
+        for(var i=0; i < password.length; i++){
+            if(password[i] >= 'A' && password[i] <= 'Z'){
+                count1 = count1+ 1;
+            }
+            if(password[i] >= 'a' && password[i] <= 'z'){
+                count2 = count2 + 1;
+            }
+            if(password[i] >= '0' && password[i] <= '9'){
+                count3 = count3 + 1;
+            }
+            
+        }
+        if(count1 >= 1){
+            setUpperCase(true);
+        }
+        else{
+            setUpperCase(false);
+        }
+        if(count2 >= 1){
+            setLowerCase(true);
+        }
+        else{
+            setLowerCase(false);
+        }
+        if(count3 >= 1){
+            setNumber(true);
+        }
+        else{
+            setNumber(false);
+        }
+        if(password.length >= 8){
+            setMinimumLenght(true);
+        }
+        else{
+            setMinimumLenght(false);
+        }
+    }, [password])
 
     useEffect(()=>{
         var validator = require("email-validator");
@@ -45,6 +96,22 @@ export default function Register(){
     function functionEmail(){
         if(!validate || verified) return;
         else{
+            const Generated = Math.floor(1000 + Math.random() * 9000).toString(); 
+        setGenerateOTP(Generated);
+        // eslint-disable-next-line no-undef
+    Email.send({
+        Host: "smtp.elasticemail.com",
+        Username: "asynctictactoe@gmail.com",
+        Password: "A41716B46FDA1AD53D57045901ACB253905E",
+        // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
+        To: mail,
+        From: "asynctictactoe@gmail.com",
+        Subject: "OTP for Verification",
+        // eslint-disable-next-line no-undef
+        Body: decodeURI(
+          "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
+        ),
+      }).then();
             setInside(true);
         }
     }
@@ -53,6 +120,10 @@ export default function Register(){
     async function registerClicked(){
         if(!verified){
             setEmailError(true);
+            return;
+        }
+        if(!upperCase || !lowerCase || !number || !minimumLength){
+            setFieldsError(true);
             return;
         }
         setLoading(true);
@@ -126,6 +197,12 @@ export default function Register(){
                         height: "10px"
                     }
                 }}
+                InputProps={{
+                    endAdornment:<InputAdornment position="end"
+                    >
+                        {verified &&  <CheckCircleIcon style={{color: "green"}}/>}
+                    </InputAdornment>
+                }}
                 />
                 <Button variant="contained" style={{background: (validate&&!verified)?"green":"#917567", display: "block", marginTop: "10px"}} onClick={functionEmail}>Verify Email</Button>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Password</p>
@@ -139,7 +216,8 @@ export default function Register(){
                     </InputAdornment>
                 }}
                 onChange={(e)=>(setPassword(e.target.value),
-                    setError(false))}
+                    setError(false),
+                    setFieldsError(false))}
                 placeholder= "Type your password here"
                 inputProps={{
                     style: {
@@ -147,14 +225,19 @@ export default function Register(){
                     }
                 }}
                 />
+                <p>{upperCase?<CheckIcon style={{color: "green", marginRight: "5px"}}/>:<CloseIcon style={{color: "red"}}/>}Password must contain atleast one uppercase letter.</p>
+                <p>{lowerCase?<CheckIcon style={{color: "green", marginRight: "5px"}}/>:<CloseIcon style={{color: "red"}}/>}Password must contain atleast one lowercase letter.</p>
+                <p>{number?<CheckIcon style={{color: "green", marginRight: "5px"}}/>:<CloseIcon style={{color: "red"}}/>}Password must contain atleast one number.</p>
+                <p>{minimumLength?<CheckIcon style={{color: "green", marginRight: "5px"}}/>:<CloseIcon style={{color: "red"}}/>}Password must be of minimum 8 characters.</p>
                 {error && <p style={{color: "red"}}>All details are required.</p>}
                 {EmailError && <p style={{color: "red"}}>Please verify your email.</p>}
+                {fieldsError && <p style={{color: "red"}}>Please enter the password that statisy the requirements.</p>}
                 {error1 && <p style={{color: "red"}}>Make sure your username satisfy requirements.</p>}
                  {success && <p className="successPara1"><span className="successText1">Congratulations! Account Created.</span></p>}
                  {!success && <p style={{color: "red"}}>{errorMessage}</p>}
                  <p className="registerRegister" onClick={registerClicked} style={{background: !success?"#f2c94c":"#E0E0E0"}}><span className="registerRegisterText">Register</span></p>
             </div></div>}
-            {inside && !loading && <EmailVerification mail={mail} setVerified={setVerified} setInside={setInside} setEmailError={setEmailError}/>}
+            {inside && !loading && <EmailVerification mail={mail} setVerified={setVerified} setInside={setInside} setEmailError={setEmailError} generateOTP={generateOTP} setGenerateOTP={setGenerateOTP}/>}
         </div>    
     )
 }

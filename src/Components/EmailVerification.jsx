@@ -5,11 +5,10 @@ import OTPInput, { ResendOTP } from "otp-input-react";
 import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 
-export default function EmailVerification({ mail, setVerified, setInside, setEmailError }) {
+export default function EmailVerification({ mail, setVerified, setInside, setEmailError, generateOTP, setGenerateOTP }) {
   const [OTP, setOTP] = useState("");
-  const [generateOTP, setGenerateOTP] = useState("");
   const [time, setTime] = useState(60);
-  const [sendOTP, setSendOTP] = useState(false);
+  const [sendOTP, setSendOTP] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(()=>{
@@ -28,6 +27,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
     }, 1000);
     return () => clearInterval(timeInvterval);
     });
+
 
     function verify(){
         if(generateOTP === OTP){
@@ -58,7 +58,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
         Body: decodeURI(
           "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
         ),
-      }).then();
+      }).then(message=>alert(message));
     }
  
 
@@ -81,7 +81,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
         />
       </>
       {sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer"}}>Resend OTP in {time}</div>}
-      {!sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer", textDecoration: "underline", color: "blue"}} onClick={submitClicked}>Send OTP</div>}
+      {!sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer", textDecoration: "underline", color: "blue"}} onClick={submitClicked}>Resend OTP</div>}
       <div><Button variant="contained" onClick={verify}>Verify</Button></div>
       {error && <p style={{color: "red"}}>Oops! Enter a valid OTP.</p>}
       <p><span style={{fontWeight: "bold"}}>Note : </span>Please check your spam and promotion folders too.</p>
