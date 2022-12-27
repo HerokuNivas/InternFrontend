@@ -30,19 +30,31 @@ export default function Login(){
         else{
             setSubmit(true);
             setLoading(true);
-            const bcrypt = require ('bcryptjs');
-            const saltRounds = 10;
-            bcrypt.hash(password, saltRounds, async function(err, hash) {
-                console.log(hash);
-                const requestOptions = {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({user: user, password: hash})
-                  };
-                  await fetch("https://intern-backend-ten.vercel.app/login", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)});
-                  cookies.set('TicTacToe', user);
-                    setLoading(false);
-            });  
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({user: user})
+            };
+            await fetch("https://intern-backend-ten.vercel.app/login", requestOptions).then((response) => response.json()).then((responseData) => {
+            // if(responseData.success){navigate("/dashboard")} ;setSuccess(responseData.success)
+            if(responseData.success.success){
+                const bcryptjs = require("bcryptjs");
+                bcryptjs.compare(password, responseData.success.password, function(err, result) {
+                    if(result){
+                        navigate("/dashboard");
+                        setSuccess(responseData.success);
+                        cookies.set('TicTacToe', user);
+                    }
+                    else{
+                        setSuccess(false);
+                    }
+                });
+            }
+            else{
+                setSuccess(false);
+            }
+        });
+            setLoading(false);
         }
     }
 
