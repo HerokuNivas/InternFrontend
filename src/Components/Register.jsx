@@ -141,15 +141,20 @@ export default function Register(){
                     return;
                 }
             }
-            const requestOptions = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({UserName : user, Email: mail, Name: name, Password: password})
-              };
-              await fetch("https://intern-backend-ten.vercel.app/insertUser", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){setTimeout(() => {
-                navigate("/login");
-              }, 1000);} ;setSuccess(responseData.success); setErrorMessage(responseData.message)});
-              setLoading(false);
+            const bcrypt = require ('bcryptjs');
+            const saltRounds = 10;
+            bcrypt.hash(password, saltRounds, async function(err, hash) {
+                const requestOptions = {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({UserName : user, Email: mail, Name: name, Password: hash})
+                  };
+                  await fetch("https://intern-backend-ten.vercel.app/insertUser", requestOptions).then((response) => response.json()).then((responseData) => {if(responseData.success){setTimeout(() => {
+                    navigate("/login");
+                  }, 1000);} ;setSuccess(responseData.success); setErrorMessage(responseData.message)});
+                  setLoading(false);
+            });  
+            
         }
     }
 
