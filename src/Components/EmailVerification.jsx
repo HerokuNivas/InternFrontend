@@ -41,6 +41,9 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
     }
 
     function submitClicked(){
+      if(time < 0){
+        setTime(60);
+    }
         setSendOTP(true);
         setError(false);
         const Generated = Math.floor(1000 + Math.random() * 9000).toString(); 
@@ -48,11 +51,11 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
         // eslint-disable-next-line no-undef
     Email.send({
         Host: "smtp.elasticemail.com",
-        Username: "asynchronoustictactoe@gmail.com",
-        Password: "D56C92716D9268D5FB5FED0CED17A8FCCBA8",
+        Username: "async_tic_tac_toe@gmail.com",
+        Password: "5DDF2A4D7F040C2AA126CB3FDDA354D9B06B",
         // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
         To: mail,
-        From: "asynchronoustictactoe@gmail.com",
+        From: "toetictac92@gmail.com",
         Subject: "OTP for Verification",
         // eslint-disable-next-line no-undef
         Body: decodeURI(
