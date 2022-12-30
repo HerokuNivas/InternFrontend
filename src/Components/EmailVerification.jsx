@@ -58,7 +58,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
         Body: decodeURI(
           "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
         ),
-      }).then();
+      }).then(message=>alert(message));
     }
  
 
