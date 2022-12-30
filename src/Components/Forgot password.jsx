@@ -177,11 +177,11 @@ export default function Forogt(){
             // eslint-disable-next-line no-undef
         Email.send({
             Host: "smtp.elasticemail.com",
-            Username: "asynctictactoe@gmail.com",
-            Password: "A41716B46FDA1AD53D57045901ACB253905E",
+            Username: "asynchronoustictactoe@gmail.com",
+            Password: "D56C92716D9268D5FB5FED0CED17A8FCCBA8",
             // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
             To: responseData.success.email,
-            From: "asynctictactoe@gmail.com",
+            From: "asynchronoustictactoe@gmail.com",
             Subject: "OTP to Change password",
             // eslint-disable-next-line no-undef
             Body: decodeURI(
