@@ -51,11 +51,11 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
         // eslint-disable-next-line no-undef
     Email.send({
         Host: "smtp.elasticemail.com",
-        Username: "async_tic_tac_toe@gmail.com",
-        Password: "5DDF2A4D7F040C2AA126CB3FDDA354D9B06B",
+        Username: "asyncticktacktoe@gmail.com",
+        Password: "7E999D995A82EEDACBC4F6EE42B1A010D027",
         // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
         To: mail,
-        From: "toetictac92@gmail.com",
+        From: "chiranjeevisagar03@gmail.com",
         Subject: "OTP for Verification",
         // eslint-disable-next-line no-undef
         Body: decodeURI(
