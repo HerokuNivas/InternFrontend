@@ -111,7 +111,7 @@ export default function Register(){
         Body: decodeURI(
           "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
         ),
-      }).then(message=>alert(message));
+      }).then();
             setInside(true);
         }
     }
