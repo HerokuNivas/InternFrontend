@@ -209,7 +209,7 @@ export default function Register(){
                     </InputAdornment>
                 }}
                 />
-                <Button variant="contained" style={{background: (validate&&!verified)?"green":"#917567", display: "block", marginTop: "10px"}} onClick={functionEmail}>Verify Email</Button>
+                <Button variant="contained" style={{background: (validate&&!verified)?"green":"#C0C0C0", display: "block", marginTop: "10px"}} onClick={functionEmail}>Verify Email</Button>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Password</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
                 value={password}
