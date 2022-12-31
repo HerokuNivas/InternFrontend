@@ -143,17 +143,17 @@ export default function Forogt(){
             // eslint-disable-next-line no-undef
         Email.send({
             Host: "smtp.elasticemail.com",
-            Username: "asyncticktacktoe@gmail.com",
-            Password: "7E999D995A82EEDACBC4F6EE42B1A010D027",
+            Username: "tictactoeasync@gmail.com",
+            Password: "3BAB6C51A68988DC48324CF4A0D7E16E5A4F",
             // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
             To: email,
-            From: "chiranjeevisagar03@gmail.com",
+            From: "tictactoeasync@gmail.com",
             Subject: "OTP to Change password",
             // eslint-disable-next-line no-undef
             Body: decodeURI(
               "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
             ),
-          }).then(message=>alert(message));
+          }).then();
         }
 
     async function submitFun(){
@@ -177,17 +177,17 @@ export default function Forogt(){
             // eslint-disable-next-line no-undef
         Email.send({
             Host: "smtp.elasticemail.com",
-            Username: "asyncticktacktoe@gmail.com",
-            Password: "7E999D995A82EEDACBC4F6EE42B1A010D027",
+            Username: "tictactoeasync@gmail.com",
+            Password: "3BAB6C51A68988DC48324CF4A0D7E16E5A4F",
             // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
             To: responseData.success.email,
-            From: "chiranjeevisagar03@gmail.com",
+            From: "tictactoeasync@gmail.com",
             Subject: "OTP to Change password",
             // eslint-disable-next-line no-undef
             Body: decodeURI(
               "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
             ),
-          }).then(message=>alert(message));
+          }).then();
             }
         })
         setLoading(false);
