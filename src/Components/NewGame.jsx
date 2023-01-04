@@ -38,7 +38,6 @@ export default function NewGame(){
             url: "https://intern-backend-ten.vercel.app/requests/?user="+user+"&email="+email
         }).then((data)=>(setSuccess(data.data.success), setMessage(data.data.message)))
         setLoading(false);
-        navigate("/dashboard");
     }
 
     let navigate = useNavigate();

@@ -36,7 +36,6 @@ export default function Singlerequest({from}){
           await fetch("https://intern-backend-ten.vercel.app/creategame", requestOptions).then((response) => response.json()).then((responseData) => {});
           setLoading(false);
         setLoading(false);
-        navigate("/dashboard");
     }
 
     async function rejectFun(){
@@ -46,7 +45,6 @@ export default function Singlerequest({from}){
           url: "https://intern-backend-ten.vercel.app/reject/?user1="+from+"&user2="+user  
         }).then((data)=>({}));
         setLoading(false);
-        navigate("/dashboard");
     }
 
     return(
