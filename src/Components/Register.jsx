@@ -15,6 +15,7 @@ import EmailVerification from "./EmailVerification";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
+import video1 from "../Animations/Register.mp4";
 
 export default function Register(){
     let navigate = useNavigate();
@@ -160,7 +161,8 @@ export default function Register(){
 
     return(
         <div>
-            {loading && <div><CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/></div>}
+            {loading && <div><video width="250px" height="250px"  className="video1" style={{display: "grid",  margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+                            <source src={video1} type="video/mp4"/></video></div>}
             {!inside && !loading && <div>
             <div><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/"))} className="arrowBackRegister"/></div>
             <div className="register">
@@ -241,6 +243,7 @@ export default function Register(){
                  {success && <p className="successPara1"><span className="successText1">Congratulations! Account Created.</span></p>}
                  {!success && <p style={{color: "red"}}>{errorMessage}</p>}
                  <p className="registerRegister" onClick={registerClicked} style={{background: !success?"#2699c7":"#E0E0E0"}}><span className="registerRegisterText">Register</span></p>
+                 
             </div></div>}
             {inside && !loading && <EmailVerification mail={mail} setVerified={setVerified} setInside={setInside} setEmailError={setEmailError} generateOTP={generateOTP} setGenerateOTP={setGenerateOTP}/>}
         </div>    

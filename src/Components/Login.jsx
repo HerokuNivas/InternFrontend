@@ -31,6 +31,7 @@ export default function Login(){
             setError(true);
         }
         else{
+            setSubmit(true);
             setLoading(true);
             const requestOptions = {
                 method: 'POST',
@@ -53,6 +54,7 @@ export default function Login(){
                 });
             }
             else{
+                
                 setSuccess(false);
             }
         });
@@ -103,13 +105,13 @@ export default function Login(){
                 }}
                 />
                 {submit && error && <p style={{color: "red"}}>All details are required.</p>}
-                 {!success && submit && !error && <p className="errorPara1"><span className="errorText1">Incorrect Details.</span></p>}
+                 {(!success && !error) && submit && <p className="errorPara1"><span className="errorText1">Incorrect Details.</span></p>}
                  <p className="registerRegister" onClick={DoLogin} style={{background: true?"#2699c7":"#E0E0E0"}}><span className="registerRegisterText">Login</span></p>
                  <p onClick={()=>(navigate("/forgotpassword"))} style={{color: "#2699c7", textDecoration: "underline", cursor: "pointer"}}>Forgot password?</p>
-                 <video width="150px" height="150px" className="video1" style={{marginLeft: "-8px"}} autoPlay loop muted playsInline >
-                            <source src={video1} type="video/mp4"/></video>
+                 
             </div>
         </div>} 
-        {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}</div>   
+        {loading && <div><video width="250px" height="250px" className="video1" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+                            <source src={video1} type="video/mp4"/></video></div>}</div>   
     )
 }
