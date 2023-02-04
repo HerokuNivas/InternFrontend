@@ -1,32 +1,21 @@
 .mainHeading {
-  position: absolute;
-  width: 53px;
-  height: 45px;
-  left: 48%;
-  top: 25px;
-
-  font-family: "Bilbo";
   font-style: normal;
   font-weight: 400;
   font-size: 36px;
-  line-height: 45px;
-
+  text-align: center;
+  margin-top: 50px;
   color: #000000;
 }
 
 .mainName {
-  width: 156px;
-  height: 240px;
-  top: 25px;
-  margin: auto;
-  margin-top: 100px;
-
-  font-family: "Bilbo";
+  width: 300px;
+  text-align: center;
   font-style: normal;
   font-weight: 400;
-  font-size: 96px;
+  font-size: 50px;
   line-height: 120px;
-  text-align: center;
+  margin: auto;
+  margin-top: -25px;
 
   color: #000000;
 }
@@ -37,10 +26,20 @@
   margin: auto;
   margin-left: 40%;
   margin-right: 40%;
-  background: #f2c94c;
+  background: #2699c7;
 
   box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
   border-radius: 8px;
+}
+
+.video1{
+  display: grid;
+  margin: auto;
+  margin-top: 15px;
+}
+
+@media only screen and (max-width: 600px) {
+  
 }
 
 .newGameText {
@@ -60,7 +59,7 @@
   right: 24px;
   bottom: 24px;
 
-  background: #270f36;
+  background: #2699c7;
 
   box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
   border-radius: 8px;
@@ -70,7 +69,7 @@
   height: 500px;
   width: 280px;
   margin-top: -10px;
-  background: #f2c94c;
+  background: #2699c7;
   box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.16);
   border-radius: 8px;
 }

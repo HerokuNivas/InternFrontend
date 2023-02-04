@@ -10,6 +10,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
+import video1 from "../Animations/Login.mp4";
 
 export default function Login(){
     let navigate = useNavigate();
@@ -24,11 +25,12 @@ export default function Login(){
     
 
     async function DoLogin(){
+        console.log(user, password);
         if(user === "" || password === ""){
+            setSubmit(true);
             setError(true);
         }
         else{
-            setSubmit(true);
             setLoading(true);
             const requestOptions = {
                 method: 'POST',
@@ -63,7 +65,7 @@ export default function Login(){
         {!loading && <div>
             <div><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/"))} className="arrowBackRegister"/></div>
             <div className="register">
-                <div>Login</div>
+                <div style={{color: "#2699c7", fontWeight: "bolder"}}>Login</div>
                 <div style={{marginTop: "20px", fontSize: "25px", fontWeight: "bolder"}}>Please enter your details!</div>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Username</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
@@ -87,7 +89,7 @@ export default function Login(){
                 InputProps={{
                     endAdornment:<InputAdornment position="end"
                     >
-                        {showPassword?<VisibilityOffIcon style={{cursor: "pointer"}} onClick={()=>(setShowPassword(false))}/>:<VisibilityIcon style={{cursor: "pointer"}} onClick={()=>(setShowPassword(true))}/>}
+                        {showPassword?<VisibilityOffIcon style={{cursor: "pointer", color: "#2699c7"}} onClick={()=>(setShowPassword(false))}/>:<VisibilityIcon style={{cursor: "pointer", color: "#2699c7"}} onClick={()=>(setShowPassword(true))}/>}
                     </InputAdornment>
                 }}
                 onChange={(e)=>(setPassword(e.target.value),
@@ -101,9 +103,11 @@ export default function Login(){
                 }}
                 />
                 {submit && error && <p style={{color: "red"}}>All details are required.</p>}
-                 {!success && submit && <p className="errorPara1"><span className="errorText1">Incorrect Details.</span></p>}
-                 <p className="registerRegister" onClick={DoLogin} style={{background: true?"#f2c94c":"#E0E0E0"}}><span className="registerRegisterText">Login</span></p>
-                 <p onClick={()=>(navigate("/forgotpassword"))} style={{color: "blue", textDecoration: "underline", cursor: "pointer"}}>Forgot password?</p>
+                 {!success && submit && !error && <p className="errorPara1"><span className="errorText1">Incorrect Details.</span></p>}
+                 <p className="registerRegister" onClick={DoLogin} style={{background: true?"#2699c7":"#E0E0E0"}}><span className="registerRegisterText">Login</span></p>
+                 <p onClick={()=>(navigate("/forgotpassword"))} style={{color: "#2699c7", textDecoration: "underline", cursor: "pointer"}}>Forgot password?</p>
+                 <video width="150px" height="150px" className="video1" style={{marginLeft: "-8px"}} autoPlay loop muted playsInline >
+                            <source src={video1} type="video/mp4"/></video>
             </div>
         </div>} 
         {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}</div>   

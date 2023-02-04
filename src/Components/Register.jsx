@@ -164,7 +164,7 @@ export default function Register(){
             {!inside && !loading && <div>
             <div><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/"))} className="arrowBackRegister"/></div>
             <div className="register">
-                <div>Create account</div>
+                <div style={{color: "#2699c7", fontWeight: "bolder"}}>Create account</div>
                 <div style={{marginTop: "20px", fontSize: "25px", fontWeight: "bolder"}}>Let’s get to know you better!</div>
                 <p style={{marginTop: "20px", fontWeight: "bolder"}}>Your name</p>
                 <TextField style={{width: "250px", marginTop: "-10px"}}
@@ -240,7 +240,7 @@ export default function Register(){
                 {error1 && <p style={{color: "red"}}>Make sure your username satisfy requirements.</p>}
                  {success && <p className="successPara1"><span className="successText1">Congratulations! Account Created.</span></p>}
                  {!success && <p style={{color: "red"}}>{errorMessage}</p>}
-                 <p className="registerRegister" onClick={registerClicked} style={{background: !success?"#f2c94c":"#E0E0E0"}}><span className="registerRegisterText">Register</span></p>
+                 <p className="registerRegister" onClick={registerClicked} style={{background: !success?"#2699c7":"#E0E0E0"}}><span className="registerRegisterText">Register</span></p>
             </div></div>}
             {inside && !loading && <EmailVerification mail={mail} setVerified={setVerified} setInside={setInside} setEmailError={setEmailError} generateOTP={generateOTP} setGenerateOTP={setGenerateOTP}/>}
         </div>    

@@ -355,7 +355,7 @@ export default function Gameclick() {
             />
           </div>
           <div style={{ marginLeft: "20px", marginTop: "50px" }}>
-            <p style={{ fontSize: "20px", fontWeight: "bolder" }}>
+            <p style={{ fontSize: "20px", fontWeight: "bolder", color: "#2699c7" }}>
               Game with {opponent}
             </p>
             <p>Your piece</p>
@@ -394,7 +394,7 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger" }}>
+                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
                   Their move
                 </span>
               </p>
@@ -405,11 +405,11 @@ export default function Gameclick() {
                   position: "absolute",
                   width: "300px",
                   height: "35px",
-                  background: "#FFE79E",
+                  background: "#2699c7",
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger" }}>
+                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
                   You won.
                 </span>
               </p>
@@ -420,11 +420,11 @@ export default function Gameclick() {
                   position: "absolute",
                   width: "300px",
                   height: "35px",
-                  background: "#FFE79E",
+                  background: "#2699c7",
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "85px", fontSize: "larger" }}>
+                <span style={{ marginLeft: "85px", fontSize: "larger", color: "white" }}>
                   Opponent won.
                 </span>
               </p>
@@ -435,7 +435,7 @@ export default function Gameclick() {
                   position: "absolute",
                   width: "300px",
                   height: "35px",
-                  background: "#FFE79E",
+                  background: "#2699c7",
                   marginTop: "-100px",
                 }}
               >

@@ -9,7 +9,6 @@ import "../css/Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import Singlegame from "./Singlegame";
 import LogoutIcon from '@mui/icons-material/Logout';
-import { useBeforeunload } from 'react-beforeunload';
 
 export default function Dashboard(){
     let navigate = useNavigate();
@@ -24,6 +23,7 @@ export default function Dashboard(){
         if(cookies.get('TicTacToe') === undefined){
             navigate("/");
         }
+        
     }, []);
 
     useEffect(()=>{
@@ -49,13 +49,14 @@ export default function Dashboard(){
         <div>
             {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
         {!loading && <div>
-            <p style={{fontWeight: "bold", fontSize: "30px", marginLeft: "20px", marginRight: "20px"}}>Your games</p>
-            <MoveToInboxIcon onClick={()=>(navigate(("/requests")))} style={{position: "fixed", right: "15px", top: "15px"}}/>
+            <p style={{marginLeft: "20px"}}>Welcome back <span style={{color: "#2699c7", fontSize: "larger", fontWeight: "bolder", marginBottom: "-100px"}}>{user}</span>!</p>
+            {game!==[] && <p style={{fontWeight: "bold", fontSize: "30px", marginLeft: "20px", marginRight: "20px"}}>Your games</p>}
+            <MoveToInboxIcon onClick={()=>(navigate(("/requests")))} style={{position: "fixed", right: "15px", top: "15px", color: "#2699c7"}}/>
             <LogoutIcon onClick={()=> {
                 cookies.remove('TicTacToe');
                 setUser("");
                 navigate("/")
-            }} style={{position: "fixed", right: "40px", top: "15px", color: "red"}}/>
+            }} style={{position: "fixed", right: "40px", top: "15px", color: "#2699c7"}}/>
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
                 <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
