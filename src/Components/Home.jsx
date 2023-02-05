@@ -5,6 +5,7 @@ import { useStateContext } from "../ContextProvider/ContextProvider";
 import { useEffect } from "react";
 import video1 from "../Animations/Tic tac toe.mp4";
 
+
 export default function Home(){
     let navigate = useNavigate();
     const {cookies, setUser, user} = useStateContext();
@@ -23,6 +24,7 @@ export default function Home(){
             navigate("/");
         }
     }, [])
+
     
     return(
         <div>
