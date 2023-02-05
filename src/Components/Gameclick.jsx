@@ -652,7 +652,7 @@ export default function Gameclick() {
                 onClick={submitParent}
                 variant="contained"
                 style={{
-                  background: "#F2C94C",
+                  background: "#2699c7",
                   marginLeft: "20px",
                   marginTop: placed || came || error ? "10px" : "320px",
                   marginBottom: "20px",
