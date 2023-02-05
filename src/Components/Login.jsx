@@ -25,7 +25,6 @@ export default function Login(){
     
 
     async function DoLogin(){
-        console.log(user, password);
         if(user === "" || password === ""){
             setSubmit(true);
             setError(true);
