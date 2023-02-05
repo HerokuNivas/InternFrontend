@@ -36,12 +36,13 @@ export default function NewGame(){
             method: "get",
             url: "https://intern-backend-ten.vercel.app/requests/?user="+user+"&email="+email
         }).then((data)=>(setSuccess(data.data.success), setMessage(data.data.message)))
-        setLoading(false);
+        var a = 2+3;
         if(success === true){
             setTimeout(() => {
                 navigate("/dashboard");
               }, 1000);              
         }
+        setLoading(false);
     }
 
     let navigate = useNavigate();

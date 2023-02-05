@@ -6,7 +6,7 @@ import { useStateContext } from "../ContextProvider/ContextProvider";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
 import Singlerequest from "./Singlerequest";
-import CircularProgress from "@mui/material/CircularProgress";
+import video1 from "../Animations/Person.mp4";
 import { useBeforeunload } from 'react-beforeunload';
 
 
@@ -51,7 +51,8 @@ export default function Requests(){
 
     return(
         <div>
-            {loadingRequest && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
+            {loadingRequest && <video width="50%" height="50%" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+                            <source src={video1} type="video/mp4"/></video>}
             {!loadingRequest && <div>
                 <div><div style={{marginBottom: "50px"}}><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/dashboard"))} className="arrowBackRegister"/></div></div>
                 {requests.length === 0 && <div><p className="dashBoardNogames">No Requests Found</p></div>}
