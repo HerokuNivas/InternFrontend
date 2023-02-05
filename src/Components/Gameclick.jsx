@@ -237,7 +237,7 @@ export default function Gameclick() {
   }
 
   async function Submit() {
-    if (!came) return;
+    if (!came || !placed) return;
     setPlaced(false);
     setCame(false);
     var draw = checkWinning();
@@ -384,7 +384,7 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger" }}>
+                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
                   Your move
                 </span>
               </p>

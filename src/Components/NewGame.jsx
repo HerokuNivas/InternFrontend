@@ -35,13 +35,13 @@ export default function NewGame(){
         await axios({
             method: "get",
             url: "https://intern-backend-ten.vercel.app/requests/?user="+user+"&email="+email
-        }).then((data)=>(setSuccess(data.data.success), setMessage(data.data.message)))
-        var a = 2+3;
-        if(success === true){
-            setTimeout(() => {
+        }).then((data)=>{
+            setSuccess(data.data.success); 
+            setMessage(data.data.message)
+            if(data.data.success){
                 navigate("/dashboard");
-              }, 1000);              
-        }
+            }
+        })
         setLoading(false);
     }
 
