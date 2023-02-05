@@ -3,14 +3,13 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import CircularProgress from "@mui/material/CircularProgress";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import "../css/Singlerequest.css";
 
 export default function Singlerequest({from}){
     let navigate = useNavigate();
-    const {user, cookies, setUser} = useStateContext();
-    const [loading, setLoading] = useState(false);
+    const {user, cookies, setUser, loadingRequest, setLoadingRequest} = useStateContext();
 
     useEffect(()=>{
         if(user === ""){
@@ -22,7 +21,7 @@ export default function Singlerequest({from}){
     })
 
     async function acceptFun(){
-        setLoading(true);
+        setLoadingRequest(true);
         await axios({
           method: "get",
           url: "https://intern-backend-ten.vercel.app/accept/?user1="+from+"&user2="+user  
@@ -34,26 +33,27 @@ export default function Singlerequest({from}){
             body: JSON.stringify({user1: from, user2: user, current: from, time: new Date().toLocaleString()})
           };
           await fetch("https://intern-backend-ten.vercel.app/creategame", requestOptions).then((response) => response.json()).then((responseData) => {});
-          setLoading(false);
-        setLoading(false);
+          setLoadingRequest(false);
+        setLoadingRequest(false);
     }
 
     async function rejectFun(){
-        setLoading(true);
+        setLoadingRequest(true);
         await axios({
           method: "get",
           url: "https://intern-backend-ten.vercel.app/reject/?user1="+from+"&user2="+user  
         }).then((data)=>({}));
-        setLoading(false);
+        setLoadingRequest(false);
     }
 
     return(
         <div>
-            {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
-        {!loading && <div style={{marginTop: "25px", marginLeft: "30px"}}>
-            <p style={{fontWeight: "bolder"}}>USER {from} HAS REQUESTED TO PLAY GAME WITH YOU</p>
+            {loadingRequest && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
+        {!loadingRequest && <div  style={{marginTop: "25px", marginLeft: "30px"}}>
+            <div className="requestBox" style={{padding: "10px", paddingBottom: "20px", marginRight: "20px"}}>
+            <p style={{fontWeight: "bolder", marginTop: "15px"}}>USER <span style={{color: "#2699c7", fontWeight: "bolder", fontSize: "large"}}>{from}</span> HAS REQUESTED TO PLAY GAME WITH YOU</p>
             <Button variant="contained" onClick={acceptFun} style={{background: "green"}}>Accept</Button>
-            <Button variant="contained" onClick={rejectFun} style={{background: "red", marginLeft: "20px"}}>Reject</Button>
+            <Button variant="contained" onClick={rejectFun} style={{background: "red", marginLeft: "20px"}}>Reject</Button></div>
         </div>}    </div>
     )
 }

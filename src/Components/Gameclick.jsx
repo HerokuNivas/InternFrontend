@@ -60,8 +60,13 @@ export default function Gameclick() {
       setOpponent(user1Is);
     }
     setBoardIs(boardIsIs);
-    if(winpo !== "")
-      document.getElementById("Win"+winpo).classList.add("win"+winpo);
+    if(game.winpo !== "")
+      try{
+        document.getElementById("Win"+winpo).classList.add("win"+winpo);
+      }
+      catch(error){
+        // Not expected;
+      }
   }, []);
 
   useEffect(() => {

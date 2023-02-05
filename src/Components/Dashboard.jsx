@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import { useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
 import "../css/Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import Singlegame from "./Singlegame";
 import LogoutIcon from '@mui/icons-material/Logout';
+import video1 from "../Animations/Dashboard.mp4";
 
 export default function Dashboard(){
     let navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function Dashboard(){
         setLoading(true)
         setTimeout(() => {
             setLoading(false);
-        }, 2000);
+        }, 5000);
     }, []);
 
     useEffect(()=>{
@@ -47,10 +47,12 @@ export default function Dashboard(){
 
     return(
         <div>
-            {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
+            {/* {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>} */}
+            {loading && <video width="50%" height="50%" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+                            <source src={video1} type="video/mp4"/></video>}
         {!loading && <div>
             <p style={{marginLeft: "20px"}}>Welcome back <span style={{color: "#2699c7", fontSize: "larger", fontWeight: "bolder", marginBottom: "-100px"}}>{user}</span>!</p>
-            {game!==[] && <p style={{fontWeight: "bold", fontSize: "30px", marginLeft: "20px", marginRight: "20px"}}>Your games</p>}
+            { game.length!==undefined && game.length!==0 && <p style={{fontWeight: "bold", fontSize: "30px", marginLeft: "20px", marginRight: "20px"}}>Your games</p>}
             <MoveToInboxIcon onClick={()=>(navigate(("/requests")))} style={{position: "fixed", right: "15px", top: "15px", color: "#2699c7"}}/>
             <LogoutIcon onClick={()=> {
                 cookies.remove('TicTacToe');

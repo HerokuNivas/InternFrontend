@@ -8,13 +8,16 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
     const [user, setUser] = useState("");
+    const [loadingRequest, setLoadingRequest] = useState(false);
     const cookies = new Cookies();
     return(
         <StateContext.Provider
         value={{
            user,
            setUser,
-           cookies
+           cookies,
+           loadingRequest,
+           setLoadingRequest
         }}> 
             {children}
         </StateContext.Provider>

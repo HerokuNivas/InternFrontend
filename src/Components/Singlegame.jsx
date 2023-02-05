@@ -41,7 +41,8 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
 
     return(
         <div className="singleBoardLayout" style={{marginBottom: "25px", marginLeft: "10px"}}>
-            <p style={{fontSize: "20px", fontWeight: "bolder", marginTop: "-10px"}}>Game with {opponent}</p>
+            <p style={{fontSize: "20px", fontWeight: "bolder", marginTop: "-10px"}}>Game with <span style={{color: "#2699c7", fontW
+        : "bold"}}>{opponent}</span></p>
             {current===opponent && winby==="" && <div style={{marginTop: "-40px", fontSize: "15px"}}><p>You have made your move!</p><p>Waiting for them.</p></div>}
             {current===user && winby==="" && <div style={{marginTop: "-40px", fontSize: "15px"}}><p>{opponent} just made their move!</p><p>It's your turn to play now.</p></div>}
             {winby!=="" && winby===opponent && <div style={{marginTop: "-20px", fontSize: "15px"}}><p>{opponent} won!</p></div>}

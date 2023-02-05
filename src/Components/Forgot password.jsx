@@ -210,7 +210,7 @@ export default function Forogt(){
                 />
             </div>
             {error && <p style={{color: "red", marginLeft: "10px"}}>Oops! We cannot find your user name.</p>}
-            <Button variant="contained" onClick={submitFun} style={{marginLeft: "25px", marginTop: "25px"}}>Send OTP</Button>
+            <Button variant="contained" onClick={submitFun} style={{marginLeft: "25px", marginTop: "25px", background: "#2699c7"}}>Send OTP</Button>
             </div>}
             {!loading && submit && !passSubmit && <div><ArrowBackIosIcon onClick={()=>{setSubmit(false); setSendOTP(false); setTime(60)}} style={{marginLeft: "10px", marginTop: "10px"}}/>
             <p style={{marginLeft: "25px"}}>OTP sent to {email}</p>
@@ -228,7 +228,7 @@ export default function Forogt(){
       </>
       {sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer"}}>Resend OTP in {time}</div>}
       {!sendOTP && <div style={{marginTop: "25px", marginBottom: "25px", cursor: "pointer", textDecoration: "underline", color: "blue"}} onClick={submitClicked}>Resend OTP</div>}
-      <div><Button variant="contained" onClick={verify}>Verify</Button></div>
+      <div><Button variant="contained" style={{background: "#2699c7"}} onClick={verify}>Verify</Button></div>
       {error1 && <p style={{color: "red"}}>Oops! Enter a valid OTP.</p>}
       <p><span style={{fontWeight: "bold"}}>Note : </span>Please check your spam and promotion folders too.</p>
       </div>
@@ -259,7 +259,7 @@ export default function Forogt(){
                 <p>{number?<CheckIcon style={{color: "green", marginRight: "5px"}}/>:<CloseIcon style={{color: "red"}}/>}Password must contain atleast one number.</p>
                 <p>{minimumLength?<CheckIcon style={{color: "green", marginRight: "5px"}}/>:<CloseIcon style={{color: "red"}}/>}Password must be of minimum 8 characters.</p>
                 {fields && <p style={{color: "red"}}>Set password that satisfy all required fields.</p>}
-                <Button variant="contained" style={{background: changed?"green":"blue"}} onClick={PasswordClicked}>{changed===false?"Submit":"Verified"}</Button>
+                <Button variant="contained" style={{background: changed?"green":"#2699c7"}} onClick={PasswordClicked}>{changed===false?"Submit":"Verified"}</Button>
                 </div>}
         </div>    
     )

@@ -12,13 +12,12 @@ import { useBeforeunload } from 'react-beforeunload';
 export default function Requests(){
 
     const [requests, setRequests] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const {user, setUser, cookies} = useStateContext();
+    const {user, setUser, cookies, loadingRequest, setLoadingRequest} = useStateContext();
     const navigate = useNavigate();
 
     useEffect(()=>{
         setTimeout(() => {
-            setLoading(false);
+            setLoadingRequest(false);
         }, 1000);
     })
 
@@ -51,8 +50,8 @@ export default function Requests(){
 
     return(
         <div>
-            {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
-            {!loading && <div>
+            {loadingRequest && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
+            {!loadingRequest && <div>
                 <div><div style={{marginBottom: "50px"}}><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/dashboard"))} className="arrowBackRegister"/></div></div>
                 {requests.length === 0 && <div><p className="dashBoardNogames">No requests found</p></div>}
                 {requests.map((key)=>(

@@ -7,7 +7,6 @@ import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
-import { useBeforeunload } from 'react-beforeunload';
 
 export default function NewGame(){
 
@@ -38,6 +37,11 @@ export default function NewGame(){
             url: "https://intern-backend-ten.vercel.app/requests/?user="+user+"&email="+email
         }).then((data)=>(setSuccess(data.data.success), setMessage(data.data.message)))
         setLoading(false);
+        if(success === true){
+            setTimeout(() => {
+                navigate("/dashboard");
+              }, 1000);              
+        }
     }
 
     let navigate = useNavigate();
@@ -59,8 +63,8 @@ export default function NewGame(){
                     }
                 }}/>
             </div>
-            {submit && success && <p style={{color: "green", marginLeft: "25px", marginTop: "25px"}}>{message}</p>}
-            {submit && !success && <p style={{color: "red", marginLeft: "25px", marginTop: "25px"}}>{message}</p>}
+            {submit && success && <p style={{color: "green", marginLeft: "25px", marginTop: "25px", fontWeight: "bold"}}>{message}</p>}
+            {submit && !success && <p style={{color: "red", marginLeft: "25px", marginTop: "25px", fontWeight: "bold"}}>{message}</p>}
             <p className="mainSendRequest" onClick={functionCall} style={{marginTop: "30px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Send request</span></p></div>
             }
         </div>
