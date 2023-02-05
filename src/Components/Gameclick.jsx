@@ -380,7 +380,7 @@ export default function Gameclick() {
                   position: "absolute",
                   width: "300px",
                   height: "35px",
-                  background: "#FFE79E",
+                  background: "#2699c7",
                   marginTop: "-100px",
                 }}
               >
@@ -395,7 +395,7 @@ export default function Gameclick() {
                   position: "absolute",
                   width: "300px",
                   height: "35px",
-                  background: "#FFE79E",
+                  background: "#2699c7",
                   marginTop: "-100px",
                 }}
               >

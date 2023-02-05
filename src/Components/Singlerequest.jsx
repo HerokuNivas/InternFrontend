@@ -6,6 +6,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import "../css/Singlerequest.css";
+import video1 from "../Animations/Person.mp4";
 
 export default function Singlerequest({from}){
     let navigate = useNavigate();
@@ -48,7 +49,8 @@ export default function Singlerequest({from}){
 
     return(
         <div>
-            {loadingRequest && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
+            {loadingRequest && <video width="50%" height="50%" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+                            <source src={video1} type="video/mp4"/></video>}
         {!loadingRequest && <div  style={{marginTop: "25px", marginLeft: "30px"}}>
             <div className="requestBox" style={{padding: "10px", paddingBottom: "20px", marginRight: "20px"}}>
             <p style={{fontWeight: "bolder", marginTop: "15px"}}>USER <span style={{color: "#2699c7", fontWeight: "bolder", fontSize: "large"}}>{from}</span> HAS REQUESTED TO PLAY GAME WITH YOU</p>

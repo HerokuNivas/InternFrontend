@@ -9,6 +9,7 @@ import Singlerequest from "./Singlerequest";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useBeforeunload } from 'react-beforeunload';
 
+
 export default function Requests(){
 
     const [requests, setRequests] = useState([]);
@@ -53,7 +54,7 @@ export default function Requests(){
             {loadingRequest && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
             {!loadingRequest && <div>
                 <div><div style={{marginBottom: "50px"}}><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/dashboard"))} className="arrowBackRegister"/></div></div>
-                {requests.length === 0 && <div><p className="dashBoardNogames">No requests found</p></div>}
+                {requests.length === 0 && <div><p className="dashBoardNogames">No Requests Found</p></div>}
                 {requests.map((key)=>(
                     <Singlerequest from={key.user1}/>
                 ))}

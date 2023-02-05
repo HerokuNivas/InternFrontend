@@ -7,7 +7,7 @@ import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
-
+import video1 from "../Animations/Find.mp4";
 export default function NewGame(){
 
     const [email, setEmail] = useState("");
@@ -47,7 +47,8 @@ export default function NewGame(){
     let navigate = useNavigate();
     return(
         <div>
-            {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>}
+            {loading && <video width="250px" height="250px" className="video1" style={{dispaly: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+                            <source src={video1} type="video/mp4"/></video>}
             {!loading && <div><div><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/dashboard"))} className="arrowBackRegister"/></div>
             <div style={{marginTop: "50px", marginLeft: "30px", fontWeight: "bold", fontSize: "larger", marginRight: "30px"}}>
                 <p>Start a new game</p>
