@@ -231,8 +231,10 @@ export default function Gameclick() {
 
   async function submitParent() {
     setLoading(true);
-    setCameIn(true);
-    Submit();
+    if(came === true){
+      Submit();
+      setCameIn(true);
+    }
     setLoading(false);
   }
 
