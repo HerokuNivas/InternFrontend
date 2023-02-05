@@ -13,13 +13,14 @@ import { useBeforeunload } from 'react-beforeunload';
 
 export default function Gameclick() {
   let navigate = useNavigate();
-  const location = useLocation();
-  const { user1Is, user2Is, boardIsIs, currentIs, winbyIs, id, winpo} =
-    location.state;
+
+  const { user, setUser, cookies } = useStateContext();
+  const status = cookies.get("Game");
+
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-  const { user, setUser, cookies } = useStateContext();
+  
   
 
     useBeforeunload((event) => {
@@ -38,31 +39,31 @@ export default function Gameclick() {
       }
   }, []);
 
-  const [current, setCurrent] = useState(currentIs);
-  const [winby, setWinBy] = useState(winbyIs);
+  const [current, setCurrent] = useState(status[3]);
+  const [winby, setWinBy] = useState(status[4]);
   const [opponent, setOpponent] = useState("");
   const [piece, setPiece] = useState("");
   const [placed, setPlaced] = useState(false);
   const [came, setCame] = useState(false);
-  const [boardIs, setBoardIs] = useState(boardIsIs);
+  const [boardIs, setBoardIs] = useState(status[2]);
   const [loading, setLoading] = useState(false);
-  const [game, setGame] = useState({ current: user, board: boardIsIs });
+  const [game, setGame] = useState({ current: user, board: status[2] });
   const [cameIn, setCameIn] = useState(false);
 
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (user1Is === user) {
+    if (status[0] === user) {
       setPiece("x");
-      setOpponent(user2Is);
+      setOpponent(status[1]);
     } else {
       setPiece("o");
-      setOpponent(user1Is);
+      setOpponent(status[0]);
     }
-    setBoardIs(boardIsIs);
+    setBoardIs(status[2]);
     if(game.winpo !== "")
       try{
-        document.getElementById("Win"+winpo).classList.add("win"+winpo);
+        document.getElementById("Win"+status[6]).classList.add("win"+status[6]);
       }
       catch(error){
         // Not expected;
@@ -73,7 +74,7 @@ export default function Gameclick() {
     const timeInvterval = setInterval(async () => {
       const dataIs = await axios({
         method: "get",
-        url: "https://intern-backend-ten.vercel.app/pargame?id=" + id,
+        url: "https://intern-backend-ten.vercel.app/pargame?id=" + status[5],
       });
 
       const data = await dataIs.data;
@@ -254,7 +255,7 @@ export default function Gameclick() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: id,
+        id: status[5],
         user1: piece === "x" ? user : opponent,
         user2: piece === "x" ? opponent : user,
         current: draw.user === "" ? opponent : "",
@@ -269,7 +270,7 @@ export default function Gameclick() {
       .then((responseData) => {});
     await axios({
       method: "get",
-      url: "https://intern-backend-ten.vercel.app/pargame?id=" + id,
+      url: "https://intern-backend-ten.vercel.app/pargame?id=" + status[5],
     }).then(
       (data) => (
         setGame(data.data.games),
@@ -357,7 +358,7 @@ export default function Gameclick() {
           <div>
             <ArrowBackIosIcon
               fontSize="small"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => {navigate("/dashboard"); cookies.remove("Game")}}
               className="arrowBackRegister"
             />
           </div>
