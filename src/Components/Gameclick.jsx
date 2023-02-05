@@ -237,7 +237,8 @@ export default function Gameclick() {
   }
 
   async function Submit() {
-    if (!came || !placed) return;
+    if (!came) return;
+    if(placed === false) return;
     setPlaced(false);
     setCame(false);
     var draw = checkWinning();
