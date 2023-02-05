@@ -15,6 +15,7 @@ export default function Dashboard(){
     const {user, cookies, setUser} = useStateContext();
     const [game, setGames] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [requests, setRequests] = useState("0");
 
     useEffect(()=>{
         if(user === ""){
@@ -28,8 +29,24 @@ export default function Dashboard(){
 
     useEffect(()=>{
         setLoading(true)
-        setTimeout(() => {
+        setTimeout(async () => {
+            await axios({
+                method: "get",
+                url: "https://intern-backend-ten.vercel.app/games?user="+user
+            }).then((data)=>(setGames(data.data.games)))
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({user : user})
+              };
+              await fetch("https://intern-backend-ten.vercel.app/totalRequests", requestOptions).then((response) => response.json()).then((responseData) => {
+              if(responseData.number <= 9)
+                setRequests(responseData.number.toString());
+              else
+                setRequests("9+");
+            })
             setLoading(false);
+
         }, 5000);
     }, []);
 
@@ -39,6 +56,17 @@ export default function Dashboard(){
                 method: "get",
                 url: "https://intern-backend-ten.vercel.app/games?user="+user
             }).then((data)=>(setGames(data.data.games)))
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({user : user})
+              };
+              await fetch("https://intern-backend-ten.vercel.app/totalRequests", requestOptions).then((response) => response.json()).then((responseData) => {
+              if(responseData.number <= 9)
+                setRequests(responseData.number.toString());
+              else
+                setRequests("9+");
+            })
      }, 1000);
      return ()=> clearInterval(timeInvterval);
     });
@@ -53,17 +81,18 @@ export default function Dashboard(){
         {!loading && <div>
             <p style={{marginLeft: "20px"}}>Welcome back <span style={{color: "#2699c7", fontSize: "larger", fontWeight: "bolder", marginBottom: "-100px"}}>{user}</span>!</p>
             { game.length!==undefined && game.length!==0 && <p style={{fontWeight: "bold", fontSize: "30px", marginLeft: "20px", marginRight: "20px"}}>Your games</p>}
-            <MoveToInboxIcon onClick={()=>(navigate(("/requests")))} style={{position: "fixed", right: "15px", top: "15px", color: "#2699c7"}}/>
-            <LogoutIcon onClick={()=> {
+            <MoveToInboxIcon titleAccess="Inbox" onClick={()=>(navigate(("/requests")))} style={{position: "fixed", right: "25px", top: "15px", color: "#2699c7"}}/>
+            <p style={{position: "fixed", color: "white", top: "-10px", right: "7px", border: "solid 2px red", borderRadius: "50%", height: "20px", width: "20px", background: "red", fontSize: "12px"}}><span style={{paddingRight: "10px", marginLeft: "4px"}}>{requests}</span></p>
+            <LogoutIcon titleAccess="logout" onClick={()=> {
                 cookies.remove('TicTacToe');
                 setUser("");
                 navigate("/")
-            }} style={{position: "fixed", right: "40px", top: "15px", color: "#2699c7"}}/>
+            }} style={{position: "fixed", right: "60px", top: "15px", color: "#2699c7"}}/>
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
                 <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
                 </div>}
-        {game.length !== 0 && <div style={{marginTop: "20px", marginBottom: "25px"}}>{game.map((key)=>(
+        {game!==[] && game.length !== 0 && <div className="gameFlex" style={{marginTop: "20px", marginBottom: "25px"}}>{game.map((key)=>(
             <Singlegame user1 = {key.user1} user2 = {key.user2} current = {key.current}  winby = {key.winby} board = {key.board} time = {key.time} id = {key._id} winpo = {key.winpo}/>
         ))}<p className="newGameText" onClick={()=>(navigate("/newgame"))}><span style={{color: "white", cursor: "pointer"}}>+ New Game</span></p></div>}
         </div>}

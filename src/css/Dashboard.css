@@ -12,3 +12,10 @@
 
   color: #2699c7;
 }
+
+.gameFlex{
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 75px;
+}
