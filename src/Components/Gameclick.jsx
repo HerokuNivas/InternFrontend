@@ -39,10 +39,11 @@ export default function Gameclick() {
       }
   }, []);
 
+
   const [current, setCurrent] = useState(status[3]);
   const [winby, setWinBy] = useState(status[4]);
-  const [opponent, setOpponent] = useState("");
-  const [piece, setPiece] = useState("");
+  const opponent = status[7];
+  const piece = status[8];
   const [placed, setPlaced] = useState(false);
   const [came, setCame] = useState(false);
   const [boardIs, setBoardIs] = useState(status[2]);
@@ -50,17 +51,9 @@ export default function Gameclick() {
   const [game, setGame] = useState({ current: user, board: status[2] });
   const [cameIn, setCameIn] = useState(false);
 
-  const [error, setError] = useState(false);
 
+  const [error, setError] = useState(false);
   useEffect(() => {
-    if (status[0] === user) {
-      setPiece("x");
-      setOpponent(status[1]);
-    } else {
-      setPiece("o");
-      setOpponent(status[0]);
-    }
-    setBoardIs(status[2]);
     if(game.winpo !== "")
       try{
         document.getElementById("Win"+status[6]).classList.add("win"+status[6]);

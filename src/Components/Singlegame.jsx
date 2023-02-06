@@ -49,8 +49,8 @@ export default function Singlegame({user1, user2, current, winby, board, time, i
             {winby!=="" && winby===user && <div style={{marginTop: "-20px", fontSize: "15px"}}><p>You won!</p></div>}
             {winby==="draw" && <div style={{marginTop: "-20px", fontSize: "15px"}}><p>It's a Draw!</p></div>}
             <p style={{marginTop: "-20px"}}>{time}</p>
-            {(winby!=="" || current===opponent) && <p className="gameView"><Link to={"/games/"+id} target="_blank" style={{textDecoration: "none"}} onClick={cookies.set("Game", [user1, user2, board, current, winby, id, winpo])} ><span className="mainLoginText">View game</span></Link></p>}
-            {(winby==="" && current===user) && <p className="gameView"><Link to={"/games/"+id} target="_blank" style={{textDecoration: "none"}} onClick={cookies.set("Game", [user1, user2, board, current, winby, id, winpo])} ><span className="mainLoginText">Play!</span></Link></p>}
+            {(winby!=="" || current===opponent) && <p className="gameView"><Link to={"/games/"+id} target="_blank" style={{textDecoration: "none"}} onClick={cookies.set("Game", [user1, user2, board, current, winby, id, winpo, user===user1?user2:user1, user===user1?'x':'o'])} ><span className="mainLoginText">View game</span></Link></p>}
+            {(winby==="" && current===user) && <p className="gameView"><Link to={"/games/"+id} target="_blank" style={{textDecoration: "none"}} onClick={cookies.set("Game", [user1, user2, board, current, winby, id, winpo, user===user1?user2:user1, user===user1?'x':'o'])} ><span className="mainLoginText">Play!</span></Link></p>}
         </div>    
     )
 } 
