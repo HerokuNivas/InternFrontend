@@ -84,8 +84,8 @@ export default function Dashboard(){
                             <source src={video1} type="video/mp4"/></video>}
         {!loading && <div>
             <div className="dashboardLeft" id="animatedDashboard">
-                {!expandClick && <ArrowCircleRightIcon style={{position: "absolute", left:"56px", titleAccess: "Expand", cursor: "pointer", top: "2px"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.add("activeClick"); var ele = document.getElementById("animatedDashboardRight"); ele.classList.add("activeClickRight"); setExpandClicked(true)}}/>}
-                {expandClick && <ArrowCircleLeftIcon style={{position: "absolute", left: "145px", titleAccess: "Collapse", cursor: "pointer", top: "2px"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.remove("activeClick"); var ele = document.getElementById("animatedDashboardRight"); ele.classList.remove("activeClickRight"); setExpandClicked(false)}}/>}
+                {!expandClick && <ArrowCircleRightIcon style={{position: "absolute", left:"56px", titleAccess: "Expand", cursor: "pointer", top: "2px"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.add("activeClick"); setExpandClicked(true)}}/>}
+                {expandClick && <ArrowCircleLeftIcon style={{position: "absolute", left: "145px", titleAccess: "Collapse", cursor: "pointer", top: "2px"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.remove("activeClick"); setExpandClicked(false)}}/>}
             <Link to={`/profile/${user}`} target="_blank"><AccountCircleIcon titleAccess="Account" style={{color: "white", position: "fixed", left: "14px", top: "15px", fontSize: "25px", cursor: "pointer"}}/></Link>
             {expandClick && <Link to={`/profile/${user}`} style={{textDecoration: "none"}} target="_blank"><p style={{color: "white", marginLeft: "56px"}}>Account</p></Link>}
             <MoveToInboxIcon titleAccess="Inbox" onClick={()=>(navigate(("/requests")))} style={{position: "fixed", left: "14px", top: "65px", color: "white", fontSize: "25px", cursor: "pointer"}}/>
@@ -110,7 +110,7 @@ export default function Dashboard(){
             
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
-                <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Create new game</span></p>
+                <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: expandClick?"-32px":"-30px"}}>Create new game</span></p>
                 </div>}
         {game!==[] && game.length !== 0 && <div className="gameFlex" style={{marginTop: "20px", marginBottom: "25px"}}>{game.map((key)=>(
             <Singlegame user1 = {key.user1} user2 = {key.user2} current = {key.current}  winby = {key.winby} board = {key.board} time = {key.time} id = {key._id} winpo = {key.winpo}/>

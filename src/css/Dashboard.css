@@ -41,8 +41,3 @@
   background-color: #2699c7;
   position: absolute;
 }
-
-.activeClickRight{
-  margin-left: 130px;
-  width: calc(100% - 140px);
-}
