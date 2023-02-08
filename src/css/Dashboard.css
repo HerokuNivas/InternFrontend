@@ -30,8 +30,8 @@
 
 .dashboardRight{
   display: inline-block;
-  margin-left: 45px;
-  width: calc(100% - 50px);
+  margin-left: 60px;
+  width: calc(100% - 60px);
 }
 
 .activeClick{

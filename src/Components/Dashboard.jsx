@@ -13,6 +13,9 @@ import video1 from "../Animations/Dashboard.mp4";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 export default function Dashboard(){
     let navigate = useNavigate();
@@ -50,6 +53,7 @@ export default function Dashboard(){
               else
                 setRequests("9+");
             })
+            
         }, 5000);
         setLoading(false);
     }, []);
@@ -92,16 +96,27 @@ export default function Dashboard(){
             <p style={{position: "fixed", color: "white", top: expandClick?"54px":"40px", left: expandClick?"100px":"25px", border: "solid 2px red", borderRadius: "50%", height: "20px", width: "20px", background: "red", fontSize: "12px", cursor: "pointer"}}><span style={{paddingRight: "10px", marginLeft: "4px"}}>{requests}</span></p>
             {expandClick && <p onClick={()=>(navigate(("/requests")))} style={{color: "white", marginLeft: "56px", marginTop: "30px", cursor: "pointer"}}>Inbox</p>}
 
-            <LogoutIcon titleAccess="logout" onClick={()=> {
+            <LogoutIcon titleAccess="Logout" onClick={()=> {
                 cookies.remove('TicTacToe');
                 setUser("");
                 navigate("/")
-            }} style={{position: "fixed", right: "60px", bottom: "15px", color: "white", left: "14px", cursor: "pointer"}}/>
+            }} style={{position: "fixed", right: "60px", bottom: "15px", color: "white", left: "14px", cursor: "pointer", fontSize: "25px"}}/>
             {expandClick && <p onClick={()=> {
                 cookies.remove('TicTacToe');
                 setUser("");
                 navigate("/")
             }} style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "2px", cursor: "pointer"}}>Logout</p>}
+
+            <Link to={"/faq"} target="blank"><QuestionMarkIcon titleAccess="Faq" style={{color: "white", left: "10px", position: "fixed", bottom: "60px", cursor: "pointer",fontSize: "25px"}}/></Link>
+            {expandClick && <Link to="/faq" target="blank"><p onClick={()=> {
+                navigate("/faq")
+            }} style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "45px", cursor: "pointer"}}>Faq</p></Link>}
+
+            <a href="https://www.linkedin.com/in/asynchronous-tic-tac-toe-b96703265/" target="_blank" rel="noopener"><LinkedInIcon titleAccess="Linkedin" style={{color: "white", left: "12px", position: "fixed", bottom: "108px", cursor: "pointer", fontSize: "25px"}}/></a>
+            {expandClick && <a href="https://www.linkedin.com/in/asynchronous-tic-tac-toe-b96703265/" target="_blank" rel="noopener"><p style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "94px", cursor: "pointer"}}>Linkedin</p></a>}
+
+            <a href="https://www.instagram.com/asynctictactoe/" target="_blank" rel="noopener"><InstagramIcon titleAccess="Linkedin" style={{color: "white", left: "12px", position: "fixed", bottom: "160px", cursor: "pointer", fontSize: "25px"}}/></a>
+            {expandClick && <a href="https://www.instagram.com/asynctictactoe/" target="_blank" rel="noopener"><p style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "147px", cursor: "pointer"}}>Instagram</p></a>}
 
             </div>
             <div className="dashboardRight" id="animatedDashboardRight">

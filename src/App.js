@@ -10,6 +10,7 @@ import Requests from "./Components/Requests";
 import Gameclick from "./Components/Gameclick";
 import Forogt from "./Components/Forgot password";
 import Profile from "./Components/Profile";
+import Faq from "./Components/Faq";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/games/:id" element={<Gameclick/>}></Route>
         <Route path="/profile/:id" element={<Profile/>}></Route>
         <Route path="/forgotpassword" element={<Forogt/>}></Route>
+        <Route path="/faq" element={<Faq/>}></Route>
       </Routes>
     </BrowserRouter>
   );
