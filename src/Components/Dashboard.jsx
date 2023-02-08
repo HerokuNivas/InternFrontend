@@ -110,7 +110,7 @@ export default function Dashboard(){
             
             {game.length === 0 && <div>
                 <p className="dashBoardNogames">No Games Found</p>
-                <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: expandClick?"-40px":"-38px"}}>Create new game</span></p>
+                <p className="mainLogin" onClick={()=>{navigate("/newgame")}} style={{marginTop: "-50px"}}><span className="mainLoginText" style={{marginLeft: expandClick?"-42px":"-40px"}}>Create new game</span></p>
                 </div>}
         {game!==[] && game.length !== 0 && <div className="gameFlex" style={{marginTop: "20px", marginBottom: "25px"}}>{game.map((key)=>(
             <Singlegame user1 = {key.user1} user2 = {key.user2} current = {key.current}  winby = {key.winby} board = {key.board} time = {key.time} id = {key._id} winpo = {key.winpo}/>
