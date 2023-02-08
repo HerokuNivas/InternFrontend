@@ -28,6 +28,8 @@ export default function Login(){
         if(user === "" || password === ""){
             setSubmit(true);
             setError(true);
+            setUser("");
+            setPassword("");
         }
         else{
             setSubmit(true);
