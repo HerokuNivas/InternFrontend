@@ -111,6 +111,34 @@
   }
 }
 
+@media only screen and (max-width: 1100px) {
+  .mainLogin {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+
+  .mainRegister,
+  .mainSendRequest {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .mainLogin {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+
+  .mainRegister,
+  .mainSendRequest {
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+}
+
+
+
 .mainLoginText,
 .mainRegisterText {
   color: white;
@@ -120,3 +148,105 @@
   top: 10px;
   cursor: pointer;
 }
+
+.home1{
+  display: inline-block;
+  width: 60%;
+}
+
+.home2{
+  display: inline-block;
+  width: 40%;
+  background-color: #2699c7;
+  position: absolute;
+  height: 100%;
+  border-left: 2px black solid;
+  
+  border-radius: 2%;
+  border-top-left-radius: 40%;
+  border-bottom-left-radius: 40%;
+  right: 2px;
+}
+
+.text_1 {
+  animation: text1;
+}
+
+.text_2 {
+  animation: text2;
+}
+
+.text_1, .text_2 {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  animation-duration: 10s;
+  animation-timing-function: steps(25, end);
+  animation-iteration-count: infinite;
+}
+
+.text_1::after, .text_2::after {
+  content: "|";
+  position: absolute;
+  right: 0;
+  animation: caret infinite;
+  animation-duration: 1s;
+  animation-timing-function: steps(1, end);
+}
+
+@keyframes text2 {
+  0%, 50%, 100% {
+    width: 0;
+  }
+  
+  60%, 90% {
+    width: 6.5em;
+  }
+}
+
+@keyframes text1 {
+  0%, 50%, 100% {
+    width: 0;
+  }
+  10%, 40% {
+    width: 8em;
+  }
+}
+
+@keyframes caret {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animatedText{
+  margin-left: 75px;
+}
+
+@media only screen and (max-width: 920px) {
+  .home1{
+    display: block;
+    width: 100%;
+  }
+  .home2{
+    display: block;
+    background-color: #2699c7;
+    position: relative;
+    width: 100%;
+    border: none;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top: 2px solid black;
+    border-radius : 0;
+    margin-top: 10px;
+    padding-bottom: 20px;
+  }
+  .animatedText{
+    margin-left: 25px;
+  }
+}
+

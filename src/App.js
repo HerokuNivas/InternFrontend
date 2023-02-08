@@ -9,7 +9,7 @@ import NewGame from "./Components/NewGame";
 import Requests from "./Components/Requests";
 import Gameclick from "./Components/Gameclick";
 import Forogt from "./Components/Forgot password";
-
+import Profile from "./Components/Profile";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
         <Route path="/newgame" element={<NewGame/>}></Route>
         <Route path="/requests" element={<Requests/>}></Route>
         <Route path="/games/:id" element={<Gameclick/>}></Route>
+        <Route path="/profile/:id" element={<Profile/>}></Route>
         <Route path="/forgotpassword" element={<Forogt/>}></Route>
       </Routes>
     </BrowserRouter>
