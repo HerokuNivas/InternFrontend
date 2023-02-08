@@ -84,20 +84,24 @@ export default function Dashboard(){
                             <source src={video1} type="video/mp4"/></video>}
         {!loading && <div>
             <div className="dashboardLeft" id="animatedDashboard">
-                {!expandClick && <ArrowCircleRightIcon style={{position: "absolute", left:"56px", titleAccess: "Expand", cursor: "pointer"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.add("activeClick"); var ele = document.getElementById("animatedDashboardRight"); ele.classList.add("activeClickRight"); setExpandClicked(true)}}/>}
-                {expandClick && <ArrowCircleLeftIcon style={{position: "absolute", left: "145px", titleAccess: "Collapse", cursor: "pointer"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.remove("activeClick"); var ele = document.getElementById("animatedDashboardRight"); ele.classList.remove("activeClickRight"); setExpandClicked(false)}}/>}
+                {!expandClick && <ArrowCircleRightIcon style={{position: "absolute", left:"56px", titleAccess: "Expand", cursor: "pointer", top: "2px"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.add("activeClick"); var ele = document.getElementById("animatedDashboardRight"); ele.classList.add("activeClickRight"); setExpandClicked(true)}}/>}
+                {expandClick && <ArrowCircleLeftIcon style={{position: "absolute", left: "145px", titleAccess: "Collapse", cursor: "pointer", top: "2px"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.remove("activeClick"); var ele = document.getElementById("animatedDashboardRight"); ele.classList.remove("activeClickRight"); setExpandClicked(false)}}/>}
             <Link to={`/profile/${user}`} target="_blank"><AccountCircleIcon titleAccess="Account" style={{color: "white", position: "fixed", left: "14px", top: "15px", fontSize: "25px", cursor: "pointer"}}/></Link>
-            {expandClick && <p style={{color: "white", marginLeft: "56px"}}>Account</p>}
+            {expandClick && <Link to={`/profile/${user}`} style={{textDecoration: "none"}} target="_blank"><p style={{color: "white", marginLeft: "56px"}}>Account</p></Link>}
             <MoveToInboxIcon titleAccess="Inbox" onClick={()=>(navigate(("/requests")))} style={{position: "fixed", left: "14px", top: "65px", color: "white", fontSize: "25px", cursor: "pointer"}}/>
-            <p style={{position: "fixed", color: "white", top: "40px", left: "25px", border: "solid 2px red", borderRadius: "50%", height: "20px", width: "20px", background: "red", fontSize: "12px", cursor: "pointer"}}><span style={{paddingRight: "10px", marginLeft: "4px"}}>{requests}</span></p>
-            {expandClick && <p style={{color: "white", marginLeft: "56px", marginTop: "30px"}}>Inbox</p>}
+            <p style={{position: "fixed", color: "white", top: expandClick?"54px":"40px", left: expandClick?"100px":"25px", border: "solid 2px red", borderRadius: "50%", height: "20px", width: "20px", background: "red", fontSize: "12px", cursor: "pointer"}}><span style={{paddingRight: "10px", marginLeft: "4px"}}>{requests}</span></p>
+            {expandClick && <p onClick={()=>(navigate(("/requests")))} style={{color: "white", marginLeft: "56px", marginTop: "30px", cursor: "pointer"}}>Inbox</p>}
 
             <LogoutIcon titleAccess="logout" onClick={()=> {
                 cookies.remove('TicTacToe');
                 setUser("");
                 navigate("/")
             }} style={{position: "fixed", right: "60px", bottom: "15px", color: "white", left: "14px", cursor: "pointer"}}/>
-            {expandClick && <p style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "2px"}}>Logout</p>}
+            {expandClick && <p onClick={()=> {
+                cookies.remove('TicTacToe');
+                setUser("");
+                navigate("/")
+            }} style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "2px", cursor: "pointer"}}>Logout</p>}
 
             </div>
             <div className="dashboardRight" id="animatedDashboardRight">
