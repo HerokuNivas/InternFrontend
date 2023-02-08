@@ -31,7 +31,7 @@
 .dashboardRight{
   display: inline-block;
   margin-left: 45px;
-  width: 90%;
+  width: auto;
 }
 
 .activeClick{
@@ -44,5 +44,5 @@
 
 .activeClickRight{
   margin-left: 130px;
-  width: 85%;
+  width: auto;
 }
