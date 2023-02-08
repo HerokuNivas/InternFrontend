@@ -21,7 +21,7 @@
 }
 
 .dashboardLeft{
-  width: 4%;
+  width: 50px;
   display: inline-block; 
   height: 100%;
   background-color: #2699c7;
@@ -29,13 +29,13 @@
 }
 
 .dashboardRight{
-  width: 96%;
   display: inline-block;
   margin-left: 45px;
+  width: 90%;
 }
 
 .activeClick{
-  width: 10%;
+  width: 140px;
   display: inline-block; 
   height: 100%;
   background-color: #2699c7;
