@@ -154,7 +154,17 @@
   width: 60%;
 }
 
-
+.home2{
+  display: inline-block;
+  width: 40%;
+  position: absolute;
+  right: 0px;
+  background-color: #2699c7;
+  height: 100%;
+  border-left: 2px solid black;
+  border-top-left-radius: 40%;
+  border-bottom-left-radius: 40%;
+}
 
 
 .text_1 {
