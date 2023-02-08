@@ -53,9 +53,9 @@ export default function Dashboard(){
               else
                 setRequests("9+");
             })
-            
+            setLoading(false);
         }, 5000);
-        setLoading(false);
+        
     }, []);
 
     useEffect(()=>{

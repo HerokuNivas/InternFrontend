@@ -46,36 +46,35 @@ export default function Profile(){
                 url: "https://intern-backend-ten.vercel.app/profile/?user="+user
             })
             const data = await returnValue.data;
-            console.log(data);
             setUserIs(data.user.UserName);
             setEmail(data.user.Email);
             setWon(data.user.Won);
             setLost(data.user.Lost);
             setDraw(data.user.Draw);
+            var optionsCurr = {
+              series: [data.user.Won, data.user.Lost, data.user.Draw],
+              options: {
+                chart: {
+                  width: 380,
+                  type: 'pie',
+                },
+                labels: ["Won", "Lost", "Draw"],
+                responsive: [{
+                  breakpoint: 480,
+                  options: {
+                    chart: {
+                      width: 200
+                    },
+                    legend: {
+                      position: 'bottom'
+                    }
+                  }
+                }]
+              },
+            };
+            setOptions(optionsCurr);
         }
         value();
-        var optionsCurr = {
-            series: [won, lost, draw],
-            options: {
-              chart: {
-                width: 380,
-                type: 'pie',
-              },
-              labels: ["Won", "Lost", "Draw"],
-              responsive: [{
-                breakpoint: 480,
-                options: {
-                  chart: {
-                    width: 200
-                  },
-                  legend: {
-                    position: 'bottom'
-                  }
-                }
-              }]
-            },
-          };
-          setOptions(optionsCurr);
     }, [])
 
     return(

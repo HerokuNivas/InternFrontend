@@ -31,7 +31,11 @@ export default function Singlerequest({from}){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({user1: from, user2: user, current: from, time: new Date().toLocaleString()})
           };
-          await fetch("https://intern-backend-ten.vercel.app/creategame", requestOptions).then((response) => response.json()).then((responseData) => {setLoadingRequest(false)});
+          await fetch("https://intern-backend-ten.vercel.app/creategame", requestOptions).then((response) => response.json()).then((responseData) => {});
+
+          
+
+          setLoadingRequest(false);
     }
 
     async function rejectFun(){
