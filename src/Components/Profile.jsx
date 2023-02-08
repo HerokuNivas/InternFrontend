@@ -6,9 +6,9 @@ import Video1 from "../Animations/Profile.mp4";
 import ReactApexChart from "react-apexcharts";
 
 export default function Profile(){
-    const {cookies} = useStateContext();
-
-    const user = cookies.get("TicTacToe");
+    
+    const data = window.location.href.split("/");
+    const user = data[data.length-1];
 
     const [userIs, setUserIs] = useState("-1");
     const [email, setEmail] = useState("");

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { useState } from "react";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ import { Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 import { useBeforeunload } from 'react-beforeunload';
+import PersonIcon from '@mui/icons-material/Person';
 
 export default function Gameclick() {
   let navigate = useNavigate();
@@ -271,6 +272,20 @@ export default function Gameclick() {
         setWinBy(data.data.games.winby)
       )
     );
+    if(draw.winpo !== ""){
+      const requestOptions1 = {
+        method: "POST", 
+         headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user1 : user,
+          user2 : opponent,
+          status: draw.user==="draw"?"Draw":"Won"
+        }),
+      }
+      await fetch("https://intern-backend-ten.vercel.app/countWonLost", requestOptions1)
+      .then((response) => response.json())
+      .then((responseData) => {});
+    }
     setLoading(false);
     setError(false);
   }
@@ -357,7 +372,7 @@ export default function Gameclick() {
           </div>
           <div style={{ marginLeft: "20px", marginTop: "50px" }}>
             <p style={{ fontSize: "20px", fontWeight: "bolder", color: "#2699c7" }}>
-              Game with {opponent}
+              Game with {opponent} <Link to={"/profile/"+opponent} target="_blank"><PersonIcon style={{color: "#2699c7"}}/></Link>
             </p>
             <p>Your piece</p>
             <p
