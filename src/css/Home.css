@@ -154,14 +154,14 @@
   width: 60%;
 }
 
+
 .home2{
   display: inline-block;
   width: 40%;
+  border-left: 2px black solid;
   background-color: #2699c7;
   position: absolute;
   height: 100%;
-  border-left: 2px black solid;
-  /*Border*/
   border-radius: 2%;
   border-top-left-radius: 40%;
   border-bottom-left-radius: 40%;
