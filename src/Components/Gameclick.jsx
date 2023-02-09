@@ -116,7 +116,7 @@ export default function Gameclick() {
   }, [game, boardIs]);
 
   function showCrackers(){
-    if(winby !== opponent && checkin){
+    if(winby !== opponent && winby !== "" && checkin){
       setCrackers(true);
       
       setTimeout(() => {
