@@ -92,7 +92,7 @@ export default function Profile(){
                 <p style={{textAlign: "center", fontSize: "25px", color: "black", marginBottom: "-15px", fontWeight: "bold"}}>Statistics</p>
                 <p style={{textAlign: "center", margin: "auto", marginTop: "18px", display:"grid", marginLeft: "40%", marginRight: "40%", color: "#2699c7", marginBottom: "10px"}}></p>
                 
-                {(won!==0 || lost!==0 || draw!==0) && <div style={{marginLeft: "15px"}}><ReactApexChart options={options.options} series={options.series} type="pie" width={"300px"} /></div>}
+                {(won!==0 || lost!==0 || draw!==0) && <div style={{marginLeft: "15px"}}><ReactApexChart options={options.options} series={options.series} type="pie" width={"100%"} /></div>}
                 {(won === 0 && lost === 0 && draw === 0) && <div style={{textAlign: "center", color: "#2699c7", fontSize: "30px"}}><p>No Games Played</p></div>}
                 </div>
             </div>} 
