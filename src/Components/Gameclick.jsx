@@ -79,7 +79,7 @@ export default function Gameclick() {
     const timeInvterval = setInterval(async () => {
       const dataIs = await axios({
         method: "get",
-        url: "http://localhost:5000/pargame?id=" + url,
+        url: "https://intern-backend-ten.vercel.app/pargame?id=" + url,
       });
 
       const data = await dataIs.data;
@@ -282,12 +282,12 @@ export default function Gameclick() {
         time: new Date().toLocaleString(),
       }),
     };
-    await fetch("http://localhost:5000/update", requestOptions)
+    await fetch("https://intern-backend-ten.vercel.app/update", requestOptions)
       .then((response) => response.json())
       .then((responseData) => {});
     await axios({
       method: "get",
-      url: "http://localhost:5000/pargame?id=" + url,
+      url: "https://intern-backend-ten.vercel.app/pargame?id=" + url,
     }).then(
       (data) => (
         setGame(data.data.games),
@@ -305,7 +305,7 @@ export default function Gameclick() {
           status: draw.user==="draw"?"Draw":"Won"
         }),
       }
-      await fetch("http://localhost:5000/countWonLost", requestOptions1)
+      await fetch("https://intern-backend-ten.vercel.app/countWonLost", requestOptions1)
       .then((response) => response.json())
       .then((responseData) => {});
     }
