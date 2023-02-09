@@ -73,7 +73,6 @@ export default function Gameclick() {
 
       const data = await dataIs.data;
       const games = await data.games;
-
       setGame(games);
       if(games.winpo !== "" && !loading){
         document.getElementById("Win"+games.winpo).classList.add("win"+games.winpo);

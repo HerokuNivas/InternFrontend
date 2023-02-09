@@ -81,7 +81,7 @@ export default function Profile(){
         <div>
             {(userIs === "-1" || email === "" || won === -1 || lost === -1 || draw === -1) && <div><video width="30%" height="30%" style={{display: "grid", margin: "auto", marginTop: "100px"}} autoPlay loop muted playsInline >
                             <source src={Video1} type="video/mp4"/></video></div>}
-            {(userIs !== "-1" && email !== "" && won !== -1 && lost !== -1 && draw !== -1) && <div>
+            {(userIs !== "-1" && email !== "" && won !== -1 && lost !== -1 && draw !== -1) && <div style={{marginRight: "10px"}}>
                 <div style={{textAlign: "center"}}><p style={{fontSize: "75px", marginTop: "20px", marginBottom: "5px", color: "white", border: "2px solid black", display: "inline-block", height: "100px", width: "100px", borderRadius: "50%", background: "#2699c7"}}>{userIs[0].toUpperCase()}</p></div>    
                 
                 <div style={{display: "table", margin: "auto", marginTop: "0px", padding: "10px"}}>
@@ -92,7 +92,7 @@ export default function Profile(){
                 <p style={{textAlign: "center", fontSize: "25px", color: "black", marginBottom: "-15px", fontWeight: "bold"}}>Statistics</p>
                 <p style={{textAlign: "center", margin: "auto", marginTop: "18px", display:"grid", marginLeft: "40%", marginRight: "40%", color: "#2699c7", marginBottom: "10px"}}></p>
                 
-                {(won!==0 || lost!==0 || draw!==0) && <ReactApexChart options={options.options} series={options.series} type="pie" width={380} />}
+                {(won!==0 || lost!==0 || draw!==0) && <div style={{marginLeft: "15px"}}><ReactApexChart options={options.options} series={options.series} type="pie" width={"300px"} /></div>}
                 {(won === 0 && lost === 0 && draw === 0) && <div style={{textAlign: "center", color: "#2699c7", fontSize: "30px"}}><p>No Games Played</p></div>}
                 </div>
             </div>} 
