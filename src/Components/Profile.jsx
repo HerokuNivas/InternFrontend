@@ -84,12 +84,14 @@ export default function Profile(){
                             <source src={Video1} type="video/mp4"/></video></div>}
             {(userIs !== "-1" && email !== "" && won !== -1 && lost !== -1 && draw !== -1) && <div style={{marginRight: "10px"}}>
                 <div style={{textAlign: "center"}}><p style={{fontSize: "75px", marginTop: "20px", marginBottom: "5px", color: "white", border: "2px solid black", display: "inline-block", height: "100px", width: "100px", borderRadius: "50%", background: "#2699c7"}}>{userIs[0].toUpperCase()}</p></div>    
-                
-                <div style={{display: "table", margin: "auto", marginTop: "0px", padding: "10px"}}>
+                 
+                 <div style={{display: "table", margin: "auto", marginTop: "0px", padding: "10px"}}>
+                  {user!=="@Async" && <div>
                 <p style={{textAlign: "center", fontSize: "25px", color: "black", marginBottom: "-15px", fontWeight: "bold"}}>User Details</p>
                 <p style={{textAlign: "center", margin: "auto", marginTop: "18px", display:"grid", marginLeft: "36%", marginRight: "36%", color: "#2699c7"}}></p>
                 <div style={{textAlign: "center"}}><p style={{fontSize: "20px", marginTop: "5px"}}>User name : <span style={{fontSize: "20px", color: "#2699c7"}}>{userIs}</span></p></div>
-                <div style={{textAlign: "center", marginTop: "-15px"}}><a style={{textDecoration: "none", color: "inherit"}} href={"mailto:"+email}><p style={{fontSize: "20px", marginTop: "30px"}}>Email     : <span style={{fontSize: "20px", color: "#2699c7"}}>{email}</span></p></a></div>
+                <div style={{textAlign: "center", marginTop: "-15px"}}><a style={{textDecoration: "none", color: "inherit"}} href={"mailto:"+email}><p style={{fontSize: "20px", marginTop: "30px"}}>Email     : <span style={{fontSize: "20px", color: "#2699c7"}}>{email}</span></p></a></div></div>}
+                {user === "@Async" && <div style={{fontSize: "20px"}}>I am friendly AI bot designed to play Tic Tac Toe. It's difficult to win over me.</div>}
                 <p style={{textAlign: "center", fontSize: "25px", color: "black", marginBottom: "-15px", fontWeight: "bold"}}>Statistics</p>
                 <p style={{textAlign: "center", margin: "auto", marginTop: "18px", display:"grid", marginLeft: "40%", marginRight: "40%", color: "#2699c7", marginBottom: "10px"}}></p>
                 

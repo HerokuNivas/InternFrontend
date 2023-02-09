@@ -66,6 +66,7 @@ export default function NewGame(){
                         height: "10px"
                     }
                 }}/>
+                <p style={{fontWeight: "normal", color: "#2966c7"}}>Note : Please Enter "async.ai.com" in Email to play game with our AI.</p>
             </div>
             {submit && success && <p style={{color: "green", marginLeft: "25px", marginTop: "25px", fontWeight: "bold"}}>{message}. Redirecting in 3 seconds.</p>}
             {submit && !success && <p style={{color: "red", marginLeft: "25px", marginTop: "25px", fontWeight: "bold"}}>{message}</p>}

@@ -14,6 +14,10 @@ export default function Faq(){
             <a href="mailto:tictactoeasync@gmail.com" style={{textDecoration: "none", color: "inherit"}}><span style={{color: "#2699c7"}}> tictactoeasync@gmail.com</span></a>.</p>
             <p style={{fontSize: "20px", color: "red"}}>4) Can I play different games with different users at same time?</p>
             <p style={{fontSize: "22px", color: "black"}}>A) Yes, you can do that. In dashboard <span style={{color: "#2699c7"}}>Click all the games you need to play</span>, they will be opening in different tabs which allows you to play the games simultaneously with different users.</p>
+            <p style={{fontSize: "20px", color: "red"}}>5) How can I send request to AI?</p>
+            <p style={{fontSize: "22px", color: "black"}}>A) You can send request to mail <span style={{color: "#2699c7"}}>async.ai.com</span>.</p>
+            <p style={{fontSize: "20px", color: "red"}}>6) Can I win game with AI?</p>
+            <p style={{fontSize: "22px", color: "black"}}>A) No, <span style={{color: "#2699c7"}}>We made sure that AI will never lose</span>.</p>
         </div>    
     )
 }
