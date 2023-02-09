@@ -60,6 +60,9 @@ export default function Gameclick() {
 
 
   useEffect(() => {
+    if(winby !== ""){
+      showCrackers();
+    }
     if(game.winpo !== "")
       try{
         document.getElementById("Win"+status[6]).classList.add("win"+status[6]);
@@ -113,7 +116,9 @@ export default function Gameclick() {
   }, [game, boardIs]);
 
   function showCrackers(){
-    if(winby === user && checkin){
+    if(winby !== opponent && checkin){
+      setCrackers(true);
+      
       setTimeout(() => {
         setCrackers(false);
       }, 5000);
