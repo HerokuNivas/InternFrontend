@@ -20,6 +20,7 @@ export default function Gameclick() {
   const status = cookies.get("Game");
 
 
+
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   
@@ -58,12 +59,14 @@ export default function Gameclick() {
 
   const [error, setError] = useState(false);
 
+  const data = window.location.href.split("/");
+  const url = data[data.length-1];
 
   useEffect(() => {
-    if(winby !== ""){
+    if(winby !== "" && winby!==""){
       showCrackers();
     }
-    if(game.winpo !== "")
+    if(game.winpo!==undefined && game.winpo !== "")
       try{
         document.getElementById("Win"+status[6]).classList.add("win"+status[6]);
       }
@@ -76,13 +79,14 @@ export default function Gameclick() {
     const timeInvterval = setInterval(async () => {
       const dataIs = await axios({
         method: "get",
-        url: "http://localhost:5000/pargame?id=" + status[5],
+        url: "http://localhost:5000/pargame?id=" + url,
       });
 
       const data = await dataIs.data;
       const games = await data.games;
       setGame(games);
-      if(games.winpo !== "" && !loading){
+      console.log(games);
+      if(games.winpo!==undefined && games.winpo !== "" && !loading){
         document.getElementById("Win"+games.winpo).classList.add("win"+games.winpo);
         }
       if (games.winby !== "") {
@@ -268,7 +272,7 @@ export default function Gameclick() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: status[5],
+        id: url,
         user1: piece === "x" ? user : opponent,
         user2: piece === "x" ? opponent : user,
         current: draw.user === "" ? opponent : "",
@@ -283,7 +287,7 @@ export default function Gameclick() {
       .then((responseData) => {});
     await axios({
       method: "get",
-      url: "http://localhost:5000/pargame?id=" + status[5],
+      url: "http://localhost:5000/pargame?id=" + url,
     }).then(
       (data) => (
         setGame(data.data.games),
@@ -474,7 +478,7 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger" }}>
+                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
                   It's draw.
                 </span>
               </p>
