@@ -122,9 +122,7 @@ export default function Dashboard(){
             }} style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "2px", cursor: "pointer"}}>Logout</p>}
 
             <Link to={"/faq"} target="blank"><QuestionMarkIcon titleAccess="Faq" style={{color: "white", left: "10px", position: "fixed", bottom: "60px", cursor: "pointer",fontSize: "25px"}}/></Link>
-            {expandClick && <Link to="/faq" target="blank"><p onClick={()=> {
-                navigate("/faq")
-            }} style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "45px", cursor: "pointer"}}>Faq</p></Link>}
+            {expandClick && <Link to="/faq" target="blank"><p style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "45px", cursor: "pointer"}}>Faq</p></Link>}
 
             <a href="https://www.linkedin.com/in/asynchronous-tic-tac-toe-b96703265/" target="_blank" rel="noopener"><LinkedInIcon titleAccess="Linkedin" style={{color: "white", left: "12px", position: "fixed", bottom: "108px", cursor: "pointer", fontSize: "25px"}}/></a>
             {expandClick && <a href="https://www.linkedin.com/in/asynchronous-tic-tac-toe-b96703265/" target="_blank" rel="noopener"><p style={{color: "white", marginLeft: "56px", position: "absolute", bottom: "94px", cursor: "pointer"}}>Linkedin</p></a>}
