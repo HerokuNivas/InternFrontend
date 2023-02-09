@@ -23,6 +23,7 @@
     "react-apexcharts": "^1.4.0",
     "react-beforeunload": "^2.5.3",
     "react-dom": "^18.2.0",
+    "react-lottie-player": "^1.5.4",
     "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
     "react18-input-otp": "^1.1.2",

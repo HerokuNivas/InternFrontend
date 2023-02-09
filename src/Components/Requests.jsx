@@ -13,14 +13,9 @@ import { useBeforeunload } from 'react-beforeunload';
 export default function Requests(){
 
     const [requests, setRequests] = useState([]);
-    const {user, setUser, cookies, loadingRequest, setLoadingRequest} = useStateContext();
+    const {user, setUser, cookies, loadingRequest} = useStateContext();
     const navigate = useNavigate();
-
-    useEffect(()=>{
-        setTimeout(() => {
-            setLoadingRequest(false);
-        }, 1000);
-    })
+    
 
     useEffect(()=>{
         if(user === ""){
@@ -51,7 +46,7 @@ export default function Requests(){
 
     return(
         <div>
-            {loadingRequest && <video width="50%" height="50%" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+            {loadingRequest && <video width="250px" height="250px" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
                             <source src={video1} type="video/mp4"/></video>}
             {!loadingRequest && <div>
                 <div><div style={{marginBottom: "50px"}}><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/dashboard"))} className="arrowBackRegister"/></div></div>

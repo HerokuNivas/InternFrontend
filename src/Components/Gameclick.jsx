@@ -11,7 +11,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
 import { useBeforeunload } from 'react-beforeunload';
 import PersonIcon from '@mui/icons-material/Person';
-
+import Lottie from 'react-lottie-player'
+import crackerJson from "../LottieJson/Crackers.json";
 export default function Gameclick() {
   let navigate = useNavigate();
 
@@ -51,9 +52,13 @@ export default function Gameclick() {
   const [loading, setLoading] = useState(false);
   const [game, setGame] = useState({ current: user, board: status[2] });
   const [cameIn, setCameIn] = useState(false);
+  const [crackers, setCrackers] = useState(false);
+  const [checkin, setCheckin] = useState(true);
 
 
   const [error, setError] = useState(false);
+
+
   useEffect(() => {
     if(game.winpo !== "")
       try{
@@ -81,6 +86,7 @@ export default function Gameclick() {
         setWinBy(games.winby);
         setCurrent(games.current);
         setBoardIs(games.board);
+        showCrackers();
       }
     }, 1000);
     return () => clearInterval(timeInvterval);
@@ -105,6 +111,15 @@ export default function Gameclick() {
       setError(false);
     }
   }, [game, boardIs]);
+
+  function showCrackers(){
+    if(winby === user && checkin){
+      setTimeout(() => {
+        setCrackers(false);
+      }, 5000);
+    }
+    setCheckin(false);
+  }
 
   function function1() {
     if (current === opponent || came || winby !== "" || cameIn === true) return;
@@ -695,6 +710,13 @@ export default function Gameclick() {
       {loading && (
         <CircularProgress style={{ marginLeft: "48%", marginTop: "150px" }} />
       )}
+      {crackers && <div style={{position: "absolute", top: "0px", width: "100%", height: "100%"}}><Lottie
+      loop
+      animationData={crackerJson}
+      play
+      style={{ width: "100%", height: "100%" }}
+    /></div>}
+      
     </div>
   );
 }

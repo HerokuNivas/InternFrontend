@@ -39,7 +39,9 @@ export default function NewGame(){
             setSuccess(data.data.success); 
             setMessage(data.data.message)
             if(data.data.success){
-                navigate("/dashboard");
+                setTimeout(() => {
+                    navigate("/dashboard");    
+                }, 3000);
             }
         })
         setLoading(false);
@@ -65,7 +67,7 @@ export default function NewGame(){
                     }
                 }}/>
             </div>
-            {submit && success && <p style={{color: "green", marginLeft: "25px", marginTop: "25px", fontWeight: "bold"}}>{message}</p>}
+            {submit && success && <p style={{color: "green", marginLeft: "25px", marginTop: "25px", fontWeight: "bold"}}>{message}. Redirecting in 3 seconds.</p>}
             {submit && !success && <p style={{color: "red", marginLeft: "25px", marginTop: "25px", fontWeight: "bold"}}>{message}</p>}
             <p className="mainSendRequest" onClick={functionCall} style={{marginTop: "30px"}}><span className="mainLoginText" style={{marginLeft: "-30px"}}>Send request</span></p></div>
             }

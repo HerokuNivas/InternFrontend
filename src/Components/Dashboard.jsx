@@ -84,7 +84,7 @@ export default function Dashboard(){
     return(
         <div>
             {/* {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>} */}
-            {loading && <video width="50%" height="50%" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
+            {loading && <video width="250px" height="250px" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
                             <source src={video1} type="video/mp4"/></video>}
         {!loading && <div>
             <div className="dashboardLeft" id="animatedDashboard">

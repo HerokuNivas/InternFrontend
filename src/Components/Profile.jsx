@@ -80,7 +80,7 @@ export default function Profile(){
 
     return(
         <div>
-            {(userIs === "-1" || email === "" || won === -1 || lost === -1 || draw === -1) && <div><video width="30%" height="30%" style={{display: "grid", margin: "auto", marginTop: "100px"}} autoPlay loop muted playsInline >
+            {(userIs === "-1" || email === "" || won === -1 || lost === -1 || draw === -1) && <div><video width="250px" height="250px" style={{display: "grid", margin: "auto", marginTop: "100px"}} autoPlay loop muted playsInline >
                             <source src={Video1} type="video/mp4"/></video></div>}
             {(userIs !== "-1" && email !== "" && won !== -1 && lost !== -1 && draw !== -1) && <div style={{marginRight: "10px"}}>
                 <div style={{textAlign: "center"}}><p style={{fontSize: "75px", marginTop: "20px", marginBottom: "5px", color: "white", border: "2px solid black", display: "inline-block", height: "100px", width: "100px", borderRadius: "50%", background: "#2699c7"}}>{userIs[0].toUpperCase()}</p></div>    
