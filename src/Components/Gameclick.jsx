@@ -61,6 +61,7 @@ export default function Gameclick() {
 
   const data = window.location.href.split("/");
   const url = data[data.length-1];
+  console.log(url);
 
   useEffect(() => {
     if(winby !== "" && winby!==""){
@@ -76,6 +77,7 @@ export default function Gameclick() {
   }, []);
 
   useEffect(() => {
+
     const timeInvterval = setInterval(async () => {
       const dataIs = await axios({
         method: "get",
@@ -85,7 +87,7 @@ export default function Gameclick() {
       const data = await dataIs.data;
       const games = await data.games;
       setGame(games);
-      console.log(games);
+      
       if(games.winpo!==undefined && games.winpo !== "" && !loading){
         document.getElementById("Win"+games.winpo).classList.add("win"+games.winpo);
         }
