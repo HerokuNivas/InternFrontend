@@ -9,75 +9,70 @@ import "../css/Gameclick.css";
 import { Button } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import axios from "axios";
-import { useBeforeunload } from 'react-beforeunload';
-import PersonIcon from '@mui/icons-material/Person';
-import Lottie from 'react-lottie-player'
+import { useBeforeunload } from "react-beforeunload";
+import PersonIcon from "@mui/icons-material/Person";
+import Lottie from "react-lottie-player";
 import crackerJson from "../LottieJson/Crackers.json";
 export default function Gameclick() {
   let navigate = useNavigate();
 
   const { user, setUser, cookies } = useStateContext();
-  const status = cookies.get("Game");
-
-
+  const currGame = cookies.get("Game");
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
-  
-  
+  useBeforeunload((event) => {
+    if (user !== "") {
+      setUser(user);
+      navigate("/dashboard");
+    }
+  });
 
-    useBeforeunload((event) => {
-      if ( user !== "") {
-          setUser(user);
-          navigate("/dashboard");
-      }
-    });
-
-    useEffect(()=>{
-      if(user === ""){
-          setUser(cookies.get('TicTacToe'));
-      }
-      if(cookies.get('TicTacToe') === undefined){
-          navigate("/");
-      }
+  useEffect(() => {
+    if (user === "") {
+      setUser(cookies.get("TicTacToe"));
+    }
+    if (cookies.get("TicTacToe") === undefined) {
+      navigate("/");
+    }
   }, []);
 
-
-  const [current, setCurrent] = useState(status[3]);
-  const [winby, setWinBy] = useState(status[4]);
-  const opponent = status[7];
-  const piece = status[8];
+  const [current, setCurrent] = useState(currGame[0]);
+  const [winby, setWinBy] = useState(currGame[1]);
+  const opponent = currGame[2];
+  const piece = currGame[6] === user ? "x" : "o";
   const [placed, setPlaced] = useState(false);
   const [came, setCame] = useState(false);
-  const [boardIs, setBoardIs] = useState(status[2]);
+  const [boardIs, setBoardIs] = useState(currGame[4]);
   const [loading, setLoading] = useState(false);
-  const [game, setGame] = useState({ current: user, board: status[2] });
+  const [game, setGame] = useState({
+    current: user,
+    board: currGame[4],
+  });
   const [cameIn, setCameIn] = useState(false);
   const [crackers, setCrackers] = useState(false);
   const [checkin, setCheckin] = useState(true);
 
-
   const [error, setError] = useState(false);
 
   const data = window.location.href.split("/");
-  const url = data[data.length-1];
-  console.log(url);
+  const url = data[data.length - 1];
 
   useEffect(() => {
-    if(winby !== "" && winby!==""){
+    if (winby !== "" && winby !== "draw") {
       showCrackers();
     }
-    if(game.winpo!==undefined && game.winpo !== "")
-      try{
-        document.getElementById("Win"+status[6]).classList.add("win"+status[6]);
-      }
-      catch(error){
+    if (game.winpo !== undefined && game.winpo !== "")
+      try {
+        document
+          .getElementById("Win" + currGame[5])
+          .classList.add("win" + currGame[5]);
+      } catch (error) {
         // Not expected;
       }
   }, []);
 
   useEffect(() => {
-
     const timeInvterval = setInterval(async () => {
       const dataIs = await axios({
         method: "get",
@@ -87,10 +82,12 @@ export default function Gameclick() {
       const data = await dataIs.data;
       const games = await data.games;
       setGame(games);
-      
-      if(games.winpo!==undefined && games.winpo !== "" && !loading){
-        document.getElementById("Win"+games.winpo).classList.add("win"+games.winpo);
-        }
+
+      if (games.winpo !== undefined && games.winpo !== "" && !loading) {
+        document
+          .getElementById("Win" + games.winpo)
+          .classList.add("win" + games.winpo);
+      }
       if (games.winby !== "") {
         setWinBy(games.winby);
         setCurrent(games.current);
@@ -121,10 +118,10 @@ export default function Gameclick() {
     }
   }, [game, boardIs]);
 
-  function showCrackers(){
-    if(winby !== opponent && winby !== "" && checkin){
+  function showCrackers() {
+    if (winby !== opponent && winby !== "" && checkin) {
       setCrackers(true);
-      
+
       setTimeout(() => {
         setCrackers(false);
       }, 5000);
@@ -251,7 +248,7 @@ export default function Gameclick() {
 
   async function submitParent() {
     setLoading(true);
-    if(came === true){
+    if (came === true) {
       Submit();
       setCameIn(true);
     }
@@ -297,19 +294,22 @@ export default function Gameclick() {
         setWinBy(data.data.games.winby)
       )
     );
-    if(draw.winpo !== ""){
+    if (draw.winpo !== "") {
       const requestOptions1 = {
-        method: "POST", 
-         headers: { "Content-Type": "application/json" },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          user1 : user,
-          user2 : opponent,
-          status: draw.user==="draw"?"Draw":"Won"
+          user1: user,
+          user2: opponent,
+          status: draw.user === "draw" ? "Draw" : "Won",
         }),
-      }
-      await fetch("https://intern-backend-ten.vercel.app/countWonLost", requestOptions1)
-      .then((response) => response.json())
-      .then((responseData) => {});
+      };
+      await fetch(
+        "https://intern-backend-ten.vercel.app/countWonLost",
+        requestOptions1
+      )
+        .then((response) => response.json())
+        .then((responseData) => {});
     }
     setLoading(false);
     setError(false);
@@ -321,67 +321,67 @@ export default function Gameclick() {
       boardIs[0][0] === value &&
       boardIs[1][1] === value &&
       boardIs[2][2] === value
-    ){
-        document.getElementById("Win7").classList.add("win7");
-      return {user: user, winpo: "7"};
+    ) {
+      document.getElementById("Win7").classList.add("win7");
+      return { user: user, winpo: "7" };
     }
     if (
       boardIs[0][2] === value &&
       boardIs[1][1] === value &&
       boardIs[2][0] === value
-    ){
-        document.getElementById("Win8").classList.add("win8");
-      return {user: user, winpo: "8"};
+    ) {
+      document.getElementById("Win8").classList.add("win8");
+      return { user: user, winpo: "8" };
     }
     if (
       boardIs[0][0] === value &&
       boardIs[1][0] === value &&
       boardIs[2][0] === value
-    ){
-        document.getElementById("Win1").classList.add("win1");
-      return {user: user, winpo: "1"};
+    ) {
+      document.getElementById("Win1").classList.add("win1");
+      return { user: user, winpo: "1" };
     }
     if (
       boardIs[0][1] === value &&
       boardIs[1][1] === value &&
       boardIs[2][1] === value
-    ){
-        document.getElementById("Win2").classList.add("win2");
-      return {user: user, winpo: "2"};
+    ) {
+      document.getElementById("Win2").classList.add("win2");
+      return { user: user, winpo: "2" };
     }
     if (
       boardIs[0][2] === value &&
       boardIs[1][2] === value &&
       boardIs[2][2] === value
-    ){
-        document.getElementById("Win3").classList.add("win3");
-      return {user: user, winpo: "3"};
+    ) {
+      document.getElementById("Win3").classList.add("win3");
+      return { user: user, winpo: "3" };
     }
     if (
       boardIs[0][0] === value &&
       boardIs[0][1] === value &&
       boardIs[0][2] === value
-    ){
-        document.getElementById("Win4").classList.add("win4");
-      return {user: user, winpo: "4"};
+    ) {
+      document.getElementById("Win4").classList.add("win4");
+      return { user: user, winpo: "4" };
     }
     if (
       boardIs[1][0] === value &&
       boardIs[1][1] === value &&
       boardIs[1][2] === value
-    ){
-        document.getElementById("Win5").classList.add("win5");
-      return {user: user, winpo: "5"};
+    ) {
+      document.getElementById("Win5").classList.add("win5");
+      return { user: user, winpo: "5" };
     }
     if (
       boardIs[2][0] === value &&
       boardIs[2][1] === value &&
       boardIs[2][2] === value
-    ){
-        document.getElementById("Win6").classList.add("win6");
-      return {user: user, winpo: "6"};
+    ) {
+      document.getElementById("Win6").classList.add("win6");
+      return { user: user, winpo: "6" };
     }
-    return {user: "", winpo: ""};
+    return { user: "", winpo: "" };
   }
 
   return (
@@ -391,13 +391,25 @@ export default function Gameclick() {
           <div>
             <ArrowBackIosIcon
               fontSize="small"
-              onClick={() => {navigate("/dashboard"); cookies.remove("Game")}}
+              onClick={() => {
+                navigate("/dashboard");
+                cookies.remove("Game");
+              }}
               className="arrowBackRegister"
             />
           </div>
           <div style={{ marginLeft: "20px", marginTop: "50px" }}>
-            <p style={{ fontSize: "20px", fontWeight: "bolder", color: "#2699c7" }}>
-              Game with {opponent} <Link to={"/profile/"+opponent} target="_blank"><PersonIcon style={{color: "#2699c7"}}/></Link>
+            <p
+              style={{
+                fontSize: "20px",
+                fontWeight: "bolder",
+                color: "#2699c7",
+              }}
+            >
+              Game with {opponent}{" "}
+              <Link to={"/profile/" + opponent} target="_blank">
+                <PersonIcon style={{ color: "#2699c7" }} />
+              </Link>
             </p>
             <p>Your piece</p>
             <p
@@ -420,7 +432,13 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
+                <span
+                  style={{
+                    marginLeft: "100px",
+                    fontSize: "larger",
+                    color: "white",
+                  }}
+                >
                   Your move
                 </span>
               </p>
@@ -435,7 +453,13 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
+                <span
+                  style={{
+                    marginLeft: "100px",
+                    fontSize: "larger",
+                    color: "white",
+                  }}
+                >
                   Their move
                 </span>
               </p>
@@ -450,7 +474,13 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
+                <span
+                  style={{
+                    marginLeft: "100px",
+                    fontSize: "larger",
+                    color: "white",
+                  }}
+                >
                   You won.
                 </span>
               </p>
@@ -465,7 +495,13 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "85px", fontSize: "larger", color: "white" }}>
+                <span
+                  style={{
+                    marginLeft: "85px",
+                    fontSize: "larger",
+                    color: "white",
+                  }}
+                >
                   Opponent won.
                 </span>
               </p>
@@ -480,7 +516,13 @@ export default function Gameclick() {
                   marginTop: "-100px",
                 }}
               >
-                <span style={{ marginLeft: "100px", fontSize: "larger", color: "white" }}>
+                <span
+                  style={{
+                    marginLeft: "100px",
+                    fontSize: "larger",
+                    color: "white",
+                  }}
+                >
                   It's draw.
                 </span>
               </p>
@@ -515,64 +557,64 @@ export default function Gameclick() {
                 <div id="Win7"></div>
               </div>
               <div>
-              <p
-                className="box2"
-                onClick={() => {
-                  function2();
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "80px",
-                    marginLeft: "20px",
-                    color: boardIs[0][1] === "X" ? "#2C8DFF" : "#FF4F4F",
-                    fontWeight: "bolder",
+                <p
+                  className="box2"
+                  onClick={() => {
+                    function2();
                   }}
                 >
-                  {boardIs[0][1]}
-                </span>
-              </p>
-                  <div id="Win2"></div>
+                  <span
+                    style={{
+                      fontSize: "80px",
+                      marginLeft: "20px",
+                      color: boardIs[0][1] === "X" ? "#2C8DFF" : "#FF4F4F",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    {boardIs[0][1]}
+                  </span>
+                </p>
+                <div id="Win2"></div>
               </div>
               <div>
-              <p
-                className="box3"
-                onClick={() => {
-                  function3();
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "80px",
-                    marginLeft: "20px",
-                    color: boardIs[0][2] === "X" ? "#2C8DFF" : "#FF4F4F",
-                    fontWeight: "bolder",
+                <p
+                  className="box3"
+                  onClick={() => {
+                    function3();
                   }}
                 >
-                  {boardIs[0][2]}
-                </span>
-              </p><div id="Win3"></div>
-              
+                  <span
+                    style={{
+                      fontSize: "80px",
+                      marginLeft: "20px",
+                      color: boardIs[0][2] === "X" ? "#2C8DFF" : "#FF4F4F",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    {boardIs[0][2]}
+                  </span>
+                </p>
+                <div id="Win3"></div>
               </div>
               <div>
-              <p
-                className="box4"
-                onClick={() => {
-                  function4();
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "80px",
-                    marginLeft: "20px",
-                    color: boardIs[1][0] === "X" ? "#2C8DFF" : "#FF4F4F",
-                    fontWeight: "bolder",
+                <p
+                  className="box4"
+                  onClick={() => {
+                    function4();
                   }}
                 >
-                  {boardIs[1][0]}
-                </span>
-              </p>
-              <div id="Win5"></div>
+                  <span
+                    style={{
+                      fontSize: "80px",
+                      marginLeft: "20px",
+                      color: boardIs[1][0] === "X" ? "#2C8DFF" : "#FF4F4F",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    {boardIs[1][0]}
+                  </span>
+                </p>
+                <div id="Win5"></div>
               </div>
               <p
                 className="box5"
@@ -610,24 +652,25 @@ export default function Gameclick() {
               </p>
 
               <div>
-              <p
-                className="box7"
-                onClick={() => {
-                  function7();
-                }}
-              >
-                <span
-                  style={{
-                    fontSize: "80px",
-                    marginLeft: "20px",
-                    color: boardIs[2][0] === "X" ? "#2C8DFF" : "#FF4F4F",
-                    fontWeight: "bolder",
+                <p
+                  className="box7"
+                  onClick={() => {
+                    function7();
                   }}
                 >
-                  {boardIs[2][0]}
-                </span>
-              </p><div id="Win6"></div>
-              <div id="Win8"></div>
+                  <span
+                    style={{
+                      fontSize: "80px",
+                      marginLeft: "20px",
+                      color: boardIs[2][0] === "X" ? "#2C8DFF" : "#FF4F4F",
+                      fontWeight: "bolder",
+                    }}
+                  >
+                    {boardIs[2][0]}
+                  </span>
+                </p>
+                <div id="Win6"></div>
+                <div id="Win8"></div>
               </div>
               <p
                 className="box8"
@@ -721,13 +764,23 @@ export default function Gameclick() {
       {loading && (
         <CircularProgress style={{ marginLeft: "48%", marginTop: "150px" }} />
       )}
-      {crackers && <div style={{position: "absolute", top: "0px", width: "100%", height: "100%"}}><Lottie
-      loop
-      animationData={crackerJson}
-      play
-      style={{ width: "100%", height: "100%" }}
-    /></div>}
-      
+      {crackers && (
+        <div
+          style={{
+            position: "absolute",
+            top: "0px",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <Lottie
+            loop
+            animationData={crackerJson}
+            play
+            style={{ width: "100%", height: "100%" }}
+          />
+        </div>
+      )}
     </div>
   );
 }
