@@ -101,7 +101,6 @@ export default function Register(){
         else{
             const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
         setGenerateOTP(Generated);
-        console.log(Generated);
         // eslint-disable-next-line no-undef
       emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
         otp: Generated,
