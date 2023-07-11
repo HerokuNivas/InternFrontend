@@ -3,7 +3,8 @@ import "../css/Home.css";
 import {useNavigate} from "react-router-dom";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import { useEffect } from "react";
-import video1 from "../Animations/Tic tac toe.mp4";
+import Lottie from "react-lottie-player";
+import TicTacToeJson from "../LottieJson/Tic tac toe.json";
 
 
 export default function Home(){
@@ -33,8 +34,12 @@ export default function Home(){
             <p style={{textAlign: "center", color: "black"}} className="mainName">Tic Tac Toe</p>
             <p className="mainLogin" onClick={()=>(navigate("/login"))}><span className="mainLoginText">Login 🔐</span></p>
             <p className="mainRegister" onClick={()=>{navigate("/register")}}><span className="mainRegisterText">Register ➕</span></p>
-            <video width="250px" height="250px" className="video1" autoPlay loop muted playsInline >
-                            <source src={video1} type="video/mp4"/></video>
+            <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}><div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}><Lottie
+            loop
+            animationData={TicTacToeJson}
+            play
+            style={{ width: "250px", height: "250px", margin: "auto" }}
+          /></div></div>
             </div>
             <div className="home2" >
                 <p className="animatedText" style={{fontSize: "35px", color: "white", marginBottom: "-20px", marginTop: "100px"}}>Play game</p>    

@@ -145,7 +145,7 @@ export default function Forogt(){
             emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
                 otp: Generated,
                 email: email,
-                });
+                }, process.env.REACT_APP_PUBLIC);
         }
 
     async function submitFun(){
@@ -167,11 +167,10 @@ export default function Forogt(){
             const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
             setGenerateOTP(Generated);
             // eslint-disable-next-line no-undef
-
           emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
             otp: Generated,
-            email: email,
-            });
+            email: responseData.success.email,
+            }, process.env.REACT_APP_PUBLIC);
 
 
             }

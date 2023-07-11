@@ -6,7 +6,8 @@ import { useStateContext } from "../ContextProvider/ContextProvider";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { useNavigate } from "react-router-dom";
 import Singlerequest from "./Singlerequest";
-import video1 from "../Animations/Person.mp4";
+import PersonJson from "../LottieJson/Person.json";
+import Lottie from "react-lottie-player";
 import { useBeforeunload } from 'react-beforeunload';
 
 
@@ -46,8 +47,12 @@ export default function Requests(){
 
     return(
         <div>
-            {loadingRequest && <video width="250px" height="250px" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
-                            <source src={video1} type="video/mp4"/></video>}
+            {loadingRequest && <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}><div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}><Lottie
+            loop
+            animationData={PersonJson}
+            play
+            style={{ width: "250px", height: "250px", marginTop: "25%" }}
+          /></div></div>}
             {!loadingRequest && <div>
                 <div><div style={{marginBottom: "50px"}}><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/dashboard"))} className="arrowBackRegister"/></div></div>
                 {requests.length === 0 && <div><p className="dashBoardNogames">No Requests Found</p></div>}

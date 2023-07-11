@@ -10,8 +10,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CircularProgress from '@mui/material/CircularProgress';
-import video1 from "../Animations/Login.mp4";
-
+import Lottie from "react-lottie-player";
+import LoginJson from "../LottieJson/Login.json";
 export default function Login(){
     let navigate = useNavigate();
     const {user, setUser} = useStateContext();
@@ -112,7 +112,11 @@ export default function Login(){
                  
             </div>
         </div>} 
-        {loading && <div><video width="250px" height="250px" className="video1" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
-                            <source src={video1} type="video/mp4"/></video></div>}</div>   
+        {loading && <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}><div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}><Lottie
+            loop
+            animationData={LoginJson}
+            play
+            style={{ width: "250px", height: "250px", marginTop: "25%" }}
+          /></div></div>}</div>   
     )
 }

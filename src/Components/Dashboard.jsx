@@ -9,13 +9,14 @@ import "../css/Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import Singlegame from "./Singlegame";
 import LogoutIcon from '@mui/icons-material/Logout';
-import video1 from "../Animations/Dashboard.mp4";
+import DashboardJson from "../LottieJson/Dashboard.json";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import Lottie from "react-lottie-player";
 
 export default function Dashboard(){
     let navigate = useNavigate();
@@ -98,8 +99,12 @@ export default function Dashboard(){
     return(
         <div>
             {/* {loading && <CircularProgress style={{marginLeft: "48%", marginTop: "150px"}}/>} */}
-            {loading && <video width="250px" height="250px" style={{display: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
-                            <source src={video1} type="video/mp4"/></video>}
+            {loading && <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}><div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}><Lottie
+            loop
+            animationData={DashboardJson}
+            play
+            style={{ width: "250px", height: "250px", marginTop: "25%" }}
+          /></div></div>}
         {!loading && <div>
             <div className="dashboardLeft" id="animatedDashboard">
                 {!expandClick && <ArrowCircleRightIcon style={{position: "absolute", left:"56px", titleAccess: "Expand", cursor: "pointer", top: "2px"}} onClick={()=>{var element = document.getElementById("animatedDashboard"); element.classList.add("activeClick"); setExpandClicked(true)}}/>}

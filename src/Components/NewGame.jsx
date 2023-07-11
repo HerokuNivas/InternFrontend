@@ -7,7 +7,9 @@ import axios from "axios";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
-import video1 from "../Animations/Find.mp4";
+import FindJosn from "../LottieJson/Find.json";
+import Lottie from "react-lottie-player";
+
 export default function NewGame(){
 
     const [email, setEmail] = useState("");
@@ -50,8 +52,12 @@ export default function NewGame(){
     let navigate = useNavigate();
     return(
         <div>
-            {loading && <video width="250px" height="250px" className="video1" style={{dispaly: "grid", margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
-                            <source src={video1} type="video/mp4"/></video>}
+            {loading && <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}><div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}><Lottie
+            loop
+            animationData={FindJosn}
+            play
+            style={{ width: "250px", height: "250px", marginTop: "25%"}}
+          /></div></div>}
             {!loading && <div><div><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/dashboard"))} className="arrowBackRegister"/></div>
             <div style={{marginTop: "50px", marginLeft: "30px", fontWeight: "bold", fontSize: "larger", marginRight: "30px"}}>
                 <p>Start a new game</p>

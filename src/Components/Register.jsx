@@ -15,7 +15,8 @@ import EmailVerification from "./EmailVerification";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
-import video1 from "../Animations/Register.mp4";
+import RegisterJSON from "../LottieJson/Register.json";
+import Lottie from "react-lottie-player";
 import emailjs from "@emailjs/browser";
 
 export default function Register(){
@@ -100,11 +101,12 @@ export default function Register(){
         else{
             const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
         setGenerateOTP(Generated);
+        console.log(Generated);
         // eslint-disable-next-line no-undef
-      emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
+      emailjs.send(REACT_APP_SERVICE,REACT_APP_TEMPLATE,{
         otp: Generated,
         email: mail,
-        });
+        }, process.env.REACT_APP_PUBLIC);
             setInside(true);
         }
 
@@ -155,8 +157,12 @@ export default function Register(){
 
     return(
         <div>
-            {loading && <div><video width="250px" height="250px"  className="video1" style={{display: "grid",  margin: "auto", marginTop: "150px"}} autoPlay loop muted playsInline >
-                            <source src={video1} type="video/mp4"/></video></div>}
+            {loading && <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}><div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}><Lottie
+            loop
+            animationData={RegisterJSON}
+            play
+            style={{ width: "250px", height: "250px", marginTop: "25%" }}
+          /></div></div>}
             {!inside && !loading && <div>
             <div><ArrowBackIosIcon fontSize="small" onClick={()=>(navigate("/"))} className="arrowBackRegister"/></div>
             <div className="register">

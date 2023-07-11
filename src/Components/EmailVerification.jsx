@@ -53,7 +53,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
       emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
         otp: Generated,
         email: mail,
-        });
+        }, process.env.REACT_APP_PUBLIC);
     }
  
 

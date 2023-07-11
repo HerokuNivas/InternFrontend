@@ -2,7 +2,8 @@ import React from "react";
 import { useStateContext } from "../ContextProvider/ContextProvider";
 import {useState} from "react";
 import axios from "axios";
-import Video1 from "../Animations/Profile.mp4";
+import Lottie from "react-lottie-player";
+import ProfileJson from "../LottieJson/Person.json";
 import ReactApexChart from "react-apexcharts";
 
 export default function Profile(){
@@ -80,8 +81,12 @@ export default function Profile(){
 
     return(
         <div>
-            {(userIs === "-1" || email === "" || won === -1 || lost === -1 || draw === -1) && <div><video width="250px" height="250px" style={{display: "grid", margin: "auto", marginTop: "100px"}} autoPlay loop muted playsInline >
-                            <source src={Video1} type="video/mp4"/></video></div>}
+            {(userIs === "-1" || email === "" || won === -1 || lost === -1 || draw === -1) && <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}><div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}><Lottie
+            loop
+            animationData={ProfileJson}
+            play
+            style={{ width: "250px", height: "250px", marginTop: "25%" }}
+          /></div></div>}
             {(userIs !== "-1" && email !== "" && won !== -1 && lost !== -1 && draw !== -1) && <div style={{marginRight: "10px"}}>
                 <div style={{textAlign: "center"}}><p style={{fontSize: "75px", marginTop: "20px", marginBottom: "5px", color: "white", border: "2px solid black", display: "inline-block", height: "100px", width: "100px", borderRadius: "50%", background: "#2699c7"}}>{userIs[0].toUpperCase()}</p></div>    
                  
