@@ -103,7 +103,7 @@ export default function Register(){
         setGenerateOTP(Generated);
         console.log(Generated);
         // eslint-disable-next-line no-undef
-      emailjs.send(REACT_APP_SERVICE,REACT_APP_TEMPLATE,{
+      emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
         otp: Generated,
         email: mail,
         }, process.env.REACT_APP_PUBLIC);
