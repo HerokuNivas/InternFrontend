@@ -16,6 +16,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
 import video1 from "../Animations/Register.mp4";
+import emailjs from "@emailjs/browser";
 
 export default function Register(){
     let navigate = useNavigate();
@@ -97,24 +98,17 @@ export default function Register(){
     function functionEmail(){
         if(!validate || verified) return;
         else{
-            const Generated = Math.floor(1000 + Math.random() * 9000).toString(); 
+            const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
         setGenerateOTP(Generated);
         // eslint-disable-next-line no-undef
-    Email.send({
-        Host: "smtp.elasticemail.com",
-        Username: "tictactoeasync@gmail.com",
-        Password: "3BAB6C51A68988DC48324CF4A0D7E16E5A4F",
-        // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-        To: mail,
-        From: "tictactoeasync@gmail.com",
-        Subject: "OTP for Verification",
-        // eslint-disable-next-line no-undef
-        Body: decodeURI(
-          "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
-        ),
-      }).then();
+      emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
+        otp: Generated,
+        email: mail,
+        });
             setInside(true);
         }
+
+        
     }
     
 

@@ -11,6 +11,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckIcon from '@mui/icons-material/Check';
+import emailjs from "@emailjs/browser";
 
 export default function Forogt(){
     let navigate = useNavigate();
@@ -141,19 +142,10 @@ export default function Forogt(){
             const Generated = Math.floor(1000 + Math.random() * 9000).toString(); 
             setGenerateOTP(Generated);
             // eslint-disable-next-line no-undef
-        Email.send({
-            Host: "smtp.elasticemail.com",
-            Username: "tictactoeasync@gmail.com",
-            Password: "3BAB6C51A68988DC48324CF4A0D7E16E5A4F",
-            // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-            To: email,
-            From: "tictactoeasync@gmail.com",
-            Subject: "OTP to Change password",
-            // eslint-disable-next-line no-undef
-            Body: decodeURI(
-              "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
-            ),
-          }).then();
+            emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
+                otp: Generated,
+                email: email,
+                });
         }
 
     async function submitFun(){
@@ -172,22 +164,16 @@ export default function Forogt(){
                 setEmail(responseData.success.email);
                 setSendOTP(true);
             setError1(false);
-            const Generated = Math.floor(1000 + Math.random() * 9000).toString(); 
+            const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
             setGenerateOTP(Generated);
             // eslint-disable-next-line no-undef
-        Email.send({
-            Host: "smtp.elasticemail.com",
-            Username: "tictactoeasync@gmail.com",
-            Password: "3BAB6C51A68988DC48324CF4A0D7E16E5A4F",
-            // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-            To: responseData.success.email,
-            From: "tictactoeasync@gmail.com",
-            Subject: "OTP to Change password",
-            // eslint-disable-next-line no-undef
-            Body: decodeURI(
-              "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
-            ),
-          }).then();
+
+          emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
+            otp: Generated,
+            email: email,
+            });
+
+
             }
         })
         setLoading(false);
@@ -221,7 +207,7 @@ export default function Forogt(){
           value={OTP}
           onChange={setOTP}
           autoFocus
-          OTPLength={4}
+          OTPLength={6}
           otpType="char"
           disabled={false}
         />

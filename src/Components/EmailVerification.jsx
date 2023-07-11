@@ -4,6 +4,7 @@ import { useState } from "react";
 import OTPInput, { ResendOTP } from "otp-input-react";
 import Button from "@mui/material/Button";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import emailjs from '@emailjs/browser';
 
 export default function EmailVerification({ mail, setVerified, setInside, setEmailError, generateOTP, setGenerateOTP }) {
   const [OTP, setOTP] = useState("");
@@ -46,22 +47,13 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
     }
         setSendOTP(true);
         setError(false);
-        const Generated = Math.floor(1000 + Math.random() * 9000).toString(); 
+        const Generated = Math.floor(100000 + Math.random() * 900000).toString(); 
         setGenerateOTP(Generated);
         // eslint-disable-next-line no-undef
-    Email.send({
-        Host: "smtp.elasticemail.com",
-        Username: "tictactoeasync@gmail.com",
-        Password: "3BAB6C51A68988DC48324CF4A0D7E16E5A4F",
-        // SecureToken : "3d7638a5-656f-4a2c-a4a8-858cacaa042a",
-        To: mail,
-        From: "tictactoeasync@gmail.com",
-        Subject: "OTP for Verification",
-        // eslint-disable-next-line no-undef
-        Body: decodeURI(
-          "Hello ,Please enter the following OTP : "+Generated+" to proceed further.Do not share this OTP with anyone. Thanks for using Asynchronous Tic Tac Toe."
-        ),
-      }).then();
+      emailjs.send(process.env.REACT_APP_SERVICE,process.env.REACT_APP_TEMPLATE,{
+        otp: Generated,
+        email: mail,
+        });
     }
  
 
@@ -78,7 +70,7 @@ export default function EmailVerification({ mail, setVerified, setInside, setEma
           value={OTP}
           onChange={setOTP}
           autoFocus
-          OTPLength={4}
+          OTPLength={6}
           otpType="char"
           disabled={false}
         />
